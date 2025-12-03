@@ -1,0 +1,35 @@
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">
+      <a href="/">Hôpital Bien-être</a>
+    </div>
+    <nav class="hidden md:flex space-x-8">
+      <a href="/" class="hover:text-gray-200">Accueil</a>
+      <a href="/blog.html" class="hover:text-gray-200">Blog</a>
+      <a href="/a-propos.html" class="hover:text-gray-200">À propos</a>
+      <a href="/avis.html" class="hover:text-gray-200">Avis</a>
+      <a href="/contact.html" class="hover:text-gray-200">Contact</a>
+    </nav>
+    <a href="/contact.html" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700">
+      Prendre rendez-vous
+    </a>
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="focus:outline-none">
+        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white/90 text-gray-800">
+    <a href="/" class="block py-2">Accueil</a>
+    <a href="/blog.html" class="block py-2">Blog</a>
+    <a href="/a-propos.html" class="block py-2">À propos</a>
+    <a href="/avis.html" class="block py-2">Avis</a>
+    <a href="/contact.html" class="block py-2">Contact</a>
+    <a href="/contact.html" class="block mt-2 bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700">
+      Prendre rendez-vous
+    </a>
+  </div>
+</header>

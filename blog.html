@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/output.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Hôpital Bien-être - Blog</title>
+  <style>
+    :root {
+      --gold: #C5A572;
+      --navy: #1A365D;
+      --light-beige: #F8F5F0;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-800: #1f2937;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: white;
+      color: var(--gray-800);
+    }
+    
+    /* Header style comme la référence */
+    .header-bg {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .gold-accent {
+      color: var(--gold);
+    }
+    
+    .gold-bg {
+      background-color: var(--gold);
+    }
+    
+    .navy-text {
+      color: var(--navy);
+    }
+    
+    /* Cartes comme dans l'index */
+    .blog-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border-color: transparent;
+    }
+    
+    /* Image hover effect */
+    .blog-image {
+      transition: transform 0.7s ease;
+    }
+    
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+    
+    /* Tag style */
+    .blog-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background-color: rgba(197, 165, 114, 0.1);
+      color: var(--gold);
+      border: 1px solid rgba(197, 165, 114, 0.3);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    
+    /* Search bar style comme la référence */
+    .search-container {
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem 1rem 0.875rem 2.75rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      background: var(--gray-50);
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.1);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+    
+    /* Filter buttons */
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      color: var(--gray-800);
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-btn:hover {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+    }
+    
+    .filter-btn.active {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+    
+    /* Date style */
+    .blog-date {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    
+    /* Pagination comme la référence */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .pagination-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      color: var(--gray-700);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .pagination-btn:hover {
+      border-color: var(--gray-300);
+      background: var(--gray-50);
+    }
+    
+    .pagination-btn.active {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+    
+    /* Featured post */
+    .featured-post {
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, #2A4365 100%);
+    }
+    
+    /* Newsletter */
+    .newsletter-input {
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.1);
+    }
+    
+    /* Footer */
+    .footer-bg {
+      background: var(--navy);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .filter-container {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .filter-container::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-gray-800 transition-all duration-300 header-bg">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold">
+        <a href="/" class="flex items-center">
+          <span class="navy-text">Hôpital</span>
+          <span class="gold-accent ml-1">Bien-être</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-8 font-medium">
+        <a href="/" class="hover:text-gold-600 transition-colors duration-300">Accueil</a>
+        <a href="/blog.html" class="text-gold-600 font-semibold">Blog</a>
+        <a href="/a-propos.html" class="hover:text-gold-600 transition-colors duration-300">À propos</a>
+        <a href="/avis.html" class="hover:text-gold-600 transition-colors duration-300">Avis</a>
+        <a href="/contact.html" class="hover:text-gold-600 transition-colors duration-300">Contact</a>
+      </nav>
+      <a href="/contact.html" class="hidden md:block navy-bg text-white px-5 py-2.5 rounded-lg hover:bg-opacity-90 transition-colors duration-300 text-sm font-medium">
+        Prendre rendez-vous
+      </a>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-6 max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Notre Blog</h1>
+        <p class="text-lg text-gray-600 mb-8">
+          Conseils de santé, actualités médicales et informations pratiques pour prendre soin de vous au quotidien.
+        </p>
+        
+        <!-- Barre de recherche -->
+        <div class="search-container max-w-md mx-auto mb-8">
+          <div class="relative">
+            <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input 
+              type="text" 
+              placeholder="Rechercher un article..." 
+              class="search-input"
+              id="search-input"
+            >
+          </div>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="filter-container justify-center mb-12">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="nutrition">Nutrition</button>
+          <button class="filter-btn" data-filter="prevention">Prévention</button>
+          <button class="filter-btn" data-filter="bien-etre">Bien-être</button>
+          <button class="filter-btn" data-filter="exercice">Exercice</button>
+          <button class="filter-btn" data-filter="conseils">Conseils</button>
+          <button class="filter-btn" data-filter="pediatrie">Pédiatrie</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles en vedette -->
+    <section class="pb-12">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div class="featured-post mb-16">
+          <div class="md:flex">
+            <div class="md:w-1/2 relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Santé durable" 
+                class="w-full h-64 md:h-full object-cover blog-image"
+              >
+            </div>
+            <div class="md:w-1/2 p-8 md:p-12">
+              <span class="blog-tag mb-4 inline-block">Article vedette</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Les 5 piliers d'une santé durable</h2>
+              <p class="text-gray-200 mb-6">
+                Une approche holistique pour maintenir une bonne santé sur le long terme. Découvrez comment équilibrer nutrition, activité physique, sommeil, gestion du stress et liens sociaux.
+              </p>
+              <div class="flex items-center">
+                <div class="flex items-center mr-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="Dr. Martin" 
+                    class="w-10 h-10 rounded-full object-cover mr-3"
+                  >
+                  <div>
+                    <p class="font-medium text-white text-sm">Dr. Sophie Martin</p>
+                    <p class="text-gray-300 text-xs">Médecin généraliste</p>
+                  </div>
+                </div>
+                <span class="blog-date text-gray-300">15 juillet 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grille d'articles -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="articles-grid">
+          
+          <!-- Article 1 -->
+          <article class="blog-card" data-category="nutrition">
+            <div class="relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Alimentation équilibrée" 
+                class="w-full h-48 object-cover blog-image"
+              >
+            </div>
+            <div class="p-6">
+              <span class="blog-tag mb-3 inline-block">Nutrition</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Les secrets d'une alimentation équilibrée</h3>
+              <p class="text-gray-600 mb-4">
+                Découvrez comment structurer vos repas pour obtenir tous les nutriments essentiels sans frustration.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="blog-date">12 juillet 2025</span>
+                <a href="/blog-post.html" class="text-gold-600 hover:text-gold-700 font-medium text-sm">
+                  Lire →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="blog-card" data-category="exercice">
+            <div class="relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Exercice physique" 
+                class="w-full h-48 object-cover blog-image"
+              >
+            </div>
+            <div class="p-6">
+              <span class="blog-tag mb-3 inline-block">Exercice</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">L'exercice adapté à chaque âge</h3>
+              <p class="text-gray-600 mb-4">
+                Comment adapter votre activité physique à votre âge et condition pour en tirer le maximum de bénéfices.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="blog-date">8 juillet 2025</span>
+                <a href="/blog-post.html" class="text-gold-600 hover:text-gold-700 font-medium text-sm">
+                  Lire →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="blog-card" data-category="prevention">
+            <div class="relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Examens de santé" 
+                class="w-full h-48 object-cover blog-image"
+              >
+            </div>
+            <div class="p-6">
+              <span class="blog-tag mb-3 inline-block">Prévention</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Examens de santé par tranche d'âge</h3>
+              <p class="text-gray-600 mb-4">
+                Un guide complet des bilans de santé recommandés à chaque étape de la vie pour une prévention optimale.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="blog-date">5 juillet 2025</span>
+                <a href="/blog-post.html" class="text-gold-600 hover:text-gold-700 font-medium text-sm">
+                  Lire →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="blog-card" data-category="bien-etre">
+            <div class="relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Méditation" 
+                class="w-full h-48 object-cover blog-image"
+              >
+            </div>
+            <div class="p-6">
+              <span class="blog-tag mb-3 inline-block">Bien-être</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Méditation et santé mentale</h3>
+              <p class="text-gray-600 mb-4">
+                Comment intégrer la pleine conscience dans votre quotidien pour réduire le stress et améliorer votre santé.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="blog-date">1 juillet 2025</span>
+                <a href="/blog-post.html" class="text-gold-600 hover:text-gold-700 font-medium text-sm">
+                  Lire →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="blog-card" data-category="conseils">
+            <div class="relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1516549655669-df6518e8c6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Sommeil" 
+                class="w-full h-48 object-cover blog-image"
+              >
+            </div>
+            <div class="p-6">
+              <span class="blog-tag mb-3 inline-block">Conseils</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">L'hygiène du sommeil</h3>
+              <p class="text-gray-600 mb-4">
+                Des techniques simples pour améliorer la qualité de votre sommeil et récupérer pleinement chaque nuit.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="blog-date">28 juin 2025</span>
+                <a href="/blog-post.html" class="text-gold-600 hover:text-gold-700 font-medium text-sm">
+                  Lire →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 6 -->
+          <article class="blog-card" data-category="nutrition">
+            <div class="relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Immunité" 
+                class="w-full h-48 object-cover blog-image"
+              >
+            </div>
+            <div class="p-6">
+              <span class="blog-tag mb-3 inline-block">Nutrition</span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Renforcer son système immunitaire</h3>
+              <p class="text-gray-600 mb-4">
+                Les facteurs clés pour soutenir vos défenses naturelles tout au long de l'année.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="blog-date">25 juin 2025</span>
+                <a href="/blog-post.html" class="text-gold-600 hover:text-gold-700 font-medium text-sm">
+                  Lire →
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination mb-20">
+          <button class="pagination-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">4</button>
+          <button class="pagination-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-6 max-w-2xl text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Restez informé</h2>
+        <p class="text-gray-600 mb-8">
+          Recevez nos derniers articles et conseils santé directement dans votre boîte mail.
+        </p>
+        <form class="space-y-4">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input 
+              type="email" 
+              placeholder="Votre adresse email" 
+              class="newsletter-input flex-1"
+              required
+            >
+            <button type="submit" class="navy-bg text-white font-medium px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap">
+              S'inscrire
+            </button>
+          </div>
+          <p class="text-gray-500 text-sm">
+            En vous inscrivant, vous acceptez notre politique de confidentialité.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-bg text-white pt-16 pb-8">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-6">Hôpital Bien-être</h3>
+          <p class="text-gray-300">
+            Votre santé est notre priorité. Nous offrons des soins de qualité avec compassion et expertise.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="#" class="hover:text-white">Consultations</a></li>
+            <li><a href="#" class="hover:text-white">Médecine préventive</a></li>
+            <li><a href="#" class="hover:text-white">Imagerie médicale</a></li>
+            <li><a href="#" class="hover:text-white">Analyses biologiques</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Liens rapides</h4>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="/" class="hover:text-white">Accueil</a></li>
+            <li><a href="/blog.html" class="hover:text-white">Blog</a></li>
+            <li><a href="/a-propos.html" class="hover:text-white">À propos</a></li>
+            <li><a href="/contact.html" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Contact</h4>
+          <p class="text-gray-300">123 Rue de la Santé</p>
+          <p class="text-gray-300">75000 Paris</p>
+          <p class="text-gray-300">contact@hopital-bienetre.fr</p>
+          <p class="text-gray-300">+33 1 23 45 67 89</p>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Hôpital Bien-être. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('hidden');
+      }
+    });
+
+    // Filtrage et recherche
+    const searchInput = document.getElementById('search-input');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const articles = document.querySelectorAll('.blog-card');
+
+    function filterArticles() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+      
+      articles.forEach(article => {
+        const category = article.dataset.category;
+        const title = article.querySelector('h3').textContent.toLowerCase();
+        const excerpt = article.querySelector('p').textContent.toLowerCase();
+        const tag = article.querySelector('.blog-tag').textContent.toLowerCase();
+        
+        const matchesSearch = searchTerm === '' || 
+          title.includes(searchTerm) || 
+          excerpt.includes(searchTerm) || 
+          tag.includes(searchTerm);
+        
+        const matchesFilter = activeFilter === 'all' || category === activeFilter;
+        
+        if (matchesSearch && matchesFilter) {
+          article.style.display = 'block';
+          // Animation pour l'apparition
+          article.style.animation = 'fadeIn 0.3s ease';
+        } else {
+          article.style.display = 'none';
+        }
+      });
+    }
+
+    // Événements pour les filtres
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        filterArticles();
+      });
+    });
+
+    // Recherche en temps réel
+    searchInput.addEventListener('input', filterArticles);
+
+    // Pagination
+    document.querySelectorAll('.pagination-btn').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.pagination-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // Animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

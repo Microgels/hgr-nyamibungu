@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/output.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>À propos - Hôpital Bien-être</title>
+  <style>
+    :root {
+      --gold: #D4AF74; /* Richer gold */
+      --gold-dark: #B88B4A; /* New: Darker gold for accents */
+      --navy: #152F4F; /* Deeper navy */
+      --gold-light: #F0E0C5;
+      --navy-light: #23456B;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: white;
+      color: var(--gray-700); /* Slightly softer body text color */
+      line-height: 1.65; /* Slightly tighter line height for readability */
+      font-size: 1.05rem; /* Slightly larger base font size */
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    /* Header */
+    .site-header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-200);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    .site-header.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .site-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .nav-link {
+      color: var(--gray-700);
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1.25rem;
+      right: 1.25rem;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--navy);
+    }
+    
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+    
+    .nav-link.active {
+      color: var(--navy);
+    }
+    
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+    
+    .primary-btn {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(26, 54, 93, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .primary-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26, 54, 93, 0.25);
+    }
+    
+    .primary-btn:hover::before {
+      left: 100%;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      padding-top: 10rem;
+      padding-bottom: 8rem;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 200%;
+      background: linear-gradient(135deg, rgba(197, 165, 114, 0.08) 0%, rgba(26, 54, 93, 0.05) 100%);
+      border-radius: 50%;
+      transform: rotate(15deg);
+    }
+    
+    .hero-title {
+      font-size: 3.75rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--navy);
+      position: relative;
+      max-width: 900px;
+    }
+    
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.5rem;
+      width: 4rem;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 48rem;
+      margin-bottom: 3rem;
+      font-weight: 400;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: white;
+      border-radius: 1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--navy));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border-color: transparent;
+    }
+    
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .stat-label {
+      color: var(--gray-600);
+      font-weight: 500;
+      font-size: 1.125rem;
+    }
+    
+    /* Mission Section */
+    .mission-section {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+      position: relative;
+    }
+    
+    .mission-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+    }
+    
+    .section-title {
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--navy);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.75rem;
+      width: 3rem;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      margin-bottom: 3rem;
+      max-width: 48rem;
+      line-height: 1.8;
+    }
+    
+    .mission-content {
+      font-size: 1.125rem;
+      color: var(--gray-700);
+    }
+    
+    .mission-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .mission-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .mission-image-wrapper {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: all 0.5s ease;
+    }
+    
+    .mission-image-wrapper:hover {
+      transform: perspective(1000px) rotateY(0deg);
+      box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mission-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(26, 54, 93, 0.1), transparent);
+      z-index: 1;
+    }
+    
+    .mission-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .mission-image-wrapper:hover .mission-image {
+      transform: scale(1.05);
+    }
+    
+    /* Values Section */
+    .values-section {
+      padding: 8rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .values-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+    }
+    
+    .value-card {
+      padding: 3rem 2.5rem;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 1rem;
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(197, 165, 114, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-light);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .value-card:hover::before {
+      opacity: 1;
+    }
+    
+    .value-icon {
+      width: 4rem;
+      height: 4rem;
+      background: linear-gradient(135deg, rgba(197, 165, 114, 0.1) 0%, rgba(197, 165, 114, 0.2) 100%);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      color: var(--gold);
+      transition: all 0.4s ease;
+    }
+    
+    .value-card:hover .value-icon {
+      transform: scale(1.1) rotate(5deg);
+      background: linear-gradient(135deg, rgba(197, 165, 114, 0.2) 0%, rgba(197, 165, 114, 0.3) 100%);
+    }
+    
+    .value-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+    
+    .value-text {
+      color: var(--gray-600);
+      line-height: 1.8;
+    }
+    
+    /* Timeline Section */
+    .timeline-section {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+      position: relative;
+    }
+    
+    .timeline-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+    }
+    
+    .timeline-container {
+      position: relative;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+    
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), var(--navy));
+    }
+    
+    @media (min-width: 768px) {
+      .timeline-container::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 4rem;
+    }
+    
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: 1.5rem;
+      top: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      background: white;
+      border: 4px solid var(--gold);
+      border-radius: 50%;
+      z-index: 2;
+      transition: all 0.4s ease;
+    }
+    
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.3);
+      background: var(--gold);
+      border-color: white;
+      box-shadow: 0 0 0 4px rgba(197, 165, 114, 0.2);
+    }
+    
+    @media (min-width: 768px) {
+      .timeline-dot {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    
+    .timeline-content {
+      margin-left: 4rem;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 1rem;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), var(--navy));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+    }
+    
+    .timeline-content:hover {
+      transform: translateX(10px);
+      border-color: transparent;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .timeline-content:hover::before {
+      transform: scaleY(1);
+    }
+    
+    @media (min-width: 768px) {
+      .timeline-content {
+        width: calc(50% - 4rem);
+        margin-left: 0;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: auto;
+        margin-right: 4rem;
+      }
+      
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 4rem;
+      }
+    }
+    
+    .timeline-year {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .timeline-year::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 2rem;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 1.5px;
+    }
+    
+    .timeline-title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--gray-900);
+    }
+    
+    .timeline-text {
+      color: var(--gray-600);
+      line-height: 1.8;
+    }
+    
+    /* Facilities Section */
+    .facilities-section {
+      padding: 8rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .facilities-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+    }
+    
+    .facility-card {
+      padding: 3rem 2.5rem;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      height: 100%;
+    }
+    
+    .facility-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .facility-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--navy-light);
+      box-shadow: 0 25px 50px -12px rgba(26, 54, 93, 0.1);
+    }
+    
+    .facility-card:hover::before {
+      opacity: 1;
+    }
+    
+    .facility-icon {
+      width: 4rem;
+      height: 4rem;
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.1) 0%, rgba(26, 54, 93, 0.2) 100%);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: var(--navy);
+      transition: all 0.4s ease;
+    }
+    
+    .facility-card:hover .facility-icon {
+      transform: scale(1.1) rotate(-5deg);
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.2) 0%, rgba(26, 54, 93, 0.3) 100%);
+    }
+    
+    .facility-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+    
+    .facility-text {
+      color: var(--gray-600);
+      line-height: 1.8;
+    }
+    
+    /* Footer */
+    .site-footer {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+      padding: 6rem 0 3rem;
+      position: relative;
+    }
+    
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    .footer-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: white;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.5rem;
+      width: 2rem;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 1.5px;
+    }
+    
+    .footer-text {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    .footer-links a::before {
+      content: '→';
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .stat-number {
+        font-size: 2.75rem;
+      }
+      
+      .timeline-container::before {
+        left: 2rem;
+      }
+      
+      .timeline-dot {
+        left: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.75rem;
+      }
+      
+      .stat-card,
+      .value-card,
+      .facility-card,
+      .timeline-content {
+        padding: 2rem 1.5rem;
+      }
+      
+      .hero-section {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+      }
+      
+      .mission-section,
+      .values-section,
+      .timeline-section,
+      .facilities-section {
+        padding: 4rem 0;
+      }
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="site-logo flex items-center">
+          <span style="color: var(--navy);">Hôpital</span>
+          <span style="color: var(--gold);" class="ml-1">Bien-être</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-2">
+          <a href="/" class="nav-link">Accueil</a>
+          <a href="/blog.html" class="nav-link">Blog</a>
+          <a href="/a-propos.html" class="nav-link active">À propos</a>
+          <a href="/avis.html" class="nav-link">Avis</a>
+          <a href="/contact.html" class="nav-link">Contact</a>
+          <a href="/contact.html" class="primary-btn ml-4">Prendre rendez-vous</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 animate-fade-in-up">
+    <div class="container py-6">
+      <div class="space-y-3">
+        <a href="/" class="block py-3 nav-link">Accueil</a>
+        <a href="/blog.html" class="block py-3 nav-link">Blog</a>
+        <a href="/a-propos.html" class="block py-3 nav-link active">À propos</a>
+        <a href="/avis.html" class="block py-3 nav-link">Avis</a>
+        <a href="/contact.html" class="block py-3 nav-link">Contact</a>
+        <a href="/contact.html" class="block mt-6 primary-btn text-center py-3">Prendre rendez-vous</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title animate-fade-in-up">L'excellence médicale au service de votre bien-être</h1>
+      <p class="hero-subtitle animate-fade-in-up delay-100">
+        Depuis 1985, l'Hôpital Bien-être s'engage à offrir des soins de santé exceptionnels, 
+        alliant expertise médicale, technologie de pointe et compassion humaine pour une santé optimale.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="stat-card animate-fade-in-up">
+          <div class="stat-number" data-count="150">150+</div>
+          <div class="stat-label">Spécialistes experts</div>
+        </div>
+        <div class="stat-card animate-fade-in-up delay-100">
+          <div class="stat-number" data-count="40">40+</div>
+          <div class="stat-label">Années d'excellence</div>
+        </div>
+        <div class="stat-card animate-fade-in-up delay-200">
+          <div class="stat-number" data-count="98">98%</div>
+          <div class="stat-label">Satisfaction patients</div>
+        </div>
+        <div class="stat-card animate-fade-in-up delay-300">
+          <div class="stat-number" data-count="25">25K+</div>
+          <div class="stat-label">Patients par an</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission-section">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="animate-fade-in-up">
+          <h2 class="section-title mb-6">Notre Mission</h2>
+          <p class="section-subtitle mb-8">
+            Fournir des soins médicaux exceptionnels tout en innovant pour l'avenir de la santé.
+          </p>
+          <div class="mission-content">
+            <p>
+              Fondé en 1985 par le Dr. Alain Lefevre, l'Hôpital Bien-être est né d'une vision simple mais ambitieuse : 
+              créer un établissement médical où l'excellence technique rencontre l'humanité des soins. 
+              Notre fondateur a toujours cru que la médecine doit allier compétence scientifique et compassion humaine.
+            </p>
+            <p>
+              Au fil des décennies, nous avons évolué pour devenir une référence régionale en matière de soins de santé, 
+              tout en restant fidèles à nos valeurs fondamentales de compassion, d'intégrité et d'innovation. 
+              Notre approche holistique considère chaque patient dans sa globalité.
+            </p>
+            <p>
+              Aujourd'hui, grâce à des investissements continus dans la technologie médicale de pointe 
+              et la formation de notre personnel, nous nous positionnons comme un leader dans le domaine de la santé, 
+              prêt à relever les défis médicaux de demain.
+            </p>
+          </div>
+        </div>
+        <div class="animate-fade-in-up delay-100">
+          <div class="mission-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80" 
+              alt="Hôpital Bien-être" 
+              class="mission-image"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="container">
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="section-title inline-block mb-6">Nos Valeurs Fondamentales</h2>
+        <p class="section-subtitle">
+          Les principes qui guident chacune de nos actions et décisions médicales quotidiennes.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="value-card animate-fade-in-up">
+          <div class="value-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
+            </svg>
+          </div>
+          <h3 class="value-title">Compassion</h3>
+          <p class="value-text">
+            Nous traitons chaque patient avec empathie et compréhension, en créant un environnement 
+            de soins chaleureux et rassurant qui favorise la guérison et le bien-être global.
+          </p>
+        </div>
+        
+        <div class="value-card animate-fade-in-up delay-100">
+          <div class="value-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="value-title">Excellence</h3>
+          <p class="value-text">
+            Nous visons constamment l'excellence médicale grâce à une formation continue, 
+            des protocoles rigoureux et des technologies de pointe pour des résultats optimaux.
+          </p>
+        </div>
+        
+        <div class="value-card animate-fade-in-up delay-200">
+          <div class="value-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="value-title">Intégrité</h3>
+          <p class="value-text">
+            Nous maintenons les plus hauts standards éthiques, avec une transparence totale 
+            dans nos communications et une responsabilité absolue dans toutes nos actions.
+          </p>
+        </div>
+        
+        <div class="value-card animate-fade-in-up delay-300">
+          <div class="value-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="value-title">Innovation</h3>
+          <p class="value-text">
+            Nous adoptons les technologies médicales les plus avancées et développons 
+            constamment de nouvelles approches thérapeutiques pour améliorer les soins.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="section-title inline-block mb-6">Notre Parcours d'Excellence</h2>
+        <p class="section-subtitle">
+          Quatre décennies d'innovation et de dévouement à la santé de notre communauté.
+        </p>
+      </div>
+      
+      <div class="timeline-container">
+        <div class="timeline-item animate-fade-in-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1985</div>
+            <h3 class="timeline-title">Fondation Visionnaire</h3>
+            <p class="timeline-text">
+              Création de l'Hôpital Bien-être avec 50 lits et une vision humaniste des soins de santé 
+              qui allie excellence technique et compassion humaine.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-fade-in-up delay-100">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1995</div>
+            <h3 class="timeline-title">Centre de Cardiologie</h3>
+            <p class="timeline-text">
+              Ouverture du premier centre de cardiologie de pointe équipé des dernières technologies d'imagerie 
+              médicale et d'intervention cardiaque minimalement invasive.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-fade-in-up delay-200">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2005</div>
+            <h3 class="timeline-title">Expansion Majeure</h3>
+            <p class="timeline-text">
+              Agrandissement des installations avec l'ajout de 100 nouveaux lits et la création 
+              d'un centre de recherche médicale intégré pour le développement de nouvelles thérapies.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-fade-in-up delay-300">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2015</div>
+            <h3 class="timeline-title">Certification Internationale</h3>
+            <p class="timeline-text">
+              Obtention de la certification d'excellence médicale internationale (JCI) pour la qualité 
+              exceptionnelle de nos soins et nos standards de sécurité des patients.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-fade-in-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2025</div>
+            <h3 class="timeline-title">Innovation Digitale</h3>
+            <p class="timeline-text">
+              Lancement de la plateforme de télémédecine avancée et intégration de l'intelligence 
+              artificielle dans les processus de diagnostic et de suivi des patients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities Section -->
+  <section class="facilities-section">
+    <div class="container">
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="section-title inline-block mb-6">Nos Installations et Équipements</h2>
+        <p class="section-subtitle">
+          Des technologies de pointe et des installations modernes pour des soins optimaux et précis.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="facility-card animate-fade-in-up">
+          <div class="facility-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <h3 class="facility-title">Imagerie Avancée</h3>
+          <p class="facility-text">
+            IRM 3T, scanner 128 barrettes, échographes haut de gamme et système d'imagerie par résonance 
+            magnétique pour des diagnostics précis et non invasifs.
+          </p>
+        </div>
+        
+        <div class="facility-card animate-fade-in-up delay-100">
+          <div class="facility-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="facility-title">Chirurgie Robotique</h3>
+          <p class="facility-text">
+            Salles opératoires équipées de robots chirurgicaux Da Vinci XI pour des interventions 
+            minimalement invasives avec une précision submillimétrique et une récupération accélérée.
+          </p>
+        </div>
+        
+        <div class="facility-card animate-fade-in-up delay-200">
+          <div class="facility-icon">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="facility-title">Laboratoire d'Analyses</h3>
+          <p class="facility-text">
+            Laboratoire équipé d'automates de dernière génération pour des analyses biologiques rapides, 
+            fiables et précises avec des résultats disponibles dans des délais optimisés.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About -->
+        <div>
+          <h3 class="footer-title">Hôpital Bien-être</h3>
+          <p class="footer-text">
+            Excellence médicale et compassion humaine depuis 1985. Votre santé, notre priorité absolue. 
+            Nous nous engageons à fournir des soins de qualité dans un environnement bienveillant et innovant.
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="footer-title">Services Médicaux</h3>
+          <ul class="footer-links">
+            <li><a href="#">Consultations spécialisées</a></li>
+            <li><a href="#">Chirurgie et interventions</a></li>
+            <li><a href="#">Imagerie médicale avancée</a></li>
+            <li><a href="#">Médecine préventive</a></li>
+            <li><a href="#">Laboratoire d'analyses</a></li>
+          </ul>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/blog.html">Blog santé</a></li>
+            <li><a href="/a-propos.html">À propos de nous</a></li>
+            <li><a href="/avis.html">Témoignages</a></li>
+            <li><a href="/contact.html">Contact & Rendez-vous</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="footer-title">Contact & Urgences</h3>
+          <ul class="footer-links">
+            <li><a href="#">📌 123 Rue de la Santé, 75000 Paris</a></li>
+            <li><a href="mailto:contact@hopital-bienetre.fr">✉️ contact@hopital-bienetre.fr</a></li>
+            <li><a href="tel:+33123456789">📞 +33 1 23 45 67 89</a></li>
+            <li><a href="#">🚨 Urgences 24h/24 & 7j/7</a></li>
+            <li><a href="#">🕐 Lun-Sam : 8h-20h</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Hôpital Bien-être. Tous droits réservés. | Conçu avec passion pour votre santé</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Stats counter animation
+    function animateValue(element, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.textContent = value + (element.textContent.includes('+') ? '+' : 
+                            element.textContent.includes('%') ? '%' : '');
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Initialize counters when in viewport
+    function initCounters() {
+      const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+      
+      statNumbers.forEach(stat => {
+        const count = parseInt(stat.getAttribute('data-count'));
+        if (!stat.classList.contains('animated')) {
+          animateValue(stat, 0, count, 2000);
+          stat.classList.add('animated');
+        }
+      });
+    }
+
+    // Intersection Observer for counters
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            initCounters();
+          }
+        });
+      }, {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      observer.observe(statsSection);
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Active navigation link on scroll
+    function updateActiveNavLink() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let currentSection = '';
+      const scrollPosition = window.scrollY + 150;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href && href.includes(currentSection)) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNavLink);
+
+    // Animate elements on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-fade-in-up');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }
+
+    // Set initial state for animated elements
+    document.querySelectorAll('.animate-fade-in-up').forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+
+    // Add hover effects for cards
+    document.querySelectorAll('.value-card, .facility-card, .stat-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.zIndex = '10';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.zIndex = '1';
+      });
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero-section');
+      if (hero) {
+        const rate = scrolled * -0.3;
+        hero.style.backgroundPosition = `center ${rate}px`;
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('mobile-menu');
+      const button = document.getElementById('mobile-menu-button');
+      
+      if (!menu.contains(event.target) && !button.contains(event.target)) {
+        if (!menu.classList.contains('hidden')) {
+          menu.classList.add('hidden');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

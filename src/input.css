@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  /* Header text visibility and scroll styles */
+  #main-header .nav-link {
+     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  #main-header.scrolled {
+    @apply bg-white shadow-md text-gray-800;
+  }
+  #main-header.scrolled .nav-link {
+    text-shadow: none;
+  }
+  #main-header.scrolled-static {
+     @apply bg-white shadow-md text-gray-800;
+  }
+   #main-header.scrolled-static .nav-link {
+    text-shadow: none;
+  }
+
+
+  /* Swiper navigation button styles */
+  .swiper-button-next,
+  .swiper-button-prev {
+    @apply text-white w-8 h-8 bg-black/20 rounded-full;
+  }
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    @apply text-lg font-bold;
+  }
+
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Scroll animation utilities */
+  .scroll-animate {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(20px);
+  }
+  .fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-down {
+    animation: fade-in-down 1s ease-out forwards;
+  }
+  @keyframes fade-in-up-slow {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up-slow 1s ease-out 0.5s forwards;
+    opacity: 0; /* Start hidden */
+  }
+
+  /* Swiper pagination styles */
+  .swiper-pagination-bullet-active {
+    @apply bg-white;
+  }
+
+  /* Partner logo scroll animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+  }
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+}

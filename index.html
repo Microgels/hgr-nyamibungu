@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/output.css" rel="stylesheet">
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <title>Hôpital Bien-être - Accueil</title>
+  <style>
+    /* Styles minimalistes qui ne changent pas votre structure */
+    :root {
+      --gold: #C5A572;
+      --navy: #1A365D;
+    }
+    
+    /* Header amélioré mais garde la même structure */
+    #main-header {
+      background: rgba(26, 54, 93, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .gold-text {
+      color: #C5A572;
+    }
+    
+    .navy-bg {
+      background-color: #1A365D;
+    }
+    
+    .gold-bg {
+      background-color: #C5A572;
+    }
+    
+    /* Boutons avec la nouvelle palette */
+    .btn-classic {
+      background-color: #1A365D;
+      color: white;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-classic:hover {
+      background-color: #C5A572;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: #1A365D;
+      border: 2px solid #1A365D;
+    }
+    
+    .btn-outline:hover {
+      background-color: #1A365D;
+      color: white;
+    }
+    
+    /* Cartes de services améliorées */
+    .service-card {
+      border: 1px solid #E8E3D9;
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-color: #C5A572;
+    }
+    
+    .service-icon {
+      color: #C5A572;
+      background-color: rgba(197, 165, 114, 0.1);
+    }
+    
+    /* Cartes d'actualités améliorées */
+    .news-card {
+      border: 1px solid #E8E3D9;
+    }
+    
+    .news-card:hover {
+      border-color: #C5A572;
+    }
+    
+    /* Swiper personnalisé */
+    .swiper-button-next, .swiper-button-prev {
+      color: #C5A572 !important;
+    }
+    
+    .swiper-pagination-bullet {
+      background: white !important;
+      opacity: 0.6 !important;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background: #C5A572 !important;
+      opacity: 1 !important;
+    }
+    
+    /* Overlay hero amélioré */
+    .hero-overlay {
+      background: rgba(26, 54, 93, 0.7);
+    }
+    
+    /* Logo partenaires amélioré */
+    .partner-logo {
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+    
+    .partner-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- HEADER - Structure identique, styles améliorés -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold">
+        <a href="/" class="flex items-center">
+          <span>Hôpital</span>
+          <span class="gold-text ml-2">Bien-être</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="/" class="text-gold-400 border-b border-gold-400 pb-1">Accueil</a>
+        <a href="/blog.html" class="hover:text-gold-400 transition-colors duration-300">Blog</a>
+        <a href="/a-propos.html" class="hover:text-gold-400 transition-colors duration-300">À propos</a>
+        <a href="/avis.html" class="hover:text-gold-400 transition-colors duration-300">Avis</a>
+        <a href="/contact.html" class="hover:text-gold-400 transition-colors duration-300">Contact</a>
+      </nav>
+      <a href="/contact.html" class="hidden md:block btn-classic px-6 py-3 rounded-sm text-sm font-medium">
+        Prendre rendez-vous
+      </a>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 navy-bg text-white shadow-lg">
+      <a href="/" class="block py-3 border-b border-gray-700 text-gold-400">Accueil</a>
+      <a href="/blog.html" class="block py-3 border-b border-gray-700">Blog</a>
+      <a href="/a-propos.html" class="block py-3 border-b border-gray-700">À propos</a>
+      <a href="/avis.html" class="block py-3 border-b border-gray-700">Avis</a>
+      <a href="/contact.html" class="block py-3 border-b border-gray-700">Contact</a>
+      <a href="/contact.html" class="block mt-4 btn-classic px-6 py-3 rounded-sm text-center">
+        Prendre rendez-vous
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION - Même structure, overlay amélioré -->
+    <section class="h-screen w-full relative">
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop');"></div>
+      <div class="absolute inset-0 hero-overlay"></div>
+
+      <!-- Swiper Carousel - Exactement la même structure -->
+      <div class="swiper-container h-full overflow-hidden">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="h-full flex flex-col justify-center items-start container mx-auto px-6">
+               <div class="max-w-lg text-white">
+                  <h1 class="text-5xl md:text-6xl font-bold mb-4">L'excellence des soins à votre portée</h1>
+                  <p class="text-xl md:text-2xl mb-8">Une approche humaine et une technologie de pointe pour votre santé et votre bien-être.</p>
+                  <a href="/a-propos.html" class="gold-bg text-white font-bold px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 inline-block">
+                    Découvrir notre hôpital
+                  </a>
+                </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="h-full flex flex-col justify-center items-end container mx-auto px-6">
+                <div class="max-w-lg text-white text-right">
+                  <h1 class="text-5xl md:text-6xl font-bold mb-4">Urgences 24/7 : Nous sommes là pour vous</h1>
+                  <p class="text-xl md:text-2xl mb-8">Notre équipe d'urgence est prête à vous fournir des soins rapides et efficaces à toute heure.</p>
+                  <a href="/contact.html" class="gold-bg text-white font-bold px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 inline-block">
+                    Contacter les urgences
+                  </a>
+                </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+           <div class="swiper-slide">
+            <div class="h-full flex flex-col justify-center items-start container mx-auto px-6">
+                <div class="max-w-lg text-white">
+                  <h1 class="text-5xl md:text-6xl font-bold mb-4">Prenez rendez-vous en ligne facilement</h1>
+                  <p class="text-xl md:text-2xl mb-8">Consultez nos spécialistes en quelques clics. Simple, rapide et confidentiel.</p>
+                  <a href="/contact.html" class="btn-outline text-white border-2 border-white hover:bg-white hover:text-navy font-bold px-8 py-3 rounded-sm transition-colors duration-300 inline-block">
+                    Prendre rendez-vous
+                  </a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+
+    <!-- PARTNERS SECTION - Même structure, styles améliorés -->
+    <section class="py-12 bg-gray-100">
+      <div class="container mx-auto">
+        <div class="relative w-full overflow-hidden">
+          <div class="flex animate-scroll">
+            <!-- First set of logos -->
+            <div class="flex-shrink-0 flex items-center justify-around w-full">
+              <img src="https://logo.clearbit.com/google.com" alt="Google Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/facebook.com" alt="Facebook Logo" class="h-12 mx-8 partner-logo"/>
+            </div>
+            <!-- Second set of logos (for seamless loop) -->
+            <div class="flex-shrink-0 flex items-center justify-around w-full">
+              <img src="https://logo.clearbit.com/google.com" alt="Google Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo" class="h-12 mx-8 partner-logo"/>
+              <img src="https://logo.clearbit.com/facebook.com" alt="Facebook Logo" class="h-12 mx-8 partner-logo"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION - Même structure, design amélioré -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Nos Spécialités Médicales</h2>
+        <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          Nous offrons une gamme complète de soins spécialisés, en utilisant les dernières technologies pour garantir des résultats de la plus haute qualité.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Service Card 1: Cardiologie - Même structure, styles améliorés -->
+          <div class="service-card p-8 rounded-lg shadow-sm">
+            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.933 0-3.604 1.081-4.312 2.688-.708-1.607-2.38-2.688-4.313-2.688C5.099 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Cardiologie</h3>
+            <p class="text-gray-600 mb-6">Soins cardiaques complets, du diagnostic préventif aux interventions complexes.</p>
+            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
+          </div>
+
+          <!-- Service Card 2: Neurologie -->
+          <div class="service-card p-8 rounded-lg shadow-sm">
+            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.5 21.75l-.398-1.188a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.188-.398a2.25 2.25 0 001.423-1.423L16.5 15.75l.398 1.188a2.25 2.25 0 001.423 1.423L19.5 18.75l-1.188.398a2.25 2.25 0 00-1.423 1.423z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Neurologie</h3>
+            <p class="text-gray-600 mb-6">Traitement expert des troubles du système nerveux et du cerveau.</p>
+            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
+          </div>
+
+          <!-- Service Card 3: Pédiatrie -->
+          <div class="service-card p-8 rounded-lg shadow-sm">
+            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pédiatrie</h3>
+            <p class="text-gray-600 mb-6">Soins attentifs et spécialisés pour la santé et le bien-être de vos enfants.</p>
+            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
+          </div>
+
+          <!-- Service Card 4: Médecine Générale -->
+          <div class="service-card p-8 rounded-lg shadow-sm">
+            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Médecine Générale</h3>
+            <p class="text-gray-600 mb-6">Consultations, diagnostics et suivi pour toute la famille.</p>
+            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
+          </div>
+
+          <!-- Service Card 5: Urgences -->
+          <div class="service-card p-8 rounded-lg shadow-sm">
+            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Urgences</h3>
+            <p class="text-gray-600 mb-6">Service d'urgence disponible 24h/24 et 7j/7 pour les situations critiques.</p>
+            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
+          </div>
+
+          <!-- Service Card 6: Radiologie -->
+          <div class="service-card p-8 rounded-lg shadow-sm">
+            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                <path d="M9 18v-6a3 3 0 0 1 6 0v6"></path>
+                <path d="M12 12V4"></path>
+                <line x1="9" y1="12" x2="15" y2="12"></line>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Radiologie</h3>
+            <p class="text-gray-600 mb-6">Imagerie médicale avancée pour un diagnostic précis.</p>
+            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
+          </div>
+
+        </div>
+
+        <!-- Voir Plus Button - Même structure, style amélioré -->
+        <div class="mt-12">
+          <a href="#" class="inline-block btn-classic px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 text-lg font-medium">
+            Voir tous nos services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS SECTION - Même structure, design amélioré -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Nos Dernières Actualités</h2>
+        <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          Restez informé des dernières avancées médicales, des événements de l'hôpital et des conseils de santé de nos experts.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- News Card 1 -->
+          <div class="news-card bg-white rounded-lg shadow-sm overflow-hidden">
+            <img src="https://via.placeholder.com/400x250/93c5fd/ffffff?text=Actualité" alt="Image d'actualité" class="w-full h-48 object-cover">
+            <div class="p-6 text-left">
+              <span class="text-sm text-gray-500">15 Septembre 2025</span>
+              <h3 class="text-xl font-bold text-gray-800 mt-2 mb-4">Innover pour la santé de demain</h3>
+              <p class="text-gray-600 mb-4">Découvrez comment nos recherches transforment les soins médicaux.</p>
+              <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                <a href="/blog-post.html" class="font-semibold gold-text hover:underline">Lire l'article →</a>
+                <div class="flex space-x-4 text-gray-500">
+                  <span class="flex items-center space-x-1">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
+                    </svg>
+                    <span>35</span>
+                  </span>
+                  <span class="flex items-center space-x-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <span>7</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- News Card 2 -->
+          <div class="news-card bg-white rounded-lg shadow-sm overflow-hidden">
+            <img src="https://via.placeholder.com/400x250/6ee7b7/ffffff?text=Innovation" alt="Image d'actualité" class="w-full h-48 object-cover">
+            <div class="p-6 text-left">
+              <span class="text-sm text-gray-500">10 Septembre 2025</span>
+              <h3 class="text-xl font-bold text-gray-800 mt-2 mb-4">Conseils pour une vie saine et équilibrée</h3>
+              <p class="text-gray-600 mb-4">Nos experts partagent leurs astuces pour améliorer votre bien-être quotidien.</p>
+              <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                <a href="/blog-post.html" class="font-semibold gold-text hover:underline">Lire l'article →</a>
+                <div class="flex space-x-4 text-gray-500">
+                  <span class="flex items-center space-x-1">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
+                    </svg>
+                    <span>51</span>
+                  </span>
+                  <span class="flex items-center space-x-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <span>18</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- News Card 3 -->
+          <div class="news-card bg-white rounded-lg shadow-sm overflow-hidden">
+            <img src="https://via.placeholder.com/400x250/fca5a5/ffffff?text=Recherche" alt="Article Image" class="w-full h-48 object-cover">
+            <div class="p-6 text-left">
+              <span class="text-sm text-gray-500">05 Septembre 2025</span>
+              <h3 class="text-xl font-bold text-gray-800 mt-2 mb-4">L'importance de la prévention dans la santé</h3>
+              <p class="text-gray-600 mb-4">Un guide complet sur les gestes simples pour rester en bonne santé.</p>
+              <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                <a href="/blog-post.html" class="font-semibold gold-text hover:underline">Lire l'article →</a>
+                <div class="flex space-x-4 text-gray-500">
+                  <span class="flex items-center space-x-1">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
+                    </svg>
+                    <span>42</span>
+                  </span>
+                  <span class="flex items-center space-x-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <span>11</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to action to blog page -->
+        <div class="mt-12">
+          <a href="/blog.html" class="inline-block btn-classic px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 text-lg font-medium">
+            Voir toutes les actualités
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER - Même structure, styles améliorés -->
+  <footer class="navy-bg text-white mt-20">
+    <div class="container mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <!-- About -->
+        <div class="lg:col-span-2">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <span>Hôpital</span>
+            <span class="gold-text ml-2">Bien-être</span>
+          </h3>
+          <p class="text-gray-300">
+            Votre santé est notre priorité. Nous offrons des soins de qualité avec compassion et expertise.
+          </p>
+        </div>
+        <!-- Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+          <ul class="space-y-2">
+            <li><a href="/" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">Accueil</a></li>
+            <li><a href="/blog.html" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">Blog</a></li>
+            <li><a href="/a-propos.html" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">À propos</a></li>
+            <li><a href="/contact.html" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">Contact</a></li>
+          </ul>
+        </div>
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Nous contacter</h3>
+          <p class="text-gray-300">123 Rue de la Santé, 75000 Paris</p>
+          <p class="text-gray-300">contact@hopital-bienetre.fr</p>
+          <p class="text-gray-300">+33 1 23 45 67 89</p>
+        </div>
+        <!-- Newsletter -->
+        <div class="lg:col-span-1">
+          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-300 mb-4">Inscrivez-vous pour recevoir nos actualités.</p>
+          <form action="#" method="POST">
+            <label for="newsletter-email" class="sr-only">Email</label>
+            <input type="email" id="newsletter-email" placeholder="Votre email" class="w-full p-3 text-gray-800 rounded-sm mb-3 focus:outline-none focus:ring-2 focus:ring-gold-400">
+            <button type="submit" class="w-full gold-bg text-white font-bold py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300">
+              S'inscrire
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+        <p>&copy; 2025 Hôpital Bien-être. Tous droits réservés.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors duration-300">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors duration-300">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" class="fixed bottom-8 right-8 z-50 navy-bg text-white p-3 rounded-sm shadow-lg hover:bg-gold-400 hover:text-navy focus:outline-none transition-all duration-300 opacity-0 invisible">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5l6.75-6.75M12 4.5v15m0 0l-6.75-6.75" />
+    </svg>
+  </button>
+
+  <!-- Chatbot Button -->
+  <button id="chatbot-button" class="fixed bottom-8 right-24 z-50 gold-bg text-white p-3 rounded-sm shadow-lg hover:bg-yellow-600 focus:outline-none transition-transform duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.51c.885.085 1.77.22 2.655.442v4.004a.75.75 0 01-.087.355l-1.293 2.935c-.623 1.407-2.39 2.193-3.974 1.76l-.417-.139c-.933-.312-1.928-.47-2.923-.47h-2.128a.75.75 0 01-.703-.523L10.5 12.556V8.51zm0 0h-.114M12 12.556v8.25m-2.25-2.25H12" />
+    </svg>
+  </button>
+
+  <!-- Swiper.js JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <script src="/src/js/main.js"></script>
+  <script>
+    // Script minimal pour Swiper
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'horizontal',
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+    });
+    
+    // Scripts basiques
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
