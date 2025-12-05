@@ -1,547 +1,781 @@
-<!doctype html>
-<html lang="fr" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/src/output.css" rel="stylesheet">
-  <!-- Swiper.js CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <title>Hôpital Bien-être - Accueil</title>
-  <style>
-    /* Styles minimalistes qui ne changent pas votre structure */
-    :root {
-      --gold: #C5A572;
-      --navy: #1A365D;
-    }
-    
-    /* Header amélioré mais garde la même structure */
-    #main-header {
-      background: rgba(26, 54, 93, 0.95);
-      backdrop-filter: blur(10px);
-    }
-    
-    .gold-text {
-      color: #C5A572;
-    }
-    
-    .navy-bg {
-      background-color: #1A365D;
-    }
-    
-    .gold-bg {
-      background-color: #C5A572;
-    }
-    
-    /* Boutons avec la nouvelle palette */
-    .btn-classic {
-      background-color: #1A365D;
-      color: white;
-      border: none;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-classic:hover {
-      background-color: #C5A572;
-    }
-    
-    .btn-outline {
-      background-color: transparent;
-      color: #1A365D;
-      border: 2px solid #1A365D;
-    }
-    
-    .btn-outline:hover {
-      background-color: #1A365D;
-      color: white;
-    }
-    
-    /* Cartes de services améliorées */
-    .service-card {
-      border: 1px solid #E8E3D9;
-      transition: all 0.3s ease;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border-color: #C5A572;
-    }
-    
-    .service-icon {
-      color: #C5A572;
-      background-color: rgba(197, 165, 114, 0.1);
-    }
-    
-    /* Cartes d'actualités améliorées */
-    .news-card {
-      border: 1px solid #E8E3D9;
-    }
-    
-    .news-card:hover {
-      border-color: #C5A572;
-    }
-    
-    /* Swiper personnalisé */
-    .swiper-button-next, .swiper-button-prev {
-      color: #C5A572 !important;
-    }
-    
-    .swiper-pagination-bullet {
-      background: white !important;
-      opacity: 0.6 !important;
-    }
-    
-    .swiper-pagination-bullet-active {
-      background: #C5A572 !important;
-      opacity: 1 !important;
-    }
-    
-    /* Overlay hero amélioré */
-    .hero-overlay {
-      background: rgba(26, 54, 93, 0.7);
-    }
-    
-    /* Logo partenaires amélioré */
-    .partner-logo {
-      filter: grayscale(100%);
-      opacity: 0.6;
-      transition: all 0.3s ease;
-    }
-    
-    .partner-logo:hover {
-      filter: grayscale(0%);
-      opacity: 1;
-    }
-  </style>
-</head>
-<body class="bg-gray-50">
-
-  <!-- HEADER - Structure identique, styles améliorés -->
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="text-2xl font-bold">
-        <a href="/" class="flex items-center">
-          <span>Hôpital</span>
-          <span class="gold-text ml-2">Bien-être</span>
-        </a>
-      </div>
-      <nav class="hidden md:flex space-x-8">
-        <a href="/" class="text-gold-400 border-b border-gold-400 pb-1">Accueil</a>
-        <a href="/blog.html" class="hover:text-gold-400 transition-colors duration-300">Blog</a>
-        <a href="/a-propos.html" class="hover:text-gold-400 transition-colors duration-300">À propos</a>
-        <a href="/avis.html" class="hover:text-gold-400 transition-colors duration-300">Avis</a>
-        <a href="/contact.html" class="hover:text-gold-400 transition-colors duration-300">Contact</a>
-      </nav>
-      <a href="/contact.html" class="hidden md:block btn-classic px-6 py-3 rounded-sm text-sm font-medium">
-        Prendre rendez-vous
-      </a>
-      <div class="md:hidden">
-        <button id="mobile-menu-button" class="focus:outline-none">
-          <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lakeside Medical Center</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <!-- <link rel="stylesheet" href="./src/output.css"> -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a", // This is a slightly darker blue from the palette, like navy-800
+              "background-light": "#ffffff",
+              "background-dark": "#111827",
+            },
+            fontFamily: {
+              display: ["Poppins", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+            keyframes: {
+              slideIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+            },
+            animation: {
+              slideIn: "slideIn 0.5s ease-in-out",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+       :root {
+            --primary: #1a3a8f; /* Bleu médical plus profond */
+            --primary-light: #2d5dc5; /* Bleu plus clair */
+            --primary-dark: #0f2a66; /* Bleu foncé */
+            --secondary: #0d6c8a; /* Bleu cyan élégant */
+            --accent: #c53030; /* Rouge pour urgences */
+            --accent-light: #fed7d7; /* Fond rouge clair */
+            --light: #f9fafb; /* Fond très clair */
+            --light-gray: #f1f5f9; /* Gris très clair */
+            --dark: #1e293b; /* Texte foncé */
+            --gray: #64748b; /* Texte gris */
+        }
+      .carousel-slide {
+        display: none;
+        animation: slideIn 0.5s ease-in-out;
+      }
+      .carousel-slide.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background text-gray-700 dark:text-gray-300"
+  >
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <header
+        class="flex justify-between items-center py-6 border-b  border-gray-200 dark:border-gray-700"
+      >
+        <!-- <div class="flex items-center space-x-2">
+          <span class="material-icons text-primary text-4xl"
+            >local_hospital</span
+          >
+          <span class="text-2xl font-bold text-gray-900 dark:text-white"
+            >HGR<br />Nyamibungu</span
+          >
+        </div> -->
+        <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">HGR</span>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-primary">HGR Nyamibungu</h2>
+                            <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+                        </div>
+                    </div>
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a
+            class="text-primary font-semibold border-b-2 border-primary"
+            href="#"
+            >Home</a
+          >
+          <a class="hover:text-primary transition-colors" href="#"
+            >Our Services
+            <span class="material-icons text-sm align-middle"
+              >expand_more</span
+            ></a
+          >
+          <a class="hover:text-primary transition-colors" href="#"
+            >Departments
+            <span class="material-icons text-sm align-middle"
+              >expand_more</span
+            ></a
+          >
+          <a class="hover:text-primary transition-colors" href="/blog.html">Blog</a>
+          <a class="hover:text-primary transition-colors" href="#"
+            >Patient Info
+            <span class="material-icons text-sm align-middle"
+              >expand_more</span
+            ></a
+          >
+        </nav>
+        <a
+          class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors"
+          href="#"
+          >Faire un don</a
+        >
+        <button class="lg:hidden p-2">
+          <span class="material-icons text-gray-800 dark:text-gray-200"
+            >menu</span
+          >
         </button>
-      </div>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 navy-bg text-white shadow-lg">
-      <a href="/" class="block py-3 border-b border-gray-700 text-gold-400">Accueil</a>
-      <a href="/blog.html" class="block py-3 border-b border-gray-700">Blog</a>
-      <a href="/a-propos.html" class="block py-3 border-b border-gray-700">À propos</a>
-      <a href="/avis.html" class="block py-3 border-b border-gray-700">Avis</a>
-      <a href="/contact.html" class="block py-3 border-b border-gray-700">Contact</a>
-      <a href="/contact.html" class="block mt-4 btn-classic px-6 py-3 rounded-sm text-center">
-        Prendre rendez-vous
-      </a>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO SECTION - Même structure, overlay amélioré -->
-    <section class="h-screen w-full relative">
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop');"></div>
-      <div class="absolute inset-0 hero-overlay"></div>
-
-      <!-- Swiper Carousel - Exactement la même structure -->
-      <div class="swiper-container h-full overflow-hidden">
-        <div class="swiper-wrapper">
-          <!-- Slide 1 -->
-          <div class="swiper-slide">
-            <div class="h-full flex flex-col justify-center items-start container mx-auto px-6">
-               <div class="max-w-lg text-white">
-                  <h1 class="text-5xl md:text-6xl font-bold mb-4">L'excellence des soins à votre portée</h1>
-                  <p class="text-xl md:text-2xl mb-8">Une approche humaine et une technologie de pointe pour votre santé et votre bien-être.</p>
-                  <a href="/a-propos.html" class="gold-bg text-white font-bold px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 inline-block">
-                    Découvrir notre hôpital
-                  </a>
+      </header>
+      <main class="py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-12">
+            <div class="relative rounded-lg overflow-hidden h-96">
+              <div class="carousel-slide active" data-slide="0">
+                <img
+                  alt="A doctor compassionately comforting an elderly patient."
+                  class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaVGbFojHpi9lDIrcRtOAnxv_bA51N5DO1o4s4ZE7phiRcrndE9biJ9kT-TWc0D3ayFb2fleCw6XUvx97sS17g6xEO4C1_P-RfLUhKW-P8ESsXqQssKL2TlyAXDQ95kZfbGT5PKc8DCTbwGbJoLHyYbFMTohV9_5rnseo_jcyyeYGByeIVPuwlGoroWUhpxEERiVZsz3FEzQSOTbnL2Z4ZyF_h3WHJB9U5BpNVODEZkoE2MKMnQ7jgxQj20sKzfXa6d8CGi6MPB7ro"
+                />
+                <div class="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
+                <div
+                  class="absolute inset-0 p-8 md:p-12 flex flex-col justify-center text-white"
+                >
+                  <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    HGR Nyamibungu : <br />La Confiance Sauve des Vies.
+                  </h1>
+                  <p class="mb-8 max-w-lg">
+                    Parce que la santé n'attend pas, nous construisons une
+                    relation de confiance durable avec chaque patient. Votre
+                    sécurité et votre bien-être guident chacune de nos
+                    décisions.
+                  </p>
+                  <div class="flex space-x-4">
+                    <button
+                      class="bg-teal-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-teal-600 transition-colors"
+                    >
+                      Faire un don
+                    </button>
+                    <button
+                      class="bg-gray-700 bg-opacity-50 border border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-75 transition-colors"
+                    >
+                      Nous contacter
+                    </button>
+                  </div>
                 </div>
-            </div>
-          </div>
-          <!-- Slide 2 -->
-          <div class="swiper-slide">
-            <div class="h-full flex flex-col justify-center items-end container mx-auto px-6">
-                <div class="max-w-lg text-white text-right">
-                  <h1 class="text-5xl md:text-6xl font-bold mb-4">Urgences 24/7 : Nous sommes là pour vous</h1>
-                  <p class="text-xl md:text-2xl mb-8">Notre équipe d'urgence est prête à vous fournir des soins rapides et efficaces à toute heure.</p>
-                  <a href="/contact.html" class="gold-bg text-white font-bold px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 inline-block">
-                    Contacter les urgences
-                  </a>
+              </div>
+
+              <div class="carousel-slide" data-slide="1">
+                <img
+                  alt="Medical team attending to a patient in an emergency room."
+                  class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0iBqMeszNOacVLxUwaK5OSSUg_Ewm6fdGsEBYyo8YZ1rh2QxC_29oXdlpqD-8reWpbXGw4o4wdyE8SgcFdfT1ZHz3U051Lbg-iWsrrdQfOfhb61edzFAwbnTrdqSfmgtteKtA1RFjKyfVfKDgD46UusJjgXhIDOMcuQRawXSKQeHjdxxyP9n9twb9YqgA77zP0pD9zJYDgtohQJI72m-csbROhqy8J8BnL0hWxie3i_ARaKrG_SZPU00EgwxMKaSCPUhzrCBVjWL9"
+                />
+                <div class="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
+                <div
+                  class="absolute inset-0 p-8 md:p-12 flex flex-col justify-center text-white"
+                >
+                  <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Votre Santé Mérite <br />une Référence.
+                  </h1>
+                  <p class="mb-8 max-w-lg">
+                    L'accès à des soins de haut niveau est un droit. Nous nous
+                    engageons à en faire une réalité pour la communauté, en
+                    étant le pôle médical de référence de la région.
+                  </p>
+                  <div class="flex space-x-4">
+                    <button
+                      class="bg-teal-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-teal-600 transition-colors"
+                    >
+                      Faire un don
+                    </button>
+                    <button
+                      class="bg-gray-700 bg-opacity-50 border border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-75 transition-colors"
+                    >
+                      Nous contacter
+                    </button>
+                  </div>
                 </div>
-            </div>
-          </div>
-          <!-- Slide 3 -->
-           <div class="swiper-slide">
-            <div class="h-full flex flex-col justify-center items-start container mx-auto px-6">
-                <div class="max-w-lg text-white">
-                  <h1 class="text-5xl md:text-6xl font-bold mb-4">Prenez rendez-vous en ligne facilement</h1>
-                  <p class="text-xl md:text-2xl mb-8">Consultez nos spécialistes en quelques clics. Simple, rapide et confidentiel.</p>
-                  <a href="/contact.html" class="btn-outline text-white border-2 border-white hover:bg-white hover:text-navy font-bold px-8 py-3 rounded-sm transition-colors duration-300 inline-block">
-                    Prendre rendez-vous
-                  </a>
+              </div>
+
+              <div class="carousel-slide" data-slide="2">
+                <img
+                  alt="Hospital interior with modern medical equipment."
+                  class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnAGErAecMsuU8OmJpn7ebd-YTnM7QUhup1efhhUPxElDbBqSDWYVR9R5Hoa4OwdCXRELwfSRi2qqoSpVba7SA4A80C307b3iZmiYp5UggxR7vGPsMs57SzDl8T_4bmQT6WyDr6uUYFejfPoKfJxlwLF3IPWiZVdNuV6USdwVXEvANPTDIvOLOX8B95Mf_JNN8AI1VuVW24JT4TadpYsQoeJ-_EA8c6d_YziRmUaZX1x-Z5VNE0a1eBcS-N-V-Pf0aHlu1oTyVHma6"
+                />
+                <div class="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
+                <div
+                  class="absolute inset-0 p-8 md:p-12 flex flex-col justify-center text-white"
+                >
+                  <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Jour et Nuit, Votre <br />Santé Nous Veille.
+                  </h1>
+                  <p class="mb-8 max-w-lg">
+                    Que ce soit pour une fièvre soudaine ou une urgence vitale,
+                    vous n'êtes jamais seul. Nos portes sont toujours ouvertes,
+                    notre vigilance jamais en repos.
+                  </p>
+                  <div class="flex space-x-4">
+                    <button
+                      class="bg-teal-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-teal-600 transition-colors"
+                    >
+                      Faire un don
+                    </button>
+                    <button
+                      class="bg-gray-700 bg-opacity-50 border border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-75 transition-colors"
+                    >
+                      Nous contacter
+                    </button>
+                  </div>
                 </div>
+              </div>
+
+              <div
+                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"
+              >
+                <button
+                  class="carousel-dot w-3 h-3 rounded-full bg-white opacity-70 hover:opacity-100 transition-opacity"
+                  data-dot="0"
+                ></button>
+                <button
+                  class="carousel-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"
+                  data-dot="1"
+                ></button>
+                <button
+                  class="carousel-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"
+                  data-dot="2"
+                ></button>
+              </div>
             </div>
-          </div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Navigation -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    </section>
-
-    <!-- PARTNERS SECTION - Même structure, styles améliorés -->
-    <section class="py-12 bg-gray-100">
-      <div class="container mx-auto">
-        <div class="relative w-full overflow-hidden">
-          <div class="flex animate-scroll">
-            <!-- First set of logos -->
-            <div class="flex-shrink-0 flex items-center justify-around w-full">
-              <img src="https://logo.clearbit.com/google.com" alt="Google Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/facebook.com" alt="Facebook Logo" class="h-12 mx-8 partner-logo"/>
-            </div>
-            <!-- Second set of logos (for seamless loop) -->
-            <div class="flex-shrink-0 flex items-center justify-around w-full">
-              <img src="https://logo.clearbit.com/google.com" alt="Google Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo" class="h-12 mx-8 partner-logo"/>
-              <img src="https://logo.clearbit.com/facebook.com" alt="Facebook Logo" class="h-12 mx-8 partner-logo"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES SECTION - Même structure, design amélioré -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold text-gray-800 mb-4">Nos Spécialités Médicales</h2>
-        <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-          Nous offrons une gamme complète de soins spécialisés, en utilisant les dernières technologies pour garantir des résultats de la plus haute qualité.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          <!-- Service Card 1: Cardiologie - Même structure, styles améliorés -->
-          <div class="service-card p-8 rounded-lg shadow-sm">
-            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.933 0-3.604 1.081-4.312 2.688-.708-1.607-2.38-2.688-4.313-2.688C5.099 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Cardiologie</h3>
-            <p class="text-gray-600 mb-6">Soins cardiaques complets, du diagnostic préventif aux interventions complexes.</p>
-            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
-          </div>
-
-          <!-- Service Card 2: Neurologie -->
-          <div class="service-card p-8 rounded-lg shadow-sm">
-            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.5 21.75l-.398-1.188a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.188-.398a2.25 2.25 0 001.423-1.423L16.5 15.75l.398 1.188a2.25 2.25 0 001.423 1.423L19.5 18.75l-1.188.398a2.25 2.25 0 00-1.423 1.423z"></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Neurologie</h3>
-            <p class="text-gray-600 mb-6">Traitement expert des troubles du système nerveux et du cerveau.</p>
-            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
-          </div>
-
-          <!-- Service Card 3: Pédiatrie -->
-          <div class="service-card p-8 rounded-lg shadow-sm">
-            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pédiatrie</h3>
-            <p class="text-gray-600 mb-6">Soins attentifs et spécialisés pour la santé et le bien-être de vos enfants.</p>
-            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
-          </div>
-
-          <!-- Service Card 4: Médecine Générale -->
-          <div class="service-card p-8 rounded-lg shadow-sm">
-            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Médecine Générale</h3>
-            <p class="text-gray-600 mb-6">Consultations, diagnostics et suivi pour toute la famille.</p>
-            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
-          </div>
-
-          <!-- Service Card 5: Urgences -->
-          <div class="service-card p-8 rounded-lg shadow-sm">
-            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Urgences</h3>
-            <p class="text-gray-600 mb-6">Service d'urgence disponible 24h/24 et 7j/7 pour les situations critiques.</p>
-            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
-          </div>
-
-          <!-- Service Card 6: Radiologie -->
-          <div class="service-card p-8 rounded-lg shadow-sm">
-            <div class="service-icon rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                <path d="M9 18v-6a3 3 0 0 1 6 0v6"></path>
-                <path d="M12 12V4"></path>
-                <line x1="9" y1="12" x2="15" y2="12"></line>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Radiologie</h3>
-            <p class="text-gray-600 mb-6">Imagerie médicale avancée pour un diagnostic précis.</p>
-            <a href="#" class="font-semibold gold-text hover:underline">Découvrir →</a>
-          </div>
-
-        </div>
-
-        <!-- Voir Plus Button - Même structure, style amélioré -->
-        <div class="mt-12">
-          <a href="#" class="inline-block btn-classic px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 text-lg font-medium">
-            Voir tous nos services
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEWS SECTION - Même structure, design amélioré -->
-    <section class="py-20 bg-gray-50">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold text-gray-800 mb-4">Nos Dernières Actualités</h2>
-        <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-          Restez informé des dernières avancées médicales, des événements de l'hôpital et des conseils de santé de nos experts.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          <!-- News Card 1 -->
-          <div class="news-card bg-white rounded-lg shadow-sm overflow-hidden">
-            <img src="https://via.placeholder.com/400x250/93c5fd/ffffff?text=Actualité" alt="Image d'actualité" class="w-full h-48 object-cover">
-            <div class="p-6 text-left">
-              <span class="text-sm text-gray-500">15 Septembre 2025</span>
-              <h3 class="text-xl font-bold text-gray-800 mt-2 mb-4">Innover pour la santé de demain</h3>
-              <p class="text-gray-600 mb-4">Découvrez comment nos recherches transforment les soins médicaux.</p>
-              <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                <a href="/blog-post.html" class="font-semibold gold-text hover:underline">Lire l'article →</a>
-                <div class="flex space-x-4 text-gray-500">
-                  <span class="flex items-center space-x-1">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
+            <div>
+              <h2
+                class="text-xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
+              >
+                OUR KEY SERVICES
+              </h2>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="relative rounded-lg overflow-hidden group">
+                  <img
+                    alt="Medical team attending to a patient in an emergency room."
+                    class="w-full h-40 object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0iBqMeszNOacVLxUwaK5OSSUg_Ewm6fdGsEBYyo8YZ1rh2QxC_29oXdlpqD-8reWpbXGw4o4wdyE8SgcFdfT1ZHz3U051Lbg-iWsrrdQfOfhb61edzFAwbnTrdqSfmgtteKtA1RFjKyfVfKDgD46UusJjgXhIDOMcuQRawXSKQeHjdxxyP9n9twb9YqgA77zP0pD9zJYDgtohQJI72m-csbROhqy8J8BnL0hWxie3i_ARaKrG_SZPU00EgwxMKaSCPUhzrCBVjWL9"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4"
+                  >
+                    <span class="material-icons text-white text-3xl mb-2"
+                      >emergency</span
+                    >
+                    <h3 class="text-white font-semibold text-lg text-center">
+                      Emergency Care
+                    </h3>
+                  </div>
+                </div>
+                <div class="relative rounded-lg overflow-hidden group">
+                  <img
+                    alt="Close-up of a doctor's hands with a stethoscope."
+                    class="w-full h-40 object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnAGErAecMsuU8OmJpn7ebd-YTnM7QUhup1efhhUPxElDbBqSDWYVR9R5Hoa4OwdCXRELwfSRi2qqoSpVba7SA4A80C307b3iZmiYp5UggxR7vGPsMs57SzDl8T_4bmQT6WyDr6uUYFejfPoKfJxlwLF3IPWiZVdNuV6USdwVXEvANPTDIvOLOX8B95Mf_JNN8AI1VuVW24JT4TadpYsQoeJ-_EA8c6d_YziRmUaZX1x-Z5VNE0a1eBcS-N-V-Pf0aHlu1oTyVHma6"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4"
+                  >
+                    <span class="material-icons text-white text-3xl mb-2"
+                      >favorite_border</span
+                    >
+                    <h3 class="text-white font-semibold text-lg text-center">
+                      Cardiology
+                    </h3>
+                  </div>
+                </div>
+                <div class="relative rounded-lg overflow-hidden group">
+                  <img
+                    alt="Cancer patient speaking with a doctor."
+                    class="w-full h-40 object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8AbgozzKZ4yrquAOd253cqLFMzMt-LellPLb99YGopq2ir6_jRZgUhRrq8AGz5M8UJr0K9MY1DuO8Y4-JdkTzc67KdhuF7dxAqzOPy_H8_MxLC3S24UeBZkRw-X0wC3xxvYDyreQIHEzBboM-8PCWXkrgQOzVyi4Z8z75O8CEeo4bhJKbEe2aWvXFk2pq_h6zC40YOfsoLLr-Gb1ZyU8DD9j5kjHa5L9meAlAoOsEzczUnrupRCpsCu2bGVDdCFTEr5D7D0hGQqP-"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4"
+                  >
+                    <svg
+                      class="h-8 w-8 text-white mb-2"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.5,6.5c1.4,1.4,1.4,3.7,0,5.1s-3.7,1.4-5.1,0s-1.4-3.7,0-5.1c0.7-0.7,1.6-1,2.5-1C13.9,5.5,14.8,5.8,15.5,6.5z M12,3 c-1.2,0-2.3,0.5-3.2,1.3l-2.1,2.1c-1.8,1.8-1.8,4.6,0,6.4s4.6,1.8,6.4,0l2.1-2.1c0.8-0.8,1.3-1.9,1.3-3.2c0-2.5-2-4.5-4.5-4.5H12z M9.9,16.2L7,19.1c-0.4,0.4-0.4,1,0,1.4s1,0.4,1.4,0L11.2,18l-1.3-1.8H9.9z M19.1,7 c-0.4-0.4-1-0.4-1.4,0l-2.9,2.9l1.8,1.3L19.1,8.4C19.5,8,19.5,7.4,19.1,7z M4.9,7c0.4-0.4,1-0.4,1.4,0l2.9,2.9L7.8,11.2L4.9,8.4 C4.5,8,4.5,7.4,4.9,7z M14.1,16.2l1.3,1.8l2.9-2.9c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L14.1,16.2z"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
                     </svg>
-                    <span>35</span>
-                  </span>
-                  <span class="flex items-center space-x-1">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    <span>7</span>
-                  </span>
+                    <h3 class="text-white font-semibold text-lg text-center">
+                      Oncology
+                    </h3>
+                  </div>
+                </div>
+                <div class="relative rounded-lg overflow-hidden group">
+                  <img
+                    alt="Pregnant woman holding her belly."
+                    class="w-full h-40 object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW0ZItDUhZcA_N6apkjhpfAVq6GdxiVJe2JDQH7WNnCJ2KAyVMufLS5y52ecVKtXzflQU7BPcLDaEXEzwHZgkzjuus4lCKTNauJm6oxsquolchFyW2dS1Zj9OEavCUFMivDsAEkMYr7fb0MZU8NvIphb1YwDgZZDhyxmQHBzYEdS7RLDrH7-T7nQNtCgEdscIZmdJbkNqU6Vu7lMZy_Gw3huuc7Y4QECa0f7egQFDIWaSL_0UVtsuI_9JJZf_5aFtp4uBxNy8bB8e-"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4"
+                  >
+                    <span class="material-icons text-white text-3xl mb-2"
+                      >pregnant_woman</span
+                    >
+                    <h3 class="text-white font-semibold text-lg text-center">
+                      Maternity
+                    </h3>
+                  </div>
+                </div>
+                <div class="relative rounded-lg overflow-hidden group">
+                  <img
+                    alt="Two happy young children sitting together."
+                    class="w-full h-40 object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRESTexCw_OxeX6WWvBSNU58aNXC8w7JcgDexk3T_l_PrnHNT93anaGOUAGbIcp5MYRAHumoBzUSKZvsIcU7fUwRQi8iDxiwP_rhGkPmBpPnaYyrFwLSegoz3SMUuBja5bfikhs1yIf1R2VQcPpdfPU5lFaKVhwacAo9urw9W1JOhfkawc2kxHxrj2ax904KUAq1ZrngjRjpgFEGzZiNF2m2We6hFI8tJ-gcAkwVEXXKn_jse4Gu4TOQ5Z-Q6bMfESw092NEghGgwS"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4"
+                  >
+                    <span class="material-icons text-white text-3xl mb-2"
+                      >child_care</span
+                    >
+                    <h3 class="text-white font-semibold text-lg text-center">
+                      Pediatrics
+                    </h3>
+                  </div>
+                </div>
+                <div class="relative rounded-lg overflow-hidden group">
+                  <img
+                    alt="Scientist working in a laboratory with a microscope."
+                    class="w-full h-40 object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB08ANcJ1t0unStADLbNdp9QsGL3Z2rS4O1or88h0SV0pjE6DYrAxt5fTJam6XdODDdK0-mpuyPcztAEZwtpRBDetMul-_q_r6enMYUM8N0Y7KjBfieU-8WjeQonaBG98vynuM-PrcI9D-MMigDFu-KYgMW1ma9d6J3rYObZVoq2rwoyWHi3qYwvBsSjWy-6Pu_Eb97hrOcaMmdLQFg23AeYqSTP8Oyv_slgZZ9NRF9FdA2uacp4j-FYmGlC2MSyZRrOhFi3mW9FxA"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4"
+                  >
+                    <span class="material-icons text-white text-3xl mb-2"
+                      >science</span
+                    >
+                    <h3 class="text-white font-semibold text-lg text-center">
+                      Laboratory Services
+                    </h3>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- News Card 2 -->
-          <div class="news-card bg-white rounded-lg shadow-sm overflow-hidden">
-            <img src="https://via.placeholder.com/400x250/6ee7b7/ffffff?text=Innovation" alt="Image d'actualité" class="w-full h-48 object-cover">
-            <div class="p-6 text-left">
-              <span class="text-sm text-gray-500">10 Septembre 2025</span>
-              <h3 class="text-xl font-bold text-gray-800 mt-2 mb-4">Conseils pour une vie saine et équilibrée</h3>
-              <p class="text-gray-600 mb-4">Nos experts partagent leurs astuces pour améliorer votre bien-être quotidien.</p>
-              <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                <a href="/blog-post.html" class="font-semibold gold-text hover:underline">Lire l'article →</a>
-                <div class="flex space-x-4 text-gray-500">
-                  <span class="flex items-center space-x-1">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
-                    </svg>
-                    <span>51</span>
-                  </span>
-                  <span class="flex items-center space-x-1">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    <span>18</span>
-                  </span>
+            <div
+              class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg flex flex-col md:flex-row items-center justify-between gap-6"
+            >
+              <div class="flex-grow">
+                <h2
+                  class="text-2xl font-bold text-gray-900 dark:text-white mb-1"
+                >
+                  Restez informé de nos actualités les plus importantes
+                </h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Desttectleclremcnronntldthonran et aus Conthkana cbthlastions.
+                </p>
+              </div>
+              <form class="flex w-full md:w-auto">
+                <input
+                  class="flex-grow rounded-l-md border-gray-300 dark:border-gray-600 bg-background-light dark:bg-gray-700 focus:ring-primary focus:border-primary"
+                  placeholder="E-mail"
+                  type="email"
+                />
+                <button
+                  class="bg-primary text-white px-6 py-2 rounded-r-md font-semibold hover:bg-blue-800 transition-colors"
+                  type="submit"
+                >
+                  SOUSCRIRE
+                </button>
+              </form>
+            </div>
+            <div>
+              <div
+                class="flex justify-between items-center mb-6 pb-2 border-b border-gray-200 dark:border-gray-700"
+              >
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  ACTUALITÉS INTERNATIONALES
+                </h2>
+                <a
+                  class="text-sm font-semibold text-primary hover:underline"
+                  href="#"
+                  >Tout d'ovomt <span aria-hidden="true">→</span></a
+                >
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-8">
+                  <article class="relative rounded-lg overflow-hidden h-64">
+                    <img
+                      alt="Crowd of people with some in military attire at an outdoor event."
+                      class="w-full h-full object-cover"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuASiiSnYBFIo_kTK3Y3S0kCxP_0CAhkCGICcbJZZxZxwfPHn-HxITeFTFa3UkGSEno7BGzTrAunFx-UdILP3vtJBBbDis_2vQWXfY9QGUnStijid9q5LvYEJMAR7r9UKdyykobx5ZR7TIXVv3QUaDuAHn1tsGi7ARhMySWFpa2XtcbpJTTfyiV5UkeV6Etyy_DPHGbqKHbJSEEypBvRoHBJzJ8nS-TBSq-kbuMkd0SZQRZd0TOUFDFLf3GyalqA523kjkETEzns1DS2"
+                    />
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"
+                    ></div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                      <p class="text-xs uppercase font-semibold">Actualite</p>
+                      <h3 class="font-bold text-lg mt-1">
+                        La Tanzanie touflkes commeo apres la chose olectoral. au
+                        bilan tflujours aserlanl
+                      </h3>
+                      <p class="text-xs text-gray-300 mt-2">
+                        By Ronothsebsta, Detsetrv 2021
+                      </p>
+                    </div>
+                  </article>
+                  <article class="relative rounded-lg overflow-hidden h-64">
+                    <img
+                      alt="Aftermath of a fire with people looking at debris."
+                      class="w-full h-full object-cover"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuABRIx8pPLuqQofo0J-bj73syAGrIhqMiBTE3KtgYrwSNPahLvRR7TtSc7mKswJL8lpz8tOI_7T-Z3vkGsUlwgiuCWvK-Hu1LkNRNRg6Yeoo9indQh44RyqnbG6vsasruY-r1Xrt2NpdaOZruVdXdmGili7JVEVAal72IwbNvXO7Hn96qX9YEyrSd5dBbyAz2fkNBApQ-40xFQAgwH948bMhweZA-VBuXrrXSxZpL_2zTLinCRHdYSVHPp-e1Ko5SerxlDsTMKtos2B"
+                    />
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"
+                    ></div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                      <p class="text-xs uppercase font-semibold">Actualite</p>
+                      <h3 class="font-bold text-lg mt-1">
+                        Bukavu : 13 merle hens un incendie au qiootar Maeale
+                      </h3>
+                      <p class="text-xs text-gray-300 mt-2">
+                        By Phraatseai Onsoer 2051
+                      </p>
+                    </div>
+                  </article>
                 </div>
+                <article class="relative rounded-lg overflow-hidden h-full">
+                  <img
+                    alt="Politicians at a press conference table."
+                    class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw8v1mYYGxAsGsxi-93qjpCjGKnZmnajZj9PAo0Xds1XSuBwx1NYe8ZePutw-EPI3YW97KBxFOI5w06iUGkiDdvsPW6NWGCZE4JZaNg2H3ngPrK5DK5sUxPL9cEJ10t6qx-7KDU2mT-AOXgaY74OsXsFseLc8tNDxFOnpMFdjGKfPJ6i_s0SAdjRRbx_xZ5QCMlD7Jqaf3uXo1xFRvwTEVHTc4vyI1hGwXektFOhQV0TMQ1b07EFfXjhSCZ_J0-Pf2Gf_p5-7ifAkl"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 p-6 text-white flex flex-col justify-end h-full"
+                  >
+                    <p class="text-xs uppercase font-semibold">Actualite</p>
+                    <h3 class="font-bold text-2xl mt-2 leading-tight">
+                      Conference de Paris : "Nous avons avte d'aciuvter dans les
+                      prochaines sentaires a la reouverture de l'anroport de
+                      frame pour des vole re darridare humanitaires dans le
+                      respect de le souverainets congareies (Emmamul Macron)
+                    </h3>
+                    <p class="text-sm text-gray-300 mt-4">
+                      Sy Tzeadoghjlarscr Or Oelcke not 2051
+                    </p>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
-
-          <!-- News Card 3 -->
-          <div class="news-card bg-white rounded-lg shadow-sm overflow-hidden">
-            <img src="https://via.placeholder.com/400x250/fca5a5/ffffff?text=Recherche" alt="Article Image" class="w-full h-48 object-cover">
-            <div class="p-6 text-left">
-              <span class="text-sm text-gray-500">05 Septembre 2025</span>
-              <h3 class="text-xl font-bold text-gray-800 mt-2 mb-4">L'importance de la prévention dans la santé</h3>
-              <p class="text-gray-600 mb-4">Un guide complet sur les gestes simples pour rester en bonne santé.</p>
-              <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                <a href="/blog-post.html" class="font-semibold gold-text hover:underline">Lire l'article →</a>
-                <div class="flex space-x-4 text-gray-500">
-                  <span class="flex items-center space-x-1">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
-                    </svg>
-                    <span>42</span>
-                  </span>
-                  <span class="flex items-center space-x-1">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    <span>11</span>
-                  </span>
+          <aside class="space-y-8">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="font-bold mb-4 text-gray-900 dark:text-white">
+                NOS SERVICES EN LIGNE
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <span class="material-icons text-primary mt-1"
+                    >check_circle</span
+                  >
+                  <div>
+                    <p class="font-semibold text-gray-900 dark:text-white">
+                      Trouver un Médecin
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      Consultez notre annuaire complet de médecins spécialisés
+                      et prenez rendez-vous en ligne.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="material-icons text-primary mt-1"
+                    >check_circle</span
+                  >
+                  <div>
+                    <p class="font-semibold text-gray-900 dark:text-white">
+                      Portail Patient
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      Accédez à vos dossiers médicaux, historique de
+                      consultation et résultats d'analyses.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <span class="material-icons text-primary mt-1"
+                    >check_circle</span
+                  >
+                  <div>
+                    <p class="font-semibold text-gray-900 dark:text-white">
+                      Paiement en Ligne
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      Payez vos factures médicales de manière sécurisée et
+                      pratique via notre plateforme.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="font-bold mb-4 text-gray-900 dark:text-white">
+                VISITING HOURS
+              </h3>
+              <ul class="space-y-3 text-sm">
+                <li class="flex items-start">
+                  <span class="material-icons text-primary mr-3"
+                    >calendar_today</span
+                  >
+                  <div>
+                    <strong>Monday Hours</strong><br />9:00 AM - 6:00 PM<br />5:00
+                    PM - 3:00 PM
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="material-icons text-primary mr-3"
+                    >calendar_today</span
+                  >
+                  <div><strong>Thursday - 7:30 PM</strong></div>
+                </li>
+                <li class="flex items-start">
+                  <span class="material-icons text-primary mr-3">phone</span>
+                  <div>243 818 577 704</div>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="font-bold mb-4 text-gray-900 dark:text-white">
+                LOCATION &amp; DIRECTIONS
+              </h3>
+              <img
+                alt="Map showing the location of Lakeside Medical Center."
+                class="rounded-md w-full"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkGHomDTpAQ9VqVRYH0kcav7kG-UV5oslBdpm-hLOHu-6l8zirgnoyworUSfqoxC0DaX0PcjnOiSIvLtQ1MoPeQ-kdgYIDUejStWb3jWiVcpB1sotYnIZb3I3Cxh-34get9lU4YVrWjx6fmv5deRRY04yqCRMNPd0E73AgvciJ5djTJUU5QcWMVI2hyu5p3z5DUaEo_dIIumnXyHdUlf_g84bMgsK7_bwvQovv5vUzSeThKuL1dyQHleVwreKLtOAztQT1bCBshHTz"
+              />
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="font-bold mb-4 text-gray-900 dark:text-white">
+                PATIENT TESTIMONIALS
+              </h3>
+              <div class="relative">
+                <span
+                  class="material-icons text-6xl text-gray-200 dark:text-gray-600 absolute -top-4 -left-2"
+                  >format_quote</span
+                >
+                <p class="text-sm italic z-10 relative">
+                  I Fnonle cieur assieted ovew inves been thekide dinro exoscee
+                  irroger eninic'a, traterml cirla and certxevstor has been
+                  nsmonoan. D ovr testimonal cere and conthrecs thararetr arene
+                  medicine demrad torisvel oersel for the sexlaut oikomon.
+                </p>
+                <span
+                  class="material-icons text-6xl text-gray-200 dark:text-gray-600 absolute -bottom-8 -right-2 transform rotate-180"
+                  >format_quote</span
+                >
+              </div>
+              <p
+                class="font-semibold mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
+              >
+                Remade Brinner
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                Patient Testimonials
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="font-bold mb-4 text-gray-900 dark:text-white">
+                HOSPITAL NEWS &amp; UPDATES
+              </h3>
+              <ul class="space-y-4">
+                <li class="flex items-center space-x-4">
+                  <img
+                    alt="Hospital interior view."
+                    class="w-20 h-16 rounded-md object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBWejYBPyXPXRamOfZB1XiZ_SLZDXn_bpTL4DHkQ2AgsfWehUyq4qbrdDRT7W0NjY6IT8zmtPwSUcEx8NPjVI1wFSkflPk3tO8uhrIfpQBgFNXJYn6TbVUMSPN8iW1QVQEvVzMbfNGxv5eRyqfq-qI3y63FhZf-VfSFYsYFaXyJfseglivt9elXmo0l1w-CxRjlFMh72s2cjB5A7HMyzNlIML_n3Hwt_rDhCAUlDWNxI733ZoxN9qsaIMV3PanSCYmme9r52d4tb8"
+                  />
+                  <div>
+                    <a class="font-semibold text-sm hover:text-primary" href="#"
+                      >Lakeside Medical Center Consspassionate owo plats
+                      infenitor au Burundi</a
+                    >
+                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                      By BrendleasT2, October 2021
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-center space-x-4">
+                  <img
+                    alt="Doctor speaking at a podium."
+                    class="w-20 h-16 rounded-md object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoHNO2aXfYB32aSB1PIOGXrRHRIqMGkYswkxzaz6bhBLxYyQ3q_NUrgXLc0giHGGkSY3W0OkNv2MWEE7p2PRLHC4cX2d9gcZBLRFzvNUQ8HHZjUIlOf_4gww6x2q2QSQfNB7Ic-rNp3sxKaEyZsh3wsMHxSWfCFJyuQQDFUMF0rQH2N-QvBMnVaAwzxCB-9_m9M1jG6hbGU8QjdJW7JZt5D7FnFqDceKQiAWcTm7gGaQT3aoD-hrZODuR68b4SqKIZnx0_i12eU9IN"
+                  />
+                  <div>
+                    <a class="font-semibold text-sm hover:text-primary" href="#"
+                      >Bukavu: Un puwissant appel - Mercate core en dialogue w
+                      luterillijgue per Sant gidio</a
+                    >
+                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                      By GrandsaarT2, October 2021
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </aside>
         </div>
-
-        <!-- Call to action to blog page -->
-        <div class="mt-12">
-          <a href="/blog.html" class="inline-block btn-classic px-8 py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300 text-lg font-medium">
-            Voir toutes les actualités
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER - Même structure, styles améliorés -->
-  <footer class="navy-bg text-white mt-20">
-    <div class="container mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-        <!-- About -->
-        <div class="lg:col-span-2">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <span>Hôpital</span>
-            <span class="gold-text ml-2">Bien-être</span>
-          </h3>
-          <p class="text-gray-300">
-            Votre santé est notre priorité. Nous offrons des soins de qualité avec compassion et expertise.
-          </p>
-        </div>
-        <!-- Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
-          <ul class="space-y-2">
-            <li><a href="/" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">Accueil</a></li>
-            <li><a href="/blog.html" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">Blog</a></li>
-            <li><a href="/a-propos.html" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">À propos</a></li>
-            <li><a href="/contact.html" class="text-gray-300 hover:text-gold-400 transition-colors duration-300">Contact</a></li>
-          </ul>
-        </div>
-        <!-- Contact -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Nous contacter</h3>
-          <p class="text-gray-300">123 Rue de la Santé, 75000 Paris</p>
-          <p class="text-gray-300">contact@hopital-bienetre.fr</p>
-          <p class="text-gray-300">+33 1 23 45 67 89</p>
-        </div>
-        <!-- Newsletter -->
-        <div class="lg:col-span-1">
-          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-          <p class="text-gray-300 mb-4">Inscrivez-vous pour recevoir nos actualités.</p>
-          <form action="#" method="POST">
-            <label for="newsletter-email" class="sr-only">Email</label>
-            <input type="email" id="newsletter-email" placeholder="Votre email" class="w-full p-3 text-gray-800 rounded-sm mb-3 focus:outline-none focus:ring-2 focus:ring-gold-400">
-            <button type="submit" class="w-full gold-bg text-white font-bold py-3 rounded-sm hover:bg-yellow-600 transition-colors duration-300">
-              S'inscrire
-            </button>
-          </form>
-        </div>
-      </div>
-      <div class="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-        <p>&copy; 2025 Hôpital Bien-être. Tous droits réservés.</p>
-        <div class="flex space-x-4 mt-4 md:mt-0">
-          <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors duration-300">
-            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
-            </svg>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gold-400 transition-colors duration-300">
-            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
+      </main>
     </div>
-  </footer>
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const dots = document.querySelectorAll(".carousel-dot");
+      const totalSlides = slides.length;
 
-  <!-- Scroll to Top Button -->
-  <button id="scroll-to-top" class="fixed bottom-8 right-8 z-50 navy-bg text-white p-3 rounded-sm shadow-lg hover:bg-gold-400 hover:text-navy focus:outline-none transition-all duration-300 opacity-0 invisible">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5l6.75-6.75M12 4.5v15m0 0l-6.75-6.75" />
-    </svg>
-  </button>
+      function showSlide(n) {
+        slides.forEach((slide) => slide.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("opacity-70"));
+        dots.forEach((dot) => dot.classList.add("opacity-50"));
 
-  <!-- Chatbot Button -->
-  <button id="chatbot-button" class="fixed bottom-8 right-24 z-50 gold-bg text-white p-3 rounded-sm shadow-lg hover:bg-yellow-600 focus:outline-none transition-transform duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.51c.885.085 1.77.22 2.655.442v4.004a.75.75 0 01-.087.355l-1.293 2.935c-.623 1.407-2.39 2.193-3.974 1.76l-.417-.139c-.933-.312-1.928-.47-2.923-.47h-2.128a.75.75 0 01-.703-.523L10.5 12.556V8.51zm0 0h-.114M12 12.556v8.25m-2.25-2.25H12" />
-    </svg>
-  </button>
+        slides[n].classList.add("active");
+        dots[n].classList.remove("opacity-50");
+        dots[n].classList.add("opacity-70");
+      }
 
-  <!-- Swiper.js JS -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-  <script src="/src/js/main.js"></script>
-  <script>
-    // Script minimal pour Swiper
-    var swiper = new Swiper('.swiper-container', {
-      direction: 'horizontal',
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: true
-      },
-    });
-    
-    // Scripts basiques
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-  </script>
-</body>
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      // Auto slide every 5 seconds
+      setInterval(nextSlide, 5000);
+
+      // Click on dots to change slide
+      dots.forEach((dot) => {
+        dot.addEventListener("click", function () {
+          currentSlide = parseInt(this.getAttribute("data-dot"));
+          showSlide(currentSlide);
+        });
+      });
+    </script>
+     <footer class="bg-[#0f2a66] text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Colonne 1 : Logo et description -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
+                            <span class="text-primary font-bold text-xl">HGR</span>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">HGR Nyamibungu</h2>
+                            <p class="text-sm text-white/80">Hôpital Général de Référence</p>
+                        </div>
+                    </div>
+                    <p class="text-white/80 text-sm mb-6">
+                        Depuis 1995, l'HGR Nyamibungu s'engage à fournir des soins de santé de qualité, accessibles à toute la communauté. La confiance sauve des vies.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Colonne 2 : Contact -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        Contact
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-0.5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-white/80">Avenue Kanyamwa, Quartier Nyamibungu<br>Uvira, Sud-Kivu, RD Congo</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-white/80">+243 973 444 444</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="text-white/80">contact@hgnyamibungu.cd</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Colonne 3 : Liens rapides -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Liens Rapides</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/80 hover:text-white transition">Prendre Rendez-vous</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition">Nos Services Médicaux</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition">Urgences 24h/24</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition">Notre Équipe Médicale</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition">Carrières & Recrutement</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition">Faire un Don</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Colonne 4 : Horaires -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Horaires</h3>
+                    <ul class="space-y-3 text-white/80">
+                        <li class="flex justify-between">
+                            <span>Urgences :</span>
+                            <span class="font-semibold text-white">24h/24 - 7j/7</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Consultations :</span>
+                            <span>8h - 17h</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Pharmacie :</span>
+                            <span>24h/24</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Laboratoire :</span>
+                            <span>7h - 19h</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 p-4 bg-white/10 rounded-lg">
+                        <p class="text-sm font-semibold mb-2">Numéro d'Urgence</p>
+                            <p class="text-xl font-bold text-white">+243 973 444 444</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="pt-8 border-t border-white/10 text-center text-white/60 text-sm">
+                <p>© 2024 HGR Nyamibungu - Hôpital Général de Référence. Tous droits réservés.</p>
+                <p class="mt-2">"La confiance sauve des vies" - Votre santé mérite une référence</p>
+            </div>
+        </div>
+    </footer>
+  </body>
 </html>

@@ -1,1055 +1,1396 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/src/output.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <title>5 conseils pour une alimentation saine - Hôpital Bien-être</title>
-  <style>
-    :root {
-      --gold: #C5A572;
-      --navy: #1A365D;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-600: #4b5563;
-      --gray-800: #1f2937;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: white;
-      color: var(--gray-800);
-      line-height: 1.7;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    
-    /* Header */
-    .site-header {
-      background: white;
-      border-bottom: 1px solid var(--gray-200);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-    }
-    
-    .site-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
-    
-    .nav-link {
-      color: var(--gray-600);
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-    }
-    
-    .nav-link:hover {
-      color: var(--gold);
-    }
-    
-    .nav-link.active {
-      color: var(--gold);
-    }
-    
-    .primary-btn {
-      background: var(--navy);
-      color: white;
-      font-weight: 500;
-      padding: 0.5rem 1.5rem;
-      border-radius: 0.375rem;
-      transition: background 0.2s;
-    }
-    
-    .primary-btn:hover {
-      background: #2A4365;
-    }
-    
-    /* Article Header */
-    .article-header {
-      padding-top: 8rem;
-      padding-bottom: 3rem;
-      background: var(--gray-50);
-      border-bottom: 1px solid var(--gray-200);
-    }
-    
-    .article-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      color: var(--gray-900);
-    }
-    
-    @media (min-width: 768px) {
-      .article-title {
-        font-size: 3rem;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>5 conseils pour une alimentation saine - Hôpital Bien-être</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: "#C5A572",
+              navy: "#1A365D",
+              gray: {
+                50: "#f9fafb",
+                100: "#f3f4f6",
+                200: "#e5e7eb",
+                300: "#d1d5db",
+                400: "#9ca3af",
+                500: "#6b7280",
+                600: "#4b5563",
+                700: "#374151",
+                800: "#1f2937",
+                900: "#111827",
+              },
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --primary: #1a3a8f; /* Bleu médical plus profond */
+        --primary-light: #2d5dc5; /* Bleu plus clair */
+        --primary-dark: #0f2a66; /* Bleu foncé */
+        --secondary: #0d6c8a; /* Bleu cyan élégant */
+        --accent: #c53030; /* Rouge pour urgences */
+        --accent-light: #fed7d7; /* Fond rouge clair */
+        --light: #f9fafb; /* Fond très clair */
+        --light-gray: #f1f5f9; /* Gris très clair */
+        --dark: #1e293b; /* Texte foncé */
+        --gray: #64748b; /* Texte gris */
       }
-    }
-    
-    .article-meta {
-      color: var(--gray-600);
-      font-size: 0.875rem;
-    }
-    
-    .article-category {
-      background: rgba(197, 165, 114, 0.1);
-      color: var(--gold);
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-    
-    /* Main Content Layout */
-    .main-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      padding: 3rem 0;
-    }
-    
-    @media (min-width: 1024px) {
-      .main-content {
-        grid-template-columns: 2fr 1fr;
+      body {
+        font-family: "Inter", sans-serif;
       }
-    }
-    
-    /* Article Content */
-    .article-body {
-      font-size: 1.125rem;
-      line-height: 1.8;
-    }
-    
-    .article-body h2 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--navy);
-    }
-    
-    .article-body h3 {
-      font-size: 1.375rem;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
-      color: var(--navy);
-    }
-    
-    .article-body p {
-      margin-bottom: 1.5rem;
-    }
-    
-    .article-body ul, .article-body ol {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-    }
-    
-    .article-body li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .article-body blockquote {
-      border-left: 4px solid var(--gold);
-      padding-left: 1.5rem;
-      margin: 2rem 0;
-      font-style: italic;
-      color: var(--gray-600);
-      background: var(--gray-50);
-      padding: 1.5rem;
-      border-radius: 0 0.5rem 0.5rem 0;
-    }
-    
-    .featured-image {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .image-caption {
-      text-align: center;
-      color: var(--gray-600);
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    /* Info Box */
-    .info-box {
-      background: #f0f9ff;
-      border: 1px solid #bae6fd;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .info-box-title {
-      color: #0369a1;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    
-    /* Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 6rem;
-      align-self: start;
-    }
-    
-    .sidebar-section {
-      background: white;
-      border: 1px solid var(--gray-200);
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .sidebar-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--gray-800);
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 0.5rem;
-    }
-    
-    /* Related Articles */
-    .related-article {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--gray-200);
-    }
-    
-    .related-article:last-child {
-      border-bottom: none;
-    }
-    
-    .related-title {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    
-    .related-title a {
-      color: var(--gray-800);
-      transition: color 0.2s;
-    }
-    
-    .related-title a:hover {
-      color: var(--gold);
-    }
-    
-    .related-meta {
-      color: var(--gray-600);
-      font-size: 0.75rem;
-    }
-    
-    /* Newsletter */
-    .newsletter-form {
-      background: linear-gradient(135deg, var(--navy) 0%, #2A4365 100%);
-      padding: 2rem;
-      border-radius: 0.5rem;
-      color: white;
-    }
-    
-    .newsletter-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    
-    .newsletter-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 0.375rem;
-      border: none;
-      margin-bottom: 1rem;
-    }
-    
-    .newsletter-input:focus {
-      outline: 2px solid var(--gold);
-    }
-    
-    /* Tags */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 2rem 0;
-    }
-    
-    .tag {
-      background: var(--gray-100);
-      color: var(--gray-600);
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-    
-    .tag:hover {
-      background: var(--gray-200);
-    }
-    
-    /* Social Share */
-    .social-share {
-      display: flex;
-      gap: 1rem;
-      margin: 2rem 0;
-      padding: 1.5rem 0;
-      border-top: 1px solid var(--gray-200);
-      border-bottom: 1px solid var(--gray-200);
-    }
-    
-    .share-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--gray-100);
-      border-radius: 0.375rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-    
-    .share-btn:hover {
-      background: var(--gray-200);
-    }
-    
-    /* Author Box */
-    .author-box {
-      display: flex;
-      gap: 1.5rem;
-      padding: 2rem;
-      background: var(--gray-50);
-      border-radius: 0.5rem;
-      margin: 3rem 0;
-    }
-    
-    .author-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    
-    .author-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    
-    .author-bio {
-      color: var(--gray-600);
-      margin-bottom: 1rem;
-    }
-    
-    /* Comments */
-    .comments-section {
-      margin: 3rem 0;
-    }
-    
-    .comments-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-    }
-    
-    .comment {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--gray-200);
-    }
-    
-    .comment-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    .comment-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    
-    .comment-author {
-      font-weight: 600;
-    }
-    
-    .comment-date {
-      color: var(--gray-600);
-      font-size: 0.875rem;
-    }
-    
-    .comment-body {
-      color: var(--gray-700);
-    }
-    
-    .comment-form {
-      background: var(--gray-50);
-      padding: 2rem;
-      border-radius: 0.5rem;
-      margin-top: 2rem;
-    }
-    
-    .form-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    
-    .form-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--gray-300);
-      border-radius: 0.375rem;
-      font-size: 1rem;
-    }
-    
-    .form-input:focus {
-      outline: 2px solid var(--gold);
-      border-color: var(--gold);
-    }
-    
-    /* Footer */
-    .site-footer {
-      background: var(--navy);
-      color: white;
-      padding: 3rem 0;
-      margin-top: 3rem;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 2rem;
-    }
-    
-    @media (min-width: 768px) {
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+      /* Animation for popup */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
-    }
-    
-    @media (min-width: 1024px) {
-      .footer-grid {
-        grid-template-columns: repeat(4, 1fr);
+
+      .animate-fadeIn {
+        animation: fadeIn 0.2s ease-out;
       }
-    }
-    
-    .footer-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    
-    .footer-links {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .footer-links li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .footer-links a {
-      color: #cbd5e1;
-      transition: color 0.2s;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid #374151;
-      color: #9ca3af;
-      font-size: 0.875rem;
-    }
-    
-    /* Utility Classes */
-    .text-gold {
-      color: var(--gold);
-    }
-    
-    .text-navy {
-      color: var(--navy);
-    }
-    
-    .font-bold {
-      font-weight: 700;
-    }
-    
-    .mb-2 {
-      margin-bottom: 0.5rem;
-    }
-    
-    .mb-4 {
-      margin-bottom: 1rem;
-    }
-    
-    .mb-6 {
-      margin-bottom: 1.5rem;
-    }
-    
-    .mt-2 {
-      margin-top: 0.5rem;
-    }
-    
-    .mt-4 {
-      margin-top: 1rem;
-    }
-    
-    .mt-6 {
-      margin-top: 1.5rem;
-    }
-  </style>
-</head>
-<body class="bg-white">
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <a href="/" class="site-logo flex items-center">
-          <span class="text-navy">Hôpital</span>
-          <span class="text-gold ml-1">Bien-être</span>
-        </a>
-
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-6">
-          <a href="/" class="nav-link">Accueil</a>
-          <a href="/blog.html" class="nav-link active">Blog</a>
-          <a href="/a-propos.html" class="nav-link">À propos</a>
-          <a href="/avis.html" class="nav-link">Avis</a>
-          <a href="/contact.html" class="nav-link">Contact</a>
-          <a href="/contact.html" class="primary-btn">Prendre rendez-vous</a>
-        </nav>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-    <div class="container py-4">
-      <div class="space-y-2">
-        <a href="/" class="block py-2 nav-link">Accueil</a>
-        <a href="/blog.html" class="block py-2 nav-link active">Blog</a>
-        <a href="/a-propos.html" class="block py-2 nav-link">À propos</a>
-        <a href="/avis.html" class="block py-2 nav-link">Avis</a>
-        <a href="/contact.html" class="block py-2 nav-link">Contact</a>
-        <a href="/contact.html" class="block mt-4 primary-btn text-center">Prendre rendez-vous</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Article Header -->
-  <section class="article-header">
-    <div class="container">
-      <div class="max-w-3xl mx-auto">
-        <!-- Breadcrumb -->
-        <div class="mb-4">
-          <a href="/blog.html" class="text-gold hover:underline font-medium">
-            ← Retour au blog
-          </a>
-        </div>
-        
-        <!-- Category -->
-        <span class="article-category">Nutrition</span>
-        
-        <!-- Title -->
-        <h1 class="article-title">
-          5 conseils pour une alimentation saine et équilibrée
-        </h1>
-        
-        <!-- Meta -->
-        <div class="article-meta flex flex-wrap items-center gap-4">
-          <div class="flex items-center">
-            <img 
-              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80" 
-              alt="Dr. Alain Lefevre" 
-              class="w-8 h-8 rounded-full mr-2"
-            >
-            <span>Par <strong>Dr. Alain Lefevre</strong></span>
-          </div>
-          <span>•</span>
-          <span>15 juillet 2025</span>
-          <span>•</span>
-          <span>8 min de lecture</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <div class="container">
-    <div class="main-content">
-      <!-- Article Content -->
-      <main class="article-content">
-        <!-- Featured Image -->
-        <div class="mb-8">
-          <img 
-            src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80" 
-            alt="Alimentation saine" 
-            class="featured-image"
+    </style>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background text-gray-700 dark:text-gray-300"
+  >
+    <!-- Header -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <header
+        class="flex justify-between items-center py-6 border-b border-gray-200 dark:border-gray-700"
+      >
+        <!-- <div class="flex items-center space-x-2">
+          <span class="material-icons text-primary text-4xl"
+            >local_hospital</span
           >
-          <p class="image-caption">
-            Une alimentation variée et équilibrée est la clé d'une bonne santé
-          </p>
-        </div>
-
-        <!-- Article Body -->
-        <article class="article-body">
-          <p class="lead text-lg text-gray-700 mb-6">
-            Adopter une alimentation saine n'est pas synonyme de restrictions strictes ou de privation. Il s'agit plutôt de se sentir bien, d'avoir plus d'énergie et d'améliorer sa santé globale. Voici cinq conseils pratiques pour y parvenir.
-          </p>
-
-          <h2>1. Privilégiez les aliments non transformés</h2>
-          <p>
-            Les aliments transformés contiennent souvent des quantités élevées de sucre, de sel et de graisses saturées. Privilégiez plutôt les fruits et légumes frais, les céréales complètes, les légumineuses et les protéines maigres.
-          </p>
-
-          <div class="info-box">
-            <div class="info-box-title">💡 Astuce pratique</div>
-            <p class="mb-0">
-              Faites vos courses en périphérie du supermarché où se trouvent généralement les produits frais (fruits, légumes, viandes, produits laitiers).
-            </p>
-          </div>
-
-          <h2>2. Hydratez-vous suffisamment</h2>
-          <p>
-            L'eau est essentielle au bon fonctionnement de notre organisme. Elle participe à la régulation de la température corporelle, à l'élimination des déchets et au transport des nutriments.
-          </p>
-
-          <h3>Comment savoir si vous buvez assez ?</h3>
-          <ul>
-            <li>Votre urine est claire ou jaune pâle</li>
-            <li>Vous n'avez pas souvent soif</li>
-            <li>Votre peau est élastique</li>
-            <li>Vous avez de l'énergie tout au long de la journée</li>
-          </ul>
-
-          <blockquote>
-            "Que ton aliment soit ta seule médecine. La santé est le bien le plus précieux que nous possédons." — Hippocrate
-          </blockquote>
-
-          <h2>3. Variez vos sources de protéines</h2>
-          <p>
-            Les protéines sont essentielles pour la construction et la réparation des tissus. Variez vos sources entre protéines animales (viandes, poissons, œufs, produits laitiers) et végétales (légumineuses, tofu, quinoa, noix).
-          </p>
-
-          <h2>4. Écoutez votre corps</h2>
-          <p>
-            Apprenez à reconnaître les signaux de faim et de satiété. Mangez lentement, en pleine conscience, sans distraction (télévision, smartphone). Cela permet de mieux apprécier les aliments et de reconnaître plus facilement la sensation de satiété.
-          </p>
-
-          <h2>5. Planifiez vos repas</h2>
-          <p>
-            La planification des repas vous permet de faire des choix plus sains, d'économiser du temps et de l'argent, et de réduire le gaspillage alimentaire. Prenez le temps chaque semaine de planifier vos repas et de faire une liste de courses correspondante.
-          </p>
-
-          <div class="info-box">
-            <div class="info-box-title">📋 Exemple de journée type</div>
-            <ul class="mb-0">
-              <li><strong>Petit-déjeuner :</strong> Yaourt grec + fruits rouges + flocons d'avoine</li>
-              <li><strong>Déjeuner :</strong> Salade de quinoa + poulet grillé + légumes variés</li>
-              <li><strong>Collation :</strong> Poignée d'amandes + fruit frais</li>
-              <li><strong>Dîner :</strong> Soupe de légumes + omelette aux champignons</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Tags -->
-        <div class="tags">
-          <a href="#" class="tag">Nutrition</a>
-          <a href="#" class="tag">Santé</a>
-          <a href="#" class="tag">Conseils pratiques</a>
-          <a href="#" class="tag">Alimentation</a>
-          <a href="#" class="tag">Bien-être</a>
-        </div>
-
-        <!-- Social Share -->
-        <div class="social-share">
-          <button class="share-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
-            </svg>
-            Partager
-          </button>
-          <button class="share-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
-            </svg>
-            42 J'aime
-          </button>
-          <a href="#comments" class="share-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            12 Commentaires
-          </a>
-        </div>
-
-        <!-- Author Box -->
-        <div class="author-box">
-          <img 
-            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
-            alt="Dr. Alain Lefevre" 
-            class="author-avatar"
+          <span class="text-2xl font-bold text-gray-900"
+            >HGR<br />Nyamibungu</span
           >
+        </div> -->
+        <div class="flex items-center space-x-3 mb-6">
+          <div
+            class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-xl">HGR</span>
+          </div>
           <div>
-            <h3 class="author-name">Dr. Alain Lefevre</h3>
-            <p class="author-bio">
-              Nutritionniste diplômé avec plus de 15 ans d'expérience. Spécialisé dans la prévention des maladies par l'alimentation, il accompagne ses patients vers une relation plus saine avec la nourriture.
-            </p>
-            <a href="/contact.html" class="primary-btn inline-block">
-              Prendre rendez-vous
+            <h2 class="text-xl font-bold text-primary">HGR Nyamibungu</h2>
+            <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+          </div>
+        </div>
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a
+            class="text-primary font-semibold border-b-2 border-primary"
+            href="#"
+            >Home</a
+          >
+          <a class="hover:text-primary transition-colors text-black" href="#"
+            >Our Services
+            <span class="material-icons text-sm align-middle"
+              >expand_more</span
+            ></a
+          >
+          <a class="hover:text-primary transition-colors text-black" href="#"
+            >Departments
+            <span class="material-icons text-sm align-middle"
+              >expand_more</span
+            ></a
+          >
+          <a
+            class="hover:text-primary transition-colors text-black"
+            href="/blog.html"
+            >Blog</a
+          >
+          <a class="hover:text-primary transition-colors text-black" href="#"
+            >Patient Info
+            <span class="material-icons text-sm align-middle"
+              >expand_more</span
+            ></a
+          >
+        </nav>
+        <a
+          class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors"
+          href="#"
+          >Faire un don</a
+        >
+        <button class="lg:hidden p-2">
+          <span class="material-icons text-gray-800 dark:text-gray-200"
+            >menu</span
+          >
+        </button>
+      </header>
+    </div>
+
+    <!-- Share Popup Modal -->
+    <div
+      id="share-popup"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-50"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 animate-fadeIn"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-bold text-gray-800">Partager cet article</h3>
+          <button
+            id="close-share-popup"
+            class="text-gray-400 hover:text-gray-600"
+          >
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <div class="mb-6">
+          <p class="text-gray-600 mb-4">
+            Partagez cet article sur vos réseaux sociaux ou copiez le lien pour
+            le partager.
+          </p>
+
+          <div class="flex space-x-4 mb-6">
+            <a
+              href="#"
+              class="social-share-icon bg-blue-600 text-white hover:bg-blue-700"
+              data-network="facebook"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              class="social-share-icon bg-blue-400 text-white hover:bg-blue-500"
+              data-network="twitter"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              class="social-share-icon bg-red-600 text-white hover:bg-red-700"
+              data-network="linkedin"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="#"
+              class="social-share-icon bg-purple-600 text-white hover:bg-purple-700"
+              data-network="whatsapp"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a
+              href="#"
+              class="social-share-icon bg-gray-700 text-white hover:bg-gray-800"
+              data-network="email"
+            >
+              <i class="far fa-envelope"></i>
             </a>
           </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              id="share-link"
+              value="https://hopital-bienetre.fr/blog/5-conseils-alimentation-saine"
+              readonly
+              class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
+            />
+            <button
+              id="copy-link-btn"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gold text-white px-3 py-1 rounded-md hover:bg-yellow-700 transition-colors"
+            >
+              <i class="far fa-copy"></i>
+            </button>
+          </div>
+          <p id="copy-message" class="text-green-600 text-sm mt-2 hidden">
+            <i class="fas fa-check-circle mr-1"></i> Lien copié dans le
+            presse-papier !
+          </p>
         </div>
 
-        <!-- Comments Section -->
-        <section id="comments" class="comments-section">
-          <h2 class="comments-title">Commentaires (12)</h2>
+        <div class="text-center">
+          <button
+            id="close-popup-btn"
+            class="bg-gray-200 text-gray-800 font-medium px-6 py-2 rounded-md hover:bg-gray-300 transition-colors"
+          >
+            Fermer
+          </button>
+        </div>
+      </div>
+    </div>
 
-          <!-- Comment Form -->
-          <div class="comment-form">
-            <h3 class="form-title">Laisser un commentaire</h3>
+    <!-- Article Header -->
+    <section
+      class="article-header bg-gray-50 border-b border-gray-200 pt-32 pb-12"
+    >
+      <div class="container max-w-7xl mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <!-- Breadcrumb -->
+          <div class="mb-6">
+            <a href="/blog.html" class="text-gold hover:underline font-medium">
+              ← Retour au blog
+            </a>
+          </div>
+
+          <!-- Category -->
+          <span
+            class="bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full text-xs font-medium mb-4 inline-block"
+          >
+            Nutrition
+          </span>
+
+          <!-- Title -->
+          <h1
+            class="article-title text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+          >
+            5 conseils pour une alimentation saine et équilibrée
+          </h1>
+
+          <!-- Meta -->
+          <div
+            class="article-meta flex flex-wrap items-center gap-4 text-gray-600 text-sm"
+          >
+            <div class="flex items-center">
+              <img
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80"
+                alt="Dr. Alain Lefevre"
+                class="w-8 h-8 rounded-full mr-2"
+              />
+              <span>Par <strong>Dr. Alain Lefevre</strong></span>
+            </div>
+            <span>•</span>
+            <span>15 juillet 2025</span>
+            <span>•</span>
+            <span>8 min de lecture</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Article Content -->
+        <main class="lg:col-span-2">
+          <!-- Featured Image -->
+          <div class="mb-8">
+            <img
+              src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80"
+              alt="Alimentation saine"
+              class="w-full h-auto rounded-lg mb-4"
+            />
+            <p class="text-center text-gray-600 text-sm mt-2">
+              Une alimentation variée et équilibrée est la clé d'une bonne santé
+            </p>
+          </div>
+
+          <!-- Article Body -->
+          <article class="article-body text-gray-800 text-lg leading-relaxed">
+            <p class="text-gray-700 text-lg mb-6">
+              Adopter une alimentation saine n'est pas synonyme de restrictions
+              strictes ou de privation. Il s'agit plutôt de se sentir bien,
+              d'avoir plus d'énergie et d'améliorer sa santé globale. Voici cinq
+              conseils pratiques pour y parvenir.
+            </p>
+
+            <h2 class="text-2xl font-bold text-navy mt-10 mb-4">
+              1. Privilégiez les aliments non transformés
+            </h2>
+            <p class="mb-6">
+              Les aliments transformés contiennent souvent des quantités élevées
+              de sucre, de sel et de graisses saturées. Privilégiez plutôt les
+              fruits et légumes frais, les céréales complètes, les légumineuses
+              et les protéines maigres.
+            </p>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+              <div class="text-blue-800 font-semibold mb-2">
+                💡 Astuce pratique
+              </div>
+              <p class="mb-0 text-blue-700">
+                Faites vos courses en périphérie du supermarché où se trouvent
+                généralement les produits frais (fruits, légumes, viandes,
+                produits laitiers).
+              </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-navy mt-10 mb-4">
+              2. Hydratez-vous suffisamment
+            </h2>
+            <p class="mb-6">
+              L'eau est essentielle au bon fonctionnement de notre organisme.
+              Elle participe à la régulation de la température corporelle, à
+              l'élimination des déchets et au transport des nutriments.
+            </p>
+
+            <h3 class="text-xl font-semibold text-navy mt-8 mb-3">
+              Comment savoir si vous buvez assez ?
+            </h3>
+            <ul class="list-disc pl-6 mb-6 space-y-2">
+              <li>Votre urine est claire ou jaune pâle</li>
+              <li>Vous n'avez pas souvent soif</li>
+              <li>Votre peau est élastique</li>
+              <li>Vous avez de l'énergie tout au long de la journée</li>
+            </ul>
+
+            <blockquote
+              class="border-l-4 border-gold pl-6 py-2 my-8 italic text-gray-600 bg-gray-50 rounded-r-lg"
+            >
+              "Que ton aliment soit ta seule médecine. La santé est le bien le
+              plus précieux que nous possédons." — Hippocrate
+            </blockquote>
+
+            <h2 class="text-2xl font-bold text-navy mt-10 mb-4">
+              3. Variez vos sources de protéines
+            </h2>
+            <p class="mb-6">
+              Les protéines sont essentielles pour la construction et la
+              réparation des tissus. Variez vos sources entre protéines animales
+              (viandes, poissons, œufs, produits laitiers) et végétales
+              (légumineuses, tofu, quinoa, noix).
+            </p>
+
+            <h2 class="text-2xl font-bold text-navy mt-10 mb-4">
+              4. Écoutez votre corps
+            </h2>
+            <p class="mb-6">
+              Apprenez à reconnaître les signaux de faim et de satiété. Mangez
+              lentement, en pleine conscience, sans distraction (télévision,
+              smartphone). Cela permet de mieux apprécier les aliments et de
+              reconnaître plus facilement la sensation de satiété.
+            </p>
+
+            <h2 class="text-2xl font-bold text-navy mt-10 mb-4">
+              5. Planifiez vos repas
+            </h2>
+            <p class="mb-6">
+              La planification des repas vous permet de faire des choix plus
+              sains, d'économiser du temps et de l'argent, et de réduire le
+              gaspillage alimentaire. Prenez le temps chaque semaine de
+              planifier vos repas et de faire une liste de courses
+              correspondante.
+            </p>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+              <div class="text-blue-800 font-semibold mb-2">
+                📋 Exemple de journée type
+              </div>
+              <ul class="space-y-2">
+                <li>
+                  <strong>Petit-déjeuner :</strong> Yaourt grec + fruits rouges
+                  + flocons d'avoine
+                </li>
+                <li>
+                  <strong>Déjeuner :</strong> Salade de quinoa + poulet grillé +
+                  légumes variés
+                </li>
+                <li>
+                  <strong>Collation :</strong> Poignée d'amandes + fruit frais
+                </li>
+                <li>
+                  <strong>Dîner :</strong> Soupe de légumes + omelette aux
+                  champignons
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 my-8">
+            <a
+              href="#"
+              class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+            >
+              Nutrition
+            </a>
+            <a
+              href="#"
+              class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+            >
+              Santé
+            </a>
+            <a
+              href="#"
+              class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+            >
+              Conseils pratiques
+            </a>
+            <a
+              href="#"
+              class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+            >
+              Alimentation
+            </a>
+            <a
+              href="#"
+              class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+            >
+              Bien-être
+            </a>
+          </div>
+
+          <!-- Social Share -->
+          <div
+            class="social-share flex gap-4 my-8 py-6 border-t border-b border-gray-200"
+          >
+            <button
+              id="open-share-popup"
+              class="share-btn flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-md font-medium hover:bg-gray-200 transition-colors"
+            >
+              <i class="fas fa-share-alt"></i>
+              Partager
+            </button>
+            <button
+              id="like-article"
+              class="share-btn flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-md font-medium hover:bg-gray-200 transition-colors"
+            >
+              <i class="far fa-heart"></i>
+              <span id="like-count">42</span> J'aime
+            </button>
+            <a
+              href="#comments"
+              class="share-btn flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-md font-medium hover:bg-gray-200 transition-colors"
+            >
+              <i class="far fa-comment"></i>
+              <span id="comment-count">12</span> Commentaires
+            </a>
+          </div>
+
+          <!-- Author Box -->
+          <div class="author-box flex gap-6 p-8 bg-gray-50 rounded-lg my-12">
+            <img
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80"
+              alt="Dr. Alain Lefevre"
+              class="author-avatar w-20 h-20 rounded-full object-cover"
+            />
+            <div>
+              <h3 class="author-name text-xl font-bold text-gray-900 mb-2">
+                Dr. Alain Lefevre
+              </h3>
+              <p class="author-bio text-gray-600 mb-4">
+                Nutritionniste diplômé avec plus de 15 ans d'expérience.
+                Spécialisé dans la prévention des maladies par l'alimentation,
+                il accompagne ses patients vers une relation plus saine avec la
+                nourriture.
+              </p>
+              <a
+                href="/contact.html"
+                class="primary-btn bg-navy text-white font-medium px-6 py-2 rounded-md hover:bg-blue-900 transition-colors inline-block"
+              >
+                Prendre rendez-vous
+              </a>
+            </div>
+          </div>
+
+          <!-- Comments Section -->
+          <section id="comments" class="comments-section my-12">
+            <h2 class="comments-title text-2xl font-bold text-gray-900 mb-8">
+              Commentaires (<span id="total-comments">12</span>)
+            </h2>
+
+            <!-- Comment Form -->
+            <div class="comment-form bg-gray-50 p-8 rounded-lg mt-8">
+              <h3 class="form-title text-xl font-semibold text-gray-900 mb-6">
+                Laisser un commentaire
+              </h3>
+              <form id="comment-form">
+                <div class="form-group mb-6">
+                  <label class="form-label block font-medium text-gray-700 mb-2"
+                    >Votre nom *</label
+                  >
+                  <input
+                    type="text"
+                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-6">
+                  <label class="form-label block font-medium text-gray-700 mb-2"
+                    >Votre email *</label
+                  >
+                  <input
+                    type="email"
+                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-6">
+                  <label class="form-label block font-medium text-gray-700 mb-2"
+                    >Votre commentaire *</label
+                  >
+                  <textarea
+                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="primary-btn bg-navy text-white font-medium px-6 py-3 rounded-md hover:bg-blue-900 transition-colors"
+                >
+                  Publier le commentaire
+                </button>
+              </form>
+            </div>
+
+            <!-- Comments List -->
+            <div class="comments-list mt-12">
+              <!-- Comment 1 -->
+              <div class="comment py-6 border-b border-gray-200">
+                <div class="comment-header flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80"
+                    alt="Sophie Martin"
+                    class="comment-avatar w-10 h-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <div class="comment-author font-semibold text-gray-900">
+                      Sophie Martin
+                    </div>
+                    <div class="comment-date text-gray-600 text-sm">
+                      Il y a 2 jours
+                    </div>
+                  </div>
+                </div>
+                <div class="comment-body text-gray-700 mb-4">
+                  Excellent article, très informatif ! J'ai particulièrement
+                  apprécié la partie sur l'hydratation. Merci pour ces conseils
+                  pratiques.
+                </div>
+                <div class="comment-actions flex items-center gap-4">
+                  <button
+                    class="comment-like flex items-center gap-1 text-gray-600 hover:text-red-500 transition-colors"
+                    data-comment-id="1"
+                  >
+                    <i class="far fa-heart"></i>
+                    <span class="comment-like-count">3</span>
+                  </button>
+                  <button
+                    class="comment-reply flex items-center gap-1 text-gray-600 hover:text-gold transition-colors"
+                  >
+                    <i class="far fa-reply"></i>
+                    <span>Répondre</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Comment 2 (Author reply) -->
+              <div class="comment py-6 border-b border-gray-200 ml-8 md:ml-12">
+                <div class="comment-header flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80"
+                    alt="Dr. Alain Lefevre"
+                    class="comment-avatar w-10 h-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <div class="comment-author font-semibold text-gray-900">
+                      Dr. Alain Lefevre
+                      <span class="text-gold font-medium">(Auteur)</span>
+                    </div>
+                    <div class="comment-date text-gray-600 text-sm">
+                      Il y a 1 jour
+                    </div>
+                  </div>
+                </div>
+                <div class="comment-body text-gray-700 mb-4">
+                  @Sophie Martin Merci pour votre retour ! L'hydratation est
+                  effectivement un aspect trop souvent négligé. Content que
+                  l'article vous soit utile.
+                </div>
+                <div class="comment-actions flex items-center gap-4">
+                  <button
+                    class="comment-like flex items-center gap-1 text-gray-600 hover:text-red-500 transition-colors"
+                    data-comment-id="2"
+                  >
+                    <i class="far fa-heart"></i>
+                    <span class="comment-like-count">8</span>
+                  </button>
+                  <button
+                    class="comment-reply flex items-center gap-1 text-gray-600 hover:text-gold transition-colors"
+                  >
+                    <i class="far fa-reply"></i>
+                    <span>Répondre</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Comment 3 -->
+              <div class="comment py-6 border-b border-gray-200">
+                <div class="comment-header flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80"
+                    alt="Jean Dupont"
+                    class="comment-avatar w-10 h-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <div class="comment-author font-semibold text-gray-900">
+                      Jean Dupont
+                    </div>
+                    <div class="comment-date text-gray-600 text-sm">
+                      Il y a 5 heures
+                    </div>
+                  </div>
+                </div>
+                <div class="comment-body text-gray-700 mb-4">
+                  J'ai une question concernant les protéines végétales. Est-ce
+                  qu'il faut les combiner dans un même repas pour avoir des
+                  protéines complètes ?
+                </div>
+                <div class="comment-actions flex items-center gap-4">
+                  <button
+                    class="comment-like flex items-center gap-1 text-gray-600 hover:text-red-500 transition-colors"
+                    data-comment-id="3"
+                  >
+                    <i class="far fa-heart"></i>
+                    <span class="comment-like-count">1</span>
+                  </button>
+                  <button
+                    class="comment-reply flex items-center gap-1 text-gray-600 hover:text-gold transition-colors"
+                  >
+                    <i class="far fa-reply"></i>
+                    <span>Répondre</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar lg:col-span-1">
+          <!-- Newsletter -->
+          <div
+            class="newsletter-form bg-gradient-to-br from-navy to-blue-900 p-8 rounded-lg text-white mb-8"
+          >
+            <h3 class="newsletter-title text-xl font-bold mb-4">Newsletter</h3>
+            <p class="mb-6">
+              Recevez nos derniers articles et conseils santé directement dans
+              votre boîte mail.
+            </p>
             <form>
-              <div class="form-group">
-                <label class="form-label">Votre nom *</label>
-                <input type="text" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Votre email *</label>
-                <input type="email" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Votre commentaire *</label>
-                <textarea class="form-input" rows="5" required></textarea>
-              </div>
-              <button type="submit" class="primary-btn">
-                Publier le commentaire
+              <input
+                type="email"
+                placeholder="Votre email"
+                class="newsletter-input w-full px-4 py-3 rounded-md mb-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gold"
+                required
+              />
+              <button
+                type="submit"
+                class="primary-btn w-full bg-white text-navy font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition-colors"
+              >
+                S'abonner
               </button>
             </form>
+            <p class="text-sm mt-4 opacity-75">
+              En vous abonnant, vous acceptez notre politique de
+              confidentialité.
+            </p>
           </div>
 
-          <!-- Comments List -->
-          <div class="comments-list">
-            <!-- Comment 1 -->
-            <div class="comment">
-              <div class="comment-header">
-                <img 
-                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80" 
-                  alt="Sophie Martin" 
-                  class="comment-avatar"
-                >
-                <div>
-                  <div class="comment-author">Sophie Martin</div>
-                  <div class="comment-date">Il y a 2 jours</div>
-                </div>
-              </div>
-              <div class="comment-body">
-                Excellent article, très informatif ! J'ai particulièrement apprécié la partie sur l'hydratation. Merci pour ces conseils pratiques.
-              </div>
-            </div>
-
-            <!-- Comment 2 (Author reply) -->
-            <div class="comment ml-8">
-              <div class="comment-header">
-                <img 
-                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80" 
-                  alt="Dr. Alain Lefevre" 
-                  class="comment-avatar"
-                >
-                <div>
-                  <div class="comment-author">
-                    Dr. Alain Lefevre <span class="text-gold">(Auteur)</span>
-                  </div>
-                  <div class="comment-date">Il y a 1 jour</div>
-                </div>
-              </div>
-              <div class="comment-body">
-                @Sophie Martin Merci pour votre retour ! L'hydratation est effectivement un aspect trop souvent négligé. Content que l'article vous soit utile.
-              </div>
-            </div>
-
-            <!-- Comment 3 -->
-            <div class="comment">
-              <div class="comment-header">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80" 
-                  alt="Jean Dupont" 
-                  class="comment-avatar"
-                >
-                <div>
-                  <div class="comment-author">Jean Dupont</div>
-                  <div class="comment-date">Il y a 5 heures</div>
-                </div>
-              </div>
-              <div class="comment-body">
-                J'ai une question concernant les protéines végétales. Est-ce qu'il faut les combiner dans un même repas pour avoir des protéines complètes ?
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <!-- Newsletter -->
-        <div class="newsletter-form">
-          <h3 class="newsletter-title">Newsletter</h3>
-          <p class="mb-4">
-            Recevez nos derniers articles et conseils santé directement dans votre boîte mail.
-          </p>
-          <form>
-            <input 
-              type="email" 
-              placeholder="Votre email" 
-              class="newsletter-input"
-              required
+          <!-- Related Articles -->
+          <div
+            class="sidebar-section bg-white border border-gray-200 rounded-lg p-6 mb-8"
+          >
+            <h3
+              class="sidebar-title text-lg font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gold"
             >
-            <button type="submit" class="primary-btn w-full bg-white text-navy hover:bg-gray-100">
-              S'abonner
-            </button>
-          </form>
-          <p class="text-sm mt-2 opacity-75">
-            En vous abonnant, vous acceptez notre politique de confidentialité.
-          </p>
-        </div>
-
-        <!-- Related Articles -->
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">Articles similaires</h3>
-          <div class="related-articles">
-            <div class="related-article">
-              <h4 class="related-title">
-                <a href="#">Les super-aliments pour booster votre immunité</a>
-              </h4>
-              <div class="related-meta">12 juillet 2025 • 6 min</div>
-            </div>
-            <div class="related-article">
-              <h4 class="related-title">
-                <a href="#">L'importance de l'exercice physique régulier</a>
-              </h4>
-              <div class="related-meta">10 juillet 2025 • 8 min</div>
-            </div>
-            <div class="related-article">
-              <h4 class="related-title">
-                <a href="#">Gestion du stress : techniques efficaces</a>
-              </h4>
-              <div class="related-meta">5 juillet 2025 • 7 min</div>
-            </div>
-            <div class="related-article">
-              <h4 class="related-title">
-                <a href="#">L'hygiène du sommeil pour une meilleure santé</a>
-              </h4>
-              <div class="related-meta">1 juillet 2025 • 5 min</div>
+              Articles similaires
+            </h3>
+            <div class="related-articles">
+              <div
+                class="related-article py-4 border-b border-gray-200 last:border-b-0"
+              >
+                <h4 class="related-title font-semibold text-gray-900 mb-1">
+                  <a href="#" class="hover:text-gold transition-colors"
+                    >Les super-aliments pour booster votre immunité</a
+                  >
+                </h4>
+                <div class="related-meta text-gray-600 text-xs">
+                  12 juillet 2025 • 6 min
+                </div>
+              </div>
+              <div
+                class="related-article py-4 border-b border-gray-200 last:border-b-0"
+              >
+                <h4 class="related-title font-semibold text-gray-900 mb-1">
+                  <a href="#" class="hover:text-gold transition-colors"
+                    >L'importance de l'exercice physique régulier</a
+                  >
+                </h4>
+                <div class="related-meta text-gray-600 text-xs">
+                  10 juillet 2025 • 8 min
+                </div>
+              </div>
+              <div
+                class="related-article py-4 border-b border-gray-200 last:border-b-0"
+              >
+                <h4 class="related-title font-semibold text-gray-900 mb-1">
+                  <a href="#" class="hover:text-gold transition-colors"
+                    >Gestion du stress : techniques efficaces</a
+                  >
+                </h4>
+                <div class="related-meta text-gray-600 text-xs">
+                  5 juillet 2025 • 7 min
+                </div>
+              </div>
+              <div class="related-article py-4 last:border-b-0">
+                <h4 class="related-title font-semibold text-gray-900 mb-1">
+                  <a href="#" class="hover:text-gold transition-colors"
+                    >L'hygiène du sommeil pour une meilleure santé</a
+                  >
+                </h4>
+                <div class="related-meta text-gray-600 text-xs">
+                  1 juillet 2025 • 5 min
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Table of Contents -->
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">Sommaire</h3>
-          <nav>
-            <ul class="space-y-2">
-              <li><a href="#" class="text-gray-600 hover:text-gold">1. Aliments non transformés</a></li>
-              <li><a href="#" class="text-gray-600 hover:text-gold">2. Hydratation suffisante</a></li>
-              <li><a href="#" class="text-gray-600 hover:text-gold">3. Sources de protéines</a></li>
-              <li><a href="#" class="text-gray-600 hover:text-gold">4. Écouter son corps</a></li>
-              <li><a href="#" class="text-gray-600 hover:text-gold">5. Planifier ses repas</a></li>
+          <!-- Table of Contents -->
+          <div
+            class="sidebar-section bg-white border border-gray-200 rounded-lg p-6 mb-8"
+          >
+            <h3
+              class="sidebar-title text-lg font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gold"
+            >
+              Sommaire
+            </h3>
+            <nav>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="#aliments-non-transformes"
+                    class="text-gray-600 hover:text-gold transition-colors block"
+                    >1. Aliments non transformés</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#hydratation-suffisante"
+                    class="text-gray-600 hover:text-gold transition-colors block"
+                    >2. Hydratation suffisante</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#sources-de-proteines"
+                    class="text-gray-600 hover:text-gold transition-colors block"
+                    >3. Sources de protéines</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#ecouter-son-corps"
+                    class="text-gray-600 hover:text-gold transition-colors block"
+                    >4. Écouter son corps</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#planifier-ses-repas"
+                    class="text-gray-600 hover:text-gold transition-colors block"
+                    >5. Planifier ses repas</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Popular Tags -->
+          <div
+            class="sidebar-section bg-white border border-gray-200 rounded-lg p-6"
+          >
+            <h3
+              class="sidebar-title text-lg font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gold"
+            >
+              Catégories
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <a
+                href="#"
+                class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+                >Nutrition</a
+              >
+              <a
+                href="#"
+                class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+                >Prévention</a
+              >
+              <a
+                href="#"
+                class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+                >Bien-être</a
+              >
+              <a
+                href="#"
+                class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+                >Exercice</a
+              >
+              <a
+                href="#"
+                class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+                >Conseils</a
+              >
+              <a
+                href="#"
+                class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200"
+                >Pédiatrie</a
+              >
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#0f2a66] text-white pt-12 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <!-- Colonne 1 : Logo et description -->
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-12 h-12 bg-white rounded-xl flex items-center justify-center"
+              >
+                <span class="text-primary font-bold text-xl">HGR</span>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold">HGR Nyamibungu</h2>
+                <p class="text-sm text-white/80">
+                  Hôpital Général de Référence
+                </p>
+              </div>
+            </div>
+            <p class="text-white/80 text-sm mb-6">
+              Depuis 1995, l'HGR Nyamibungu s'engage à fournir des soins de
+              santé de qualité, accessibles à toute la communauté. La confiance
+              sauve des vies.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Colonne 2 : Contact -->
+          <div>
+            <h3 class="font-bold text-lg mb-6 flex items-center">
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
+              </svg>
+              Contact
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 mr-3 mt-0.5 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+                <span class="text-white/80"
+                  >Avenue Kanyamwa, Quartier Nyamibungu<br />Uvira, Sud-Kivu, RD
+                  Congo</span
+                >
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-3 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
+                </svg>
+                <span class="text-white/80">+243 973 444 444</span>
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-3 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="text-white/80">contact@hgnyamibungu.cd</span>
+              </li>
             </ul>
-          </nav>
-        </div>
+          </div>
 
-        <!-- Popular Tags -->
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">Catégories</h3>
-          <div class="tags">
-            <a href="#" class="tag">Nutrition</a>
-            <a href="#" class="tag">Prévention</a>
-            <a href="#" class="tag">Bien-être</a>
-            <a href="#" class="tag">Exercice</a>
-            <a href="#" class="tag">Conseils</a>
-            <a href="#" class="tag">Pédiatrie</a>
+          <!-- Colonne 3 : Liens rapides -->
+          <div>
+            <h3 class="font-bold text-lg mb-6">Liens Rapides</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="#" class="text-white/80 hover:text-white transition"
+                  >Prendre Rendez-vous</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white/80 hover:text-white transition"
+                  >Nos Services Médicaux</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white/80 hover:text-white transition"
+                  >Urgences 24h/24</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white/80 hover:text-white transition"
+                  >Notre Équipe Médicale</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white/80 hover:text-white transition"
+                  >Carrières & Recrutement</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white/80 hover:text-white transition"
+                  >Faire un Don</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Colonne 4 : Horaires -->
+          <div>
+            <h3 class="font-bold text-lg mb-6">Horaires</h3>
+            <ul class="space-y-3 text-white/80">
+              <li class="flex justify-between">
+                <span>Urgences :</span>
+                <span class="font-semibold text-white">24h/24 - 7j/7</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Consultations :</span>
+                <span>8h - 17h</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Pharmacie :</span>
+                <span>24h/24</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Laboratoire :</span>
+                <span>7h - 19h</span>
+              </li>
+            </ul>
+            <div class="mt-6 p-4 bg-white/10 rounded-lg">
+              <p class="text-sm font-semibold mb-2">Numéro d'Urgence</p>
+              <p class="text-xl font-bold text-white">+243 973 444 444</p>
+            </div>
           </div>
         </div>
-      </aside>
-    </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- About -->
-        <div>
-          <h3 class="footer-title">Hôpital Bien-être</h3>
-          <p class="text-gray-300">
-            Votre santé est notre priorité. Nous offrons des soins de qualité avec compassion et expertise.
+        <!-- Copyright -->
+        <div
+          class="pt-8 border-t border-white/10 text-center text-white/60 text-sm"
+        >
+          <p>
+            © 2024 HGR Nyamibungu - Hôpital Général de Référence. Tous droits
+            réservés.
+          </p>
+          <p class="mt-2">
+            "La confiance sauve des vies" - Votre santé mérite une référence
           </p>
         </div>
-
-        <!-- Services -->
-        <div>
-          <h3 class="footer-title">Services</h3>
-          <ul class="footer-links">
-            <li><a href="#">Consultations générales</a></li>
-            <li><a href="#">Médecine préventive</a></li>
-            <li><a href="#">Imagerie médicale</a></li>
-            <li><a href="#">Analyses biologiques</a></li>
-          </ul>
-        </div>
-
-        <!-- Links -->
-        <div>
-          <h3 class="footer-title">Liens rapides</h3>
-          <ul class="footer-links">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/blog.html">Blog</a></li>
-            <li><a href="/a-propos.html">À propos</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div>
-          <h3 class="footer-title">Contact</h3>
-          <ul class="footer-links">
-            <li>123 Rue de la Santé</li>
-            <li>75000 Paris</li>
-            <li>contact@hopital-bienetre.fr</li>
-            <li>+33 1 23 45 67 89</li>
-          </ul>
-        </div>
       </div>
+    </footer>
 
-      <div class="footer-bottom">
-        <p>&copy; 2025 Hôpital Bien-être. Tous droits réservés.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Like button functionality
-    const likeBtn = document.querySelector('.share-btn:nth-child(2)');
-    if (likeBtn) {
-      let liked = false;
-      let likeCount = 42;
-      
-      likeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        liked = !liked;
-        
-        if (liked) {
-          likeCount++;
-          this.style.color = '#ef4444';
-          this.style.background = '#fef2f2';
-        } else {
-          likeCount--;
-          this.style.color = '';
-          this.style.background = '';
-        }
-        
-        this.innerHTML = `
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.5l1.318-1.182a4.5 4.5 0 116.364 6.364L12 20.25l-7.682-7.682a4.5 4.5 0 010-6.364z"></path>
-          </svg>
-          ${likeCount} J'aime
-        `;
-      });
-    }
-
-    // Share functionality
-    const shareBtn = document.querySelector('.share-btn:first-child');
-    if (shareBtn && navigator.share) {
-      shareBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        navigator.share({
-          title: document.title,
-          text: 'Découvrez cet article sur l\'alimentation saine',
-          url: window.location.href,
+    <script>
+      // Mobile menu toggle
+      document
+        .getElementById("mobile-menu-button")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          menu.classList.toggle("hidden");
         });
-      });
-    }
 
-    // Table of contents navigation
-    document.querySelectorAll('.sidebar-section nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const headingNumber = this.textContent.match(/^\d+/)?.[0];
-        if (headingNumber) {
-          const headings = document.querySelectorAll('.article-body h2');
-          const targetHeading = headings[parseInt(headingNumber) - 1];
-          if (targetHeading) {
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
             window.scrollTo({
-              top: targetHeading.offsetTop - 100,
-              behavior: 'smooth'
+              top: targetElement.offsetTop - 100,
+              behavior: "smooth",
             });
           }
+        });
+      });
+
+      // Share popup functionality
+      const sharePopup = document.getElementById("share-popup");
+      const shareLinkInput = document.getElementById("share-link");
+      const copyLinkBtn = document.getElementById("copy-link-btn");
+      const copyMessage = document.getElementById("copy-message");
+
+      // Open share popup
+      document
+        .getElementById("open-share-popup")
+        .addEventListener("click", function () {
+          sharePopup.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // Prevent scrolling
+        });
+
+      // Close share popup
+      document
+        .getElementById("close-share-popup")
+        .addEventListener("click", function () {
+          sharePopup.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        });
+
+      document
+        .getElementById("close-popup-btn")
+        .addEventListener("click", function () {
+          sharePopup.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        });
+
+      // Close popup when clicking outside
+      sharePopup.addEventListener("click", function (e) {
+        if (e.target === sharePopup) {
+          sharePopup.classList.add("hidden");
+          document.body.style.overflow = "auto";
         }
       });
-    });
-  </script>
-</body>
+
+      // Copy link to clipboard
+      copyLinkBtn.addEventListener("click", function () {
+        shareLinkInput.select();
+        shareLinkInput.setSelectionRange(0, 99999); // For mobile devices
+
+        navigator.clipboard
+          .writeText(shareLinkInput.value)
+          .then(() => {
+            copyMessage.classList.remove("hidden");
+            setTimeout(() => {
+              copyMessage.classList.add("hidden");
+            }, 3000);
+          })
+          .catch((err) => {
+            console.error("Erreur lors de la copie: ", err);
+          });
+      });
+
+      // Social share buttons
+      document.querySelectorAll(".social-share-icon").forEach((icon) => {
+        icon.addEventListener("click", function (e) {
+          e.preventDefault();
+          const network = this.getAttribute("data-network");
+          const url = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent(document.title);
+          const text = encodeURIComponent(
+            "Découvrez cet article intéressant sur l'alimentation saine"
+          );
+
+          let shareUrl = "";
+
+          switch (network) {
+            case "facebook":
+              shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+              break;
+            case "twitter":
+              shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+              break;
+            case "linkedin":
+              shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`;
+              break;
+            case "whatsapp":
+              shareUrl = `https://api.whatsapp.com/send?text=${title} ${url}`;
+              break;
+            case "email":
+              shareUrl = `mailto:?subject=${title}&body=${text} ${url}`;
+              break;
+          }
+
+          if (network === "email") {
+            window.location.href = shareUrl;
+          } else {
+            window.open(shareUrl, "_blank", "width=600,height=400");
+          }
+        });
+      });
+
+      // Article like functionality
+      const likeBtn = document.getElementById("like-article");
+      const likeCountEl = document.getElementById("like-count");
+      let liked = false;
+      let likeCount = parseInt(likeCountEl.textContent);
+
+      likeBtn.addEventListener("click", function () {
+        liked = !liked;
+
+        if (liked) {
+          likeCount++;
+          this.classList.add("text-red-500");
+          this.querySelector("i").classList.remove("far");
+          this.querySelector("i").classList.add("fas");
+        } else {
+          likeCount--;
+          this.classList.remove("text-red-500");
+          this.querySelector("i").classList.remove("fas");
+          this.querySelector("i").classList.add("far");
+        }
+
+        likeCountEl.textContent = likeCount;
+      });
+
+      // Comment like functionality
+      document.querySelectorAll(".comment-like").forEach((button) => {
+        button.addEventListener("click", function () {
+          const likeCountEl = this.querySelector(".comment-like-count");
+          let count = parseInt(likeCountEl.textContent);
+          const commentId = this.getAttribute("data-comment-id");
+          const heartIcon = this.querySelector("i");
+
+          // Check if already liked (simple implementation)
+          const isLiked = this.classList.contains("text-red-500");
+
+          if (isLiked) {
+            count--;
+            this.classList.remove("text-red-500");
+            heartIcon.classList.remove("fas");
+            heartIcon.classList.add("far");
+          } else {
+            count++;
+            this.classList.add("text-red-500");
+            heartIcon.classList.remove("far");
+            heartIcon.classList.add("fas");
+          }
+
+          likeCountEl.textContent = count;
+        });
+      });
+
+      // Comment reply functionality
+      document.querySelectorAll(".comment-reply").forEach((button) => {
+        button.addEventListener("click", function () {
+          const commentBody =
+            this.closest(".comment").querySelector(".comment-body");
+          const authorName =
+            this.closest(".comment").querySelector(
+              ".comment-author"
+            ).textContent;
+
+          // Scroll to comment form
+          document
+            .getElementById("comment-form")
+            .scrollIntoView({ behavior: "smooth" });
+
+          // Pre-fill the comment textarea
+          const textarea = document.querySelector("#comment-form textarea");
+          textarea.value = `@${authorName} `;
+          textarea.focus();
+        });
+      });
+
+      // Comment form submission
+      document
+        .getElementById("comment-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form values
+          const name = this.querySelector('input[type="text"]').value;
+          const email = this.querySelector('input[type="email"]').value;
+          const commentText = this.querySelector("textarea").value;
+
+          // Create new comment element
+          const newComment = document.createElement("div");
+          newComment.className = "comment py-6 border-b border-gray-200";
+          newComment.innerHTML = `
+        <div class="comment-header flex items-center gap-4 mb-4">
+          <div class="comment-avatar w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">
+            <i class="fas fa-user text-lg"></i>
+          </div>
+          <div>
+            <div class="comment-author font-semibold text-gray-900">${name}</div>
+            <div class="comment-date text-gray-600 text-sm">À l'instant</div>
+          </div>
+        </div>
+        <div class="comment-body text-gray-700 mb-4">
+          ${commentText}
+        </div>
+        <div class="comment-actions flex items-center gap-4">
+          <button class="comment-like flex items-center gap-1 text-gray-600 hover:text-red-500 transition-colors" data-comment-id="new">
+            <i class="far fa-heart"></i>
+            <span class="comment-like-count">0</span>
+          </button>
+          <button class="comment-reply flex items-center gap-1 text-gray-600 hover:text-gold transition-colors">
+            <i class="far fa-reply"></i>
+            <span>Répondre</span>
+          </button>
+        </div>
+      `;
+
+          // Add to comments list
+          const commentsList = document.querySelector(".comments-list");
+          commentsList.appendChild(newComment);
+
+          // Update comment count
+          const totalCommentsEl = document.getElementById("total-comments");
+          const commentCountEl = document.getElementById("comment-count");
+          let totalComments = parseInt(totalCommentsEl.textContent) + 1;
+          totalCommentsEl.textContent = totalComments;
+          commentCountEl.textContent = totalComments;
+
+          // Reset form
+          this.reset();
+
+          // Add event listeners to new comment buttons
+          newComment
+            .querySelector(".comment-like")
+            .addEventListener("click", function () {
+              const likeCountEl = this.querySelector(".comment-like-count");
+              let count = parseInt(likeCountEl.textContent);
+              const heartIcon = this.querySelector("i");
+
+              const isLiked = this.classList.contains("text-red-500");
+
+              if (isLiked) {
+                count--;
+                this.classList.remove("text-red-500");
+                heartIcon.classList.remove("fas");
+                heartIcon.classList.add("far");
+              } else {
+                count++;
+                this.classList.add("text-red-500");
+                heartIcon.classList.remove("far");
+                heartIcon.classList.add("fas");
+              }
+
+              likeCountEl.textContent = count;
+            });
+
+          newComment
+            .querySelector(".comment-reply")
+            .addEventListener("click", function () {
+              const commentBody =
+                this.closest(".comment").querySelector(".comment-body");
+              const authorName =
+                this.closest(".comment").querySelector(
+                  ".comment-author"
+                ).textContent;
+
+              document
+                .getElementById("comment-form")
+                .scrollIntoView({ behavior: "smooth" });
+
+              const textarea = document.querySelector("#comment-form textarea");
+              textarea.value = `@${authorName} `;
+              textarea.focus();
+            });
+
+          // Show success message
+          alert("Votre commentaire a été publié avec succès !");
+        });
+
+      // Table of contents navigation
+      document.querySelectorAll(".sidebar-section nav a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId) {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 120,
+                behavior: "smooth",
+              });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
