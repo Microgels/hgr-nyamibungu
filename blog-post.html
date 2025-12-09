@@ -2,7 +2,10 @@
 <html lang="fr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link href="/src/output.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +16,10 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
     />
     <title>5 conseils pour une alimentation saine - Hôpital Bien-être</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,6 +42,9 @@
                 800: "#1f2937",
                 900: "#111827",
               },
+              primary: "#1a3a8f",
+              "primary-light": "#2d5dc5",
+              "primary-dark": "#0f2a66",
             },
             fontFamily: {
               inter: ["Inter", "sans-serif"],
@@ -56,6 +66,15 @@
         --dark: #1e293b; /* Texte foncé */
         --gray: #64748b; /* Texte gris */
       }
+
+      /* Empêcher le défilement horizontal et le zoom */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100%;
+        touch-action: pan-y;
+      }
+
       body {
         font-family: "Inter", sans-serif;
       }
@@ -75,25 +94,144 @@
       .animate-fadeIn {
         animation: fadeIn 0.2s ease-out;
       }
+
+      /* Sidebar mobile */
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      .sidebar-overlay.active {
+        display: block;
+      }
+
+      .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        left: -90%;
+        width: 90%;
+        height: 100vh;
+        background: white;
+        z-index: 50;
+        overflow-y: auto;
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .mobile-sidebar.active {
+        transform: translateX(90%);
+      }
+
+      .no-scroll {
+        overflow: hidden;
+        height: 100%;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
     </style>
   </head>
   <body
     class="font-display bg-background-light dark:bg-background text-gray-700 dark:text-gray-300"
   >
-    <!-- Header -->
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-8">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">HGR</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-primary">HGR Nyamibungu</h2>
+              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+            </div>
+          </div>
+          <button class="p-2" id="closeSidebar">
+            <span class="material-icons text-gray-800">close</span>
+          </button>
+        </div>
+
+        <nav class="space-y-4">
+          <a
+            class="block hover:text-primary transition-colors text-gray-900 pl-4 py-2"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900"
+            href="#"
+            >Our Services
+            <span
+              class="material-icons text-sm align-middle float-right text-gray-900"
+              >expand_more</span
+            >
+          </a>
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900"
+            href="#"
+            >Departments
+            <span
+              class="material-icons text-sm align-middle float-right text-gray-900"
+              >expand_more</span
+            >
+          </a>
+          <a
+            class="block text-primary font-semibold border-l-4 border-primary pl-4 py-2"
+            href="/blog.html"
+            >Blog</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900"
+            href="#"
+            >Patient Info
+            <span
+              class="material-icons text-sm align-middle float-right text-gray-900"
+              >expand_more</span
+            >
+          </a>
+          <a
+            class="block bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition-colors text-center mt-8"
+            href="#"
+          >
+            Faire un don
+          </a>
+        </nav>
+      </div>
+    </div>
+
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <header
         class="flex justify-between items-center py-6 border-b border-gray-200 dark:border-gray-700"
       >
-        <!-- <div class="flex items-center space-x-2">
-          <span class="material-icons text-primary text-4xl"
-            >local_hospital</span
-          >
-          <span class="text-2xl font-bold text-gray-900"
-            >HGR<br />Nyamibungu</span
-          >
-        </div> -->
-        <div class="flex items-center space-x-3 mb-6">
+        <div class="flex items-center space-x-3">
           <div
             class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
           >
@@ -106,43 +244,36 @@
         </div>
         <nav class="hidden lg:flex items-center space-x-8">
           <a
-            class="text-primary font-semibold border-b-2 border-primary"
-            href="#"
+            class="hover:text-primary transition-colors text-black"
+            href="index.html"
             >Home</a
           >
           <a class="hover:text-primary transition-colors text-black" href="#"
             >Our Services
-            <span class="material-icons text-sm align-middle"
-              >expand_more</span
-            ></a
-          >
+            <span class="material-icons text-sm align-middle">expand_more</span>
+          </a>
           <a class="hover:text-primary transition-colors text-black" href="#"
             >Departments
-            <span class="material-icons text-sm align-middle"
-              >expand_more</span
-            ></a
-          >
+            <span class="material-icons text-sm align-middle">expand_more</span>
+          </a>
           <a
-            class="hover:text-primary transition-colors text-black"
+            class="text-primary font-semibold border-b-2 border-primary"
             href="/blog.html"
             >Blog</a
           >
           <a class="hover:text-primary transition-colors text-black" href="#"
             >Patient Info
-            <span class="material-icons text-sm align-middle"
-              >expand_more</span
-            ></a
-          >
+            <span class="material-icons text-sm align-middle">expand_more</span>
+          </a>
         </nav>
         <a
           class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors"
           href="#"
-          >Faire un don</a
         >
-        <button class="lg:hidden p-2">
-          <span class="material-icons text-gray-800 dark:text-gray-200"
-            >menu</span
-          >
+          Faire un don
+        </a>
+        <button class="lg:hidden p-2" id="openSidebar">
+          <span class="material-icons text-black">menu</span>
         </button>
       </header>
     </div>
@@ -962,8 +1093,7 @@
                   ></path>
                 </svg>
                 <span class="text-white/80"
-                  >Avenue Kanyamwa, Quartier Nyamibungu<br />Uvira, Sud-Kivu, RD
-                  Congo</span
+                  >Village de Nyamibungu<br />Kitutu, Sud-Kivu, RD Congo</span
                 >
               </li>
               <li class="flex items-center">
@@ -1082,13 +1212,56 @@
     </footer>
 
     <script>
-      // Mobile menu toggle
-      document
-        .getElementById("mobile-menu-button")
-        .addEventListener("click", function () {
-          const menu = document.getElementById("mobile-menu");
-          menu.classList.toggle("hidden");
-        });
+      // Mobile sidebar functionality
+      const sidebar = document.getElementById("mobileSidebar");
+      const overlay = document.getElementById("sidebarOverlay");
+      const openBtn = document.getElementById("openSidebar");
+      const closeBtn = document.getElementById("closeSidebar");
+
+      function openSidebar() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.classList.add("no-scroll");
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+
+      openBtn.addEventListener("click", openSidebar);
+      closeBtn.addEventListener("click", closeSidebar);
+      overlay.addEventListener("click", closeSidebar);
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener("click", function (event) {
+        if (
+          window.innerWidth < 1024 &&
+          sidebar.classList.contains("active") &&
+          !sidebar.contains(event.target) &&
+          event.target !== openBtn &&
+          !openBtn.contains(event.target)
+        ) {
+          closeSidebar();
+        }
+      });
+
+      // Prevent horizontal scroll on touch devices
+      document.addEventListener(
+        "touchmove",
+        function (e) {
+          if (e.scale !== 1) {
+            e.preventDefault();
+          }
+        },
+        { passive: false }
+      );
+
+      // Disable zoom on mobile
+      document.addEventListener("gesturestart", function (e) {
+        e.preventDefault();
+      });
 
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

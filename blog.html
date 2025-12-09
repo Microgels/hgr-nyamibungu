@@ -2,14 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Actualités - HGR Nyamibungu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-     <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             --primary: #1a3a8f; /* Bleu médical plus profond */
@@ -22,6 +19,13 @@
             --light-gray: #f1f5f9; /* Gris très clair */
             --dark: #1e293b; /* Texte foncé */
             --gray: #64748b; /* Texte gris */
+        }
+        
+        /* Empêcher le défilement horizontal et le zoom */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            touch-action: pan-y;
         }
         
         * {
@@ -205,69 +209,136 @@
             height: 1px;
             background: linear-gradient(to right, transparent 0%, rgba(226, 232, 240, 0.8) 50%, transparent 100%);
         }
+        
+        /* Sidebar mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+        }
+        
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: -90%;
+            width: 90%;
+            height: 100vh;
+            background: white;
+            z-index: 50;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-sidebar.active {
+            transform: translateX(90%);
+        }
+        
+        .no-scroll {
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
     </style>
 </head>
-<body  class="font-display bg-background-light dark:bg-background text-gray-700 dark:text-gray-300">
-    <!-- Header Élégant -->
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-     <header
-        class="flex justify-between items-center py-6 border-b  border-gray-200 dark:border-gray-700"
-      >
-        <!-- <div class="flex items-center space-x-2">
-          <span class="material-icons text-primary text-4xl"
-            >local_hospital</span
-          >
-          <span class="text-2xl font-bold text-gray-900"
-            >HGR<br />Nyamibungu</span
-          >
-        </div> -->
-        <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                            <span class="text-white font-bold text-xl">HGR</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold text-primary">HGR Nyamibungu</h2>
-                            <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
-                        </div>
+<body class="font-display bg-background-light dark:bg-background text-gray-700 dark:text-gray-300">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar " id="mobileSidebar">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">HGR</span>
                     </div>
-        <nav class="hidden lg:flex items-center space-x-8">
-          <a
-            class="text-primary font-semibold border-b-2 border-primary"
-            href="#"
-            >Home</a
-          >
-          <a class="hover:text-primary transition-colors text-black" href="#"
-            >Our Services
-            <span class="material-icons text-sm align-middle"
-              >expand_more</span
-            ></a
-          >
-          <a class="hover:text-primary transition-colors text-black" href="#"
-            >Departments
-            <span class="material-icons text-sm align-middle"
-              >expand_more</span
-            ></a
-          >
-          <a class="hover:text-primary transition-colors text-black" href="/blog.html">Blog</a>
-          <a class="hover:text-primary transition-colors text-black" href="#"
-            >Patient Info
-            <span class="material-icons text-sm align-middle"
-              >expand_more</span
-            ></a
-          >
-        </nav>
-        <a
-          class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors"
-          href="#"
-          >Faire un don</a
-        >
-        <button class="lg:hidden p-2">
-          <span class="material-icons text-gray-800 dark:text-gray-200"
-            >menu</span
-          >
-        </button>
-      </header>
-  </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-primary ">HGR Nyamibungu</h2>
+                        <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+                    </div>
+                </div>
+                <button class="p-2" id="closeSidebar">
+                    <span class="material-icons text-gray-800 ">close</span>
+                </button>
+            </div>
+            
+            <nav class="space-y-4">
+                <a class="block hover:text-primary transition-colors text-gray-900 pl-4 py-2" href="index.html">Home</a>
+                <a class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900" href="#"
+                    >Our Services
+                    <span class="material-icons text-sm align-middle float-right text-gray-900">expand_more</span>
+                </a>
+                <a class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900" href="#"
+                    >Departments
+                    <span class="material-icons text-sm align-middle float-right text-gray-900">expand_more</span>
+                </a>
+                <a class="block text-primary font-semibold border-l-4 border-primary pl-4 py-2" href="/blog.html">Blog</a>
+                <a class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900" href="#"
+                    >Patient Info
+                    <span class="material-icons text-sm align-middle float-right text-gray-900">expand_more</span>
+                </a>
+                <a class="block bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition-colors text-center mt-8" href="#">
+                    Faire un don
+                </a>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="flex justify-between items-center py-6 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">HGR</span>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-primary">HGR Nyamibungu</h2>
+                    <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+                </div>
+            </div>
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a class="hover:text-primary transition-colors text-black" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors text-black" href="#"
+                    >Our Services
+                    <span class="material-icons text-sm align-middle">expand_more</span>
+                </a>
+                <a class="hover:text-primary transition-colors text-black" href="#"
+                    >Departments
+                    <span class="material-icons text-sm align-middle">expand_more</span>
+                </a>
+                <a class="text-primary font-semibold border-b-2 border-primary" href="/blog.html">Blog</a>
+                <a class="hover:text-primary transition-colors text-black" href="#"
+                    >Patient Info
+                    <span class="material-icons text-sm align-middle">expand_more</span>
+                </a>
+            </nav>
+            <a class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors" href="#">
+                Faire un don
+            </a>
+            <button class="lg:hidden p-2" id="openSidebar">
+                <span class="material-icons text-black ">menu</span>
+            </button>
+        </header>
+    </div>
 
     <!-- Bannière Héro avec Statistiques -->
     <div class="relative overflow-hidden">
@@ -290,8 +361,6 @@
                     Restez informé des dernières avancées médicales, campagnes de santé et innovations de votre hôpital de référence.
                 </p>
                 
-                
-                
                 <!-- Barre de recherche -->
                 <div class="max-w-xl mx-auto">
                     <div class="relative">
@@ -313,7 +382,6 @@
 
     <!-- Contenu Principal -->
     <main class="container mx-auto px-4 py-12">
-       
 
         <!-- Toutes les Actualités -->
         <section>
@@ -637,7 +705,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            <span class="text-white/80">Avenue Kanyamwa, Quartier Nyamibungu<br>Uvira, Sud-Kivu, RD Congo</span>
+                           <span class="text-white/80"
+                  >Village de Nyamibungu<br />Kitutu, Sud-Kivu, RD
+                  Congo</span
+                >
                         </li>
                         <li class="flex items-center">
                             <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -698,9 +769,56 @@
             <!-- Copyright -->
             <div class="pt-8 border-t border-white/10 text-center text-white/60 text-sm">
                 <p>© 2024 HGR Nyamibungu - Hôpital Général de Référence. Tous droits réservés.</p>
-                <p class="mt-2">"La confiance sauve des vies" - Votre santé mérite une référence</p>
+                <p class="mt-2">Develop by <a href="https://www.microgells.com" class="text-white underline">Microgels</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile sidebar functionality
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('no-scroll');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 1024 && 
+                sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && 
+                event.target !== openBtn && 
+                !openBtn.contains(event.target)) {
+                closeSidebar();
+            }
+        });
+
+        // Prevent horizontal scroll on touch devices
+        document.addEventListener('touchmove', function(e) {
+            if (e.scale !== 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Disable zoom on mobile
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+    </script>
 </body>
 </html>
