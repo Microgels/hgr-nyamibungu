@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport" />
     <title>GHR Nyamibungu</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
@@ -20,7 +20,7 @@
         theme: {
           extend: {
             colors: {
-              primary: "#1e3a8a", // This is a slightly darker blue from the palette, like navy-800
+              primary: "#1e3a8a",
               "background-light": "#ffffff",
               "background-dark": "#111827",
             },
@@ -55,23 +55,33 @@
     </script>
     <style>
       :root {
-        --primary: #1a3a8f; /* Bleu médical plus profond */
-        --primary-light: #2d5dc5; /* Bleu plus clair */
-        --primary-dark: #0f2a66; /* Bleu foncé */
-        --secondary: #0d6c8a; /* Bleu cyan élégant */
-        --accent: #c53030; /* Rouge pour urgences */
-        --accent-light: #fed7d7; /* Fond rouge clair */
-        --light: #f9fafb; /* Fond très clair */
-        --light-gray: #f1f5f9; /* Gris très clair */
-        --dark: #1e293b; /* Texte foncé */
-        --gray: #64748b; /* Texte gris */
+        --primary: #1a3a8f;
+        --primary-light: #2d5dc5;
+        --primary-dark: #0f2a66;
+        --secondary: #0d6c8a;
+        --accent: #c53030;
+        --accent-light: #fed7d7;
+        --light: #f9fafb;
+        --light-gray: #f1f5f9;
+        --dark: #1e293b;
+        --gray: #64748b;
       }
       
-      /* Empêcher le défilement horizontal et le zoom */
+      /* Empêcher le défilement horizontal seulement */
       html, body {
         overflow-x: hidden;
         max-width: 100%;
-        touch-action: pan-y;
+        width: 100%;
+      }
+      
+      /* Scroll fluide sur tous les appareils */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
       }
       
       .carousel-slide {
@@ -121,15 +131,22 @@
         background: #1f2937;
       }
       
+      /* Classe no-scroll corrigée */
       .no-scroll {
-        overflow: hidden;
+        overflow: hidden !important;
+        position: fixed;
+        width: 100%;
         height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
       }
       
       /* Correction pour les éléments qui dépassent */
       .container {
         width: 100%;
         max-width: 100%;
+        overflow-x: hidden;
       }
       
       img {
@@ -142,12 +159,12 @@
         position: relative;
         overflow: hidden;
         border-radius: 0.5rem;
-        height: 400px; /* Hauteur minimale pour mobile */
+        height: 400px;
       }
       
       @media (max-width: 768px) {
         .carousel-container {
-          height: 400px; /* Hauteur fixe pour mobile */
+          height: 400px;
         }
         
         .carousel-slide img {
@@ -201,11 +218,26 @@
         .carousel-text {
           -webkit-line-clamp: 3;
         }
+        
+        /* Amélioration du scroll sur mobile */
+        body {
+          -webkit-overflow-scrolling: touch;
+        }
       }
       
       /* Correction pour les images dans le carousel */
       .carousel-slide {
         height: 100%;
+      }
+      
+      /* Assurer que tout s'affiche correctement */
+      * {
+        box-sizing: border-box;
+      }
+      
+      /* Smooth scrolling pour ancres */
+      html {
+        scroll-padding-top: 80px;
       }
     </style>
   </head>
@@ -226,7 +258,7 @@
               <span class="text-white font-bold text-xl">HGR</span>
             </div>
             <div>
-              <h2 class="text-xl font-bold text-primary dark:text-white">HGR Nyamibungu</h2>
+              <h2 class="text-xl font-bold text-primary dark:text-white">Nyamibungu</h2>
               <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
             </div>
           </div>
@@ -258,7 +290,7 @@
           <a class="block hover:text-primary transition-colors pl-4 py-2" href="/blog.html"
             >Blog</a
           >
-          <a class="block hover:text-primary transition-colors pl-4 py-2" href="#"
+          <a class="block hover:text-primary transition-colors pl-4 py-2" href="/contact.html"
             >Contact</a
           >
           <a
@@ -281,7 +313,7 @@
             <span class="text-white font-bold text-xl">HGR</span>
           </div>
           <div>
-            <h2 class="text-xl font-bold text-primary">HGR Nyamibungu</h2>
+            <h2 class="text-xl font-bold text-primary">Nyamibungu</h2>
             <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
           </div>
         </div>
@@ -306,7 +338,7 @@
           <a class="hover:text-primary transition-colors" href="/blog.html"
             >Blog</a
           >
-          <a class="hover:text-primary transition-colors" href="#"
+          <a class="hover:text-primary transition-colors" href="/contact.html"
             >Contact</a
           >
         </nav>
@@ -866,22 +898,38 @@
         });
       });
 
-      // Mobile sidebar functionality
+      // Mobile sidebar functionality - CORRIGÉ
       const sidebar = document.getElementById('mobileSidebar');
       const overlay = document.getElementById('sidebarOverlay');
       const openBtn = document.getElementById('openSidebar');
       const closeBtn = document.getElementById('closeSidebar');
+      
+      let scrollPosition = 0;
 
       function openSidebar() {
+        // Sauvegarde la position du scroll
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Active la sidebar et l'overlay
         sidebar.classList.add('active');
         overlay.classList.add('active');
+        
+        // Applique no-scroll au body
         document.body.classList.add('no-scroll');
+        document.body.style.top = `-${scrollPosition}px`;
       }
 
       function closeSidebar() {
+        // Désactive la sidebar et l'overlay
         sidebar.classList.remove('active');
         overlay.classList.remove('active');
+        
+        // Retire no-scroll du body
         document.body.classList.remove('no-scroll');
+        document.body.style.top = '';
+        
+        // Restaure la position du scroll
+        window.scrollTo(0, scrollPosition);
       }
 
       openBtn.addEventListener('click', openSidebar);
@@ -899,16 +947,34 @@
         }
       });
 
-      // Prevent horizontal scroll on touch devices
+      // Gestion améliorée du zoom mobile
       document.addEventListener('touchmove', function(e) {
-        if (e.scale !== 1) {
-          e.preventDefault();
+        // Permet le scroll normal
+        if (e.touches.length > 1) {
+          e.preventDefault(); // Empêche seulement le zoom à deux doigts
         }
       }, { passive: false });
 
-      // Disable zoom on mobile
+      // Empêche le comportement par défaut du zoom
       document.addEventListener('gesturestart', function(e) {
-        e.preventDefault();
+        if (e.scale !== 1) {
+          e.preventDefault();
+        }
+      });
+
+      // Correction pour les mobiles - permet le scroll vertical
+      let lastTouchY = 0;
+      let isScrolling = false;
+
+      document.addEventListener('touchstart', function(e) {
+        lastTouchY = e.touches[0].clientY;
+      }, { passive: true });
+
+      // S'assure que le body a la bonne hauteur quand la sidebar est ouverte
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024 && sidebar.classList.contains('active')) {
+          closeSidebar();
+        }
       });
     </script>
     
@@ -924,7 +990,7 @@
                 <span class="text-primary font-bold text-xl">HGR</span>
               </div>
               <div>
-                <h2 class="text-xl font-bold">HGR Nyamibungu</h2>
+                <h2 class="text-xl font-bold">Nyamibungu</h2>
                 <p class="text-sm text-white/80">
                   Hôpital Général de Référence
                 </p>
