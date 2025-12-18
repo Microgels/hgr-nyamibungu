@@ -1,884 +1,639 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <title>Actualités - HGR Nyamibungu</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a",
+              "background-light": "#ffffff",
+              "background-dark": "#111827",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
     <style>
-        :root {
-            --primary: #1a3a8f; /* Bleu médical plus profond */
-            --primary-light: #2d5dc5; /* Bleu plus clair */
-            --primary-dark: #0f2a66; /* Bleu foncé */
-            --secondary: #0d6c8a; /* Bleu cyan élégant */
-            --accent: #c53030; /* Rouge pour urgences */
-            --accent-light: #fed7d7; /* Fond rouge clair */
-            --light: #f9fafb; /* Fond très clair */
-            --light-gray: #f1f5f9; /* Gris très clair */
-            --dark: #1e293b; /* Texte foncé */
-            --gray: #64748b; /* Texte gris */
-        }
-        
-        /* Empêcher seulement le défilement horizontal */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-            width: 100%;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-        
-        body {
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-y: contain;
-        }
-        
-        * {
-            font-family: 'Inter', sans-serif;
-            box-sizing: border-box;
-        }
-        
-        .bg-primary { background-color: var(--primary); }
-        .bg-primary-light { background-color: var(--primary-light); }
-        .bg-primary-dark { background-color: var(--primary-dark); }
-        .bg-secondary { background-color: var(--secondary); }
-        .bg-accent { background-color: var(--accent); }
-        .bg-light { background-color: var(--light); }
-        .bg-light-gray { background-color: var(--light-gray); }
-        
-        .text-primary { color: var(--primary); }
-        .text-primary-light { color: var(--primary-light); }
-        .text-secondary { color: var(--secondary); }
-        .text-accent { color: var(--accent); }
-        .text-dark { color: var(--dark); }
-        .text-gray { color: var(--gray); }
-        
-        .border-primary { border-color: var(--primary); }
-        .border-primary-light { border-color: var(--primary-light); }
-        .border-light { border-color: var(--light-gray); }
-        
-        .hover-bg-primary:hover { background-color: var(--primary-dark); }
-        .hover-text-primary:hover { color: var(--primary-light); }
-        
-        .gradient-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-        }
-        
-        .gradient-dark {
-            background: linear-gradient(rgba(10, 30, 70, 0.95) 0%, rgba(10, 30, 70, 0.85) 50%, rgba(10, 30, 70, 0.7) 100%);
-        }
-        
-        .gradient-light {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-        
-        .card-shadow {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-shadow:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            transform: translateY(-5px);
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.025em;
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .featured-article-gradient {
-            background: linear-gradient(to top, rgba(10, 30, 70, 0.95) 0%, rgba(10, 30, 70, 0.7) 40%, transparent 60%);
-        }
-        
-        .article-gradient {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 70%);
-        }
-        
-        .pagination-active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            box-shadow: 0 2px 10px rgba(26, 58, 143, 0.3);
-        }
-        
-        .line-clamp-2 {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-        }
-        
-        .line-clamp-3 {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
-        }
-        
-        .header-link {
-            position: relative;
-            padding-bottom: 4px;
-        }
-        
-        .header-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: var(--primary);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .header-link:hover::after,
-        .header-link.active::after {
-            width: 100%;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(26, 58, 143, 0.2);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 58, 143, 0.3);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-light);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--light-gray);
-            transform: translateY(-2px);
-        }
-        
-        .newsletter-input {
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-        
-        .newsletter-input:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(45, 93, 197, 0.1);
-            outline: none;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 12px;
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            border-color: var(--primary-light);
-            transform: translateY(-3px);
-        }
-        
-        .emergency-badge {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(197, 48, 48, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(197, 48, 48, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(197, 48, 48, 0); }
-        }
-        
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent 0%, rgba(226, 232, 240, 0.8) 50%, transparent 100%);
-        }
-        
-        /* Sidebar mobile */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        
-        .sidebar-overlay.active {
-            display: block;
-        }
-        
-        .mobile-sidebar {
-            position: fixed;
-            top: 0;
-            left: -90%;
-            width: 90%;
-            height: 100vh;
-            background: white;
-            z-index: 50;
-            overflow-y: auto;
-            transition: transform 0.3s ease-in-out;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .mobile-sidebar.active {
-            transform: translateX(90%);
-        }
-        
-        /* Classe no-scroll corrigée */
-        .no-scroll {
-            overflow: hidden !important;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideInLeft {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
-        }
-        
-        /* Améliorations pour le scroll mobile */
-        @media (max-width: 640px) {
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .container {
-                overflow-x: hidden;
-            }
-        }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+      body {
+        padding-top: 80px;
+      }
     </style>
-</head>
-<body class="font-display bg-background-light dark:bg-background text-gray-700 dark:text-gray-300">
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  </head>
+  <body class="font-display bg-background-light dark:bg-background-dark text-gray-700 dark:text-gray-300">
     
-    <!-- Mobile Sidebar -->
-    <div class="mobile-sidebar " id="mobileSidebar">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-8">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">HGR</span>
-                    </div>
-                    <div>
-                        <h2 class="text-xl font-bold text-primary ">Nyamibungu</h2>
-                        <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
-                    </div>
-                </div>
-                <button class="p-2" id="closeSidebar">
-                    <span class="material-icons text-gray-800 ">close</span>
-                </button>
+       <!-- Header/Navbar Fixe -->
+    <header
+      class="fixed w-full top-0 z-50 py-4 backdrop-blur-md border-b border-gray-200 bg-white/95 dark:bg-gray-900/95"
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">HGR</span>
             </div>
-            
-            <nav class="space-y-4">
-                <a class="block hover:text-primary transition-colors text-gray-900 pl-4 py-2" href="index.html">Home</a>
-                <a class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900" href="#"
-                    >Our Services
-                    <span class="material-icons text-sm align-middle float-right text-gray-900">expand_more</span>
-                </a>
-                <a class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900" href="#"
-                    >Departments
-                    <span class="material-icons text-sm align-middle float-right text-gray-900">expand_more</span>
-                </a>
-                <a class="block text-primary font-semibold border-l-4 border-primary pl-4 py-2" href="/blog.html">Blog</a>
-                <a class="block hover:text-primary transition-colors pl-4 py-2 text-gray-900" href="/contact.html"
-                    >Contact
-                </a>
-                <a class="block bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition-colors text-center mt-8" href="#">
-                    Faire un don
-                </a>
-            </nav>
+            <div>
+              <h2 class="text-xl font-bold text-primary dark:text-white">
+                Nyamibungu
+              </h2>
+              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+            </div>
+          </div>
+
+          <!-- Navigation Desktop -->
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a
+              class="text-primary font-semibold border-b-2 border-primary"
+              href="#"
+              >Accueil</a
+            >
+            <a class="hover:text-primary transition-colors" href="#services"
+              >Nos Services</a
+            >
+            <a
+              class="hover:text-primary transition-colors"
+              href="./history.html"
+              >Historique</a
+            >
+            <a class="hover:text-primary transition-colors" href="/blog.html"
+              >Actualités</a
+            >
+            <a
+              class="hover:text-primary transition-colors"
+              href="/contact.html"
+              >Contact</a
+            >
+            <a
+              class="hover:text-primary transition-colors"
+              href="/galerie.html"
+              >Galerie</a
+            >
+          </nav>
+
+          <!-- Bouton Don Desktop -->
+          <a
+            class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors"
+            href="#don"
+            >Faire un don</a
+          >
+
+          <!-- Bouton Menu Mobile -->
+          <button class="lg:hidden p-2" id="menuToggle">
+            <span
+              class="material-icons text-gray-800 dark:text-gray-200 text-2xl"
+              id="menuIcon"
+              >menu</span
+            >
+          </button>
         </div>
-    </div>
-    
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <header class="flex justify-between items-center py-6 border-b border-gray-200 dark:border-gray-700">
-            <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">HGR</span>
-                </div>
-                <div>
-                    <h2 class="text-xl font-bold text-primary">Nyamibungu</h2>
-                    <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
-                </div>
+      </div>
+    </header>
+
+    <!-- Mobile Sidebar -->
+    <div
+      class="fixed top-0 left-0 w-full h-screen bg-black/50 z-50 hidden"
+      id="sidebarOverlay"
+    ></div>
+
+    <div
+      class="fixed top-0 left-0 w-4/5 max-w-sm h-screen bg-white dark:bg-gray-800 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300"
+      id="mobileSidebar"
+    >
+      <div class="p-6 h-full flex flex-col">
+        <!-- Header Sidebar avec bouton fermer -->
+        <div class="flex justify-between items-center mb-8">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">HGR</span>
             </div>
-            <nav class="hidden lg:flex items-center space-x-8">
-                <a class="hover:text-primary transition-colors text-black" href="index.html">Home</a>
-                <a class="hover:text-primary transition-colors text-black" href="#"
-                    >Our Services
-                    <span class="material-icons text-sm align-middle">expand_more</span>
-                </a>
-                <a class="hover:text-primary transition-colors text-black" href="#"
-                    >Departments
-                    <span class="material-icons text-sm align-middle">expand_more</span>
-                </a>
-                <a class="text-primary font-semibold border-b-2 border-primary" href="/blog.html">Blog</a>
-                <a class="hover:text-primary transition-colors text-black" href="/contact.html"
-                    >Contact
-                </a>
-            </nav>
-            <a class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors" href="#">
-                Faire un don
-            </a>
-            <button class="lg:hidden p-2" id="openSidebar">
-                <span class="material-icons text-black ">menu</span>
-            </button>
-        </header>
+            <div>
+              <h2 class="text-xl font-bold text-primary dark:text-white">
+                Nyamibungu
+              </h2>
+              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+            </div>
+          </div>
+          <button class="p-2" id="closeSidebar">
+            <span
+              class="material-icons text-gray-800 dark:text-gray-200 text-2xl"
+              >close</span
+            >
+          </button>
+        </div>
+
+        <!-- Navigation Mobile -->
+        <nav class="flex-1 space-y-4">
+          <a
+            class="block text-primary font-semibold border-l-4 border-primary pl-4 py-2"
+            href="#"
+            >Accueil</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="#services"
+            >Nos Services</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="./history.html"
+            >Historique</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="/blog.html"
+            >Actualités</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="/contact.html"
+            >Contact</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="/galerie.html"
+            >Galerie</a
+          >
+        </nav>
+
+        <!-- Bouton Don Mobile -->
+        <a
+          class="block bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition-colors text-center mt-8"
+          href="#don"
+          >Faire un don</a
+        >
+      </div>
     </div>
 
     <!-- Bannière Héro avec Statistiques -->
     <div class="relative overflow-hidden">
-        <div class="absolute inset-0 gradient-primary z-0"></div>
-        <img 
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-            alt="HGR Nyamibungu"
-            class="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
-        />
-        <div class="container mx-auto px-4 py-16 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                    <span class="w-2 h-2 bg-white rounded-full"></span>
-                    <span class="text-white text-sm font-medium">Dernières actualités médicales</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                    Actualités & Blog Santé
-                </h1>
-                <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-                    Restez informé des dernières avancées médicales, campagnes de santé et innovations de votre hôpital de référence.
-                </p>
-                
-                <!-- Barre de recherche -->
-                <div class="max-w-xl mx-auto">
-                    <div class="relative">
-                        <input 
-                            type="text" 
-                            placeholder="Rechercher une actualité, un conseil santé..." 
-                            class="w-full px-6 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
-                        >
-                        <button class="absolute right-3 top-3 p-2 bg-white text-primary rounded-lg hover:bg-gray-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 z-0"></div>
+      <img 
+        src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+        alt="HGR Nyamibungu"
+        class="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
+      />
+      <div class="container mx-auto px-4 py-16 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+            <span class="w-2 h-2 bg-white rounded-full"></span>
+            <span class="text-white text-sm font-medium">Dernières actualités médicales</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Actualités & Blog Santé
+          </h1>
+          <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+            Restez informé des dernières avancées médicales, campagnes de santé et innovations de votre hôpital de référence.
+          </p>
+          
+          <!-- Barre de recherche -->
+          <div class="max-w-xl mx-auto">
+            <div class="relative">
+              <input 
+                type="text" 
+                placeholder="Rechercher une actualité, un conseil santé..." 
+                class="w-full px-6 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
+              >
+              <button class="absolute right-3 top-3 p-2 bg-white text-primary rounded-lg hover:bg-gray-50">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </button>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Contenu Principal -->
     <main class="container mx-auto px-4 py-12">
-
-        <!-- Toutes les Actualités -->
-        <section>
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
-                <div>
-                    <h2 class="text-3xl font-bold text-primary mb-3">Toutes les Actualités</h2>
-                    <p class="text-gray">Consultez l'ensemble de nos publications médicales et conseils santé</p>
-                </div>
-                <div class="flex items-center space-x-4 mt-4 md:mt-0">
-                    <select class="px-4 py-2 rounded-lg border border-light bg-white text-gray focus:outline-none focus:ring-2 focus:ring-primary/30">
-                        <option>Trier par : Plus récent</option>
-                        <option>Trier par : Plus ancien</option>
-                        <option>Trier par : Plus populaire</option>
-                    </select>
-                    <select class="px-4 py-2 rounded-lg border border-light bg-white text-gray focus:outline-none focus:ring-2 focus:ring-primary/30">
-                        <option>Toutes les catégories</option>
-                        <option>Nouveautés</option>
-                        <option>Urgences</option>
-                        <option>Prévention</option>
-                    </select>
-                </div>
-            </div>
-            
-            <!-- Grille d'articles -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <!-- Article 4 -->
-                <article class="card-shadow rounded-2xl overflow-hidden bg-white">
-                    <div class="relative h-56">
-                        <img 
-                            src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" 
-                            alt="Nouveau scanner"
-                            class="w-full h-full object-cover"
-                        />
-                        <div class="absolute top-4 left-4">
-                            <span class="badge bg-blue-50 text-primary">INNOVATION</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-3 text-primary line-clamp-2">
-                            Arrivée d'un nouveau scanner haute résolution pour diagnostics avancés
-                        </h3>
-                        <p class="text-gray mb-4 text-sm line-clamp-3">
-                            Notre service de radiologie s'équipe d'un scanner dernier cri permettant des diagnostics encore plus précis et moins invasifs.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-light">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-medium text-gray">Service Radiologie</p>
-                                    <p class="text-xs text-gray">25 Oct 2024</p>
-                                </div>
-                            </div>
-                            <a href="./blog-post.html" class="text-primary-light text-sm font-semibold hover:text-primary">Lire →</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- Article 5 -->
-                <article class="card-shadow rounded-2xl overflow-hidden bg-white">
-                    <div class="relative h-56">
-                        <img 
-                            src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" 
-                            alt="Formation médicale"
-                            class="w-full h-full object-cover"
-                        />
-                        <div class="absolute top-4 left-4">
-                            <span class="badge bg-purple-50 text-purple-700">FORMATION</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-3 text-primary line-clamp-2">
-                            Formation continue : Techniques avancées de réanimation cardiaque
-                        </h3>
-                        <p class="text-gray mb-4 text-sm line-clamp-3">
-                            Notre équipe d'urgentistes suit une formation certifiante aux dernières techniques de réanimation internationale.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-light">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-medium text-gray">Service Urgences</p>
-                                    <p class="text-xs text-gray">20 Oct 2024</p>
-                                </div>
-                            </div>
-                            <a href="#" class="text-primary-light text-sm font-semibold hover:text-primary">Lire →</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- Article 6 avec badge URGENT animé -->
-                <article class="article-hover relative rounded-lg overflow-hidden h-80">
-            <img
-                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80"
-                alt="Nouveau scanner médical"
-                class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 gradient-overlay"></div>
-            <div class="absolute bottom-0 p-6 text-white">
-                <p class="category-badge text-gray-300 mb-2">INNOVATION</p>
-                <h3 class="font-bold text-xl mb-2 leading-tight">
-                    Arrivée d'un nouveau scanner haute résolution
-                </h3>
-                <p class="text-sm text-gray-300">
-                    Par le Service Radiologie, Octobre 2024
-                </p>
-            </div>
-        </article>
-                
-                <!-- Article 7 -->
-                <article class="card-shadow rounded-2xl overflow-hidden bg-white">
-                    <div class="relative h-56">
-                        <img 
-                            src="https://images.unsplash.com/photo-1550831106-0994fe8abcfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
-                            alt="Maternité"
-                            class="w-full h-full object-cover"
-                        />
-                        <div class="absolute top-4 left-4">
-                            <span class="badge bg-pink-50 text-pink-700">MATERNITÉ</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-3 text-primary line-clamp-2">
-                            Maternité : Ouverture d'une nouvelle salle de naissance haut de gamme
-                        </h3>
-                        <p class="text-gray mb-4 text-sm line-clamp-3">
-                            Une nouvelle salle de naissance entièrement équipée pour un accouchement plus confortable et sécurisé.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-light">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-medium text-gray">Service Gynécologie</p>
-                                    <p class="text-xs text-gray">10 Oct 2024</p>
-                                </div>
-                            </div>
-                            <a href="#" class="text-primary-light text-sm font-semibold hover:text-primary">Lire →</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- Article 8 -->
-                <article class="card-shadow rounded-2xl overflow-hidden bg-white">
-                    <div class="relative h-56">
-                        <img 
-                            src="https://images.unsplash.com/photo-1576671414121-aa0b80a5f2f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                            alt="Nutrition"
-                            class="w-full h-full object-cover"
-                        />
-                        <div class="absolute top-4 left-4">
-                            <span class="badge bg-green-50 text-green-700">PRÉVENTION</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-3 text-primary line-clamp-2">
-                            Atelier nutrition : Prévention du diabète et des maladies cardiovasculaires
-                        </h3>
-                        <p class="text-gray mb-4 text-sm line-clamp-3">
-                            Rejoignez notre atelier gratuit sur l'alimentation équilibrée pour prévenir les maladies chroniques.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-light">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-medium text-gray">Service Nutrition</p>
-                                    <p class="text-xs text-gray">5 Oct 2024</p>
-                                </div>
-                            </div>
-                            <a href="#" class="text-primary-light text-sm font-semibold hover:text-primary">Lire →</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- Article 9 -->
-                <article class="card-shadow rounded-2xl overflow-hidden bg-white">
-                    <div class="relative h-56">
-                        <img 
-                            src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" 
-                            alt="Partenariat"
-                            class="w-full h-full object-cover"
-                        />
-                        <div class="absolute top-4 left-4">
-                            <span class="badge bg-cyan-50 text-cyan-700">PARTENARIAT</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-3 text-primary line-clamp-2">
-                            Nouveau partenariat avec l'Université de Bukavu pour la recherche médicale
-                        </h3>
-                        <p class="text-gray mb-4 text-sm line-clamp-3">
-                            Collaboration stratégique pour la recherche médicale et la formation des futurs professionnels de santé.
-                        </p>
-                        <div class="flex items-center justify-between pt-4 border-t border-light">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-medium text-gray">Direction Générale</p>
-                                    <p class="text-xs text-gray">1 Oct 2024</p>
-                                </div>
-                            </div>
-                            <a href="#" class="text-primary-light text-sm font-semibold hover:text-primary">Lire →</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            
-            <!-- Pagination améliorée -->
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-20">
-                <p class="text-gray text-sm">Page 1 sur 8 • 48 articles au total</p>
-                <nav class="flex items-center space-x-2">
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-light hover:bg-light-gray">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg pagination-active font-semibold">
-                        1
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-light hover:bg-light-gray">
-                        2
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-light hover:bg-light-gray">
-                        3
-                    </a>
-                    <span class="px-2 text-gray">...</span>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-light hover:bg-light-gray">
-                        8
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-light hover:bg-light-gray">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </nav>
-            </div>
-        </section>
-        
-        <!-- Section Newsletter -->
-        <div class="gradient-primary rounded-2xl p-8 md:p-12 mb-16 text-center text-white">
-            <div class="max-w-2xl mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4">Restez informé</h2>
-                <p class="text-white/90 mb-8">
-                    Inscrivez-vous à notre newsletter pour recevoir nos actualités médicales, conseils santé et informations importantes directement dans votre boîte mail.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input 
-                        type="email" 
-                        placeholder="Votre adresse email" 
-                        class="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/30"
-                    >
-                    <button class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg">
-                        S'abonner
-                    </button>
-                </div>
-                <p class="text-white/70 text-sm mt-4">Nous respectons votre vie privée. Désabonnez-vous à tout moment.</p>
-            </div>
+      <!-- Toutes les Actualités -->
+      <section>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+          <div>
+            <h2 class="text-3xl font-bold text-primary mb-3">Toutes les Actualités</h2>
+            <p class="text-gray-600 dark:text-gray-400">Consultez l'ensemble de nos publications médicales et conseils santé</p>
+          </div>
+          <div class="flex items-center space-x-4 mt-4 md:mt-0">
+            <select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30">
+              <option>Trier par : Plus récent</option>
+              <option>Trier par : Plus ancien</option>
+              <option>Trier par : Plus populaire</option>
+            </select>
+            <select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30">
+              <option>Toutes les catégories</option>
+              <option>Nouveautés</option>
+              <option>Urgences</option>
+              <option>Prévention</option>
+            </select>
+          </div>
         </div>
+        
+        <!-- Grille d'articles -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <!-- Article 1 -->
+          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="relative h-56">
+              <img 
+                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" 
+                alt="Nouveau scanner"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full">INNOVATION</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
+                Arrivée d'un nouveau scanner haute résolution pour diagnostics avancés
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
+                Notre service de radiologie s'équipe d'un scanner dernier cri permettant des diagnostics encore plus précis et moins invasifs.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-primary dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Radiologie</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">25 Oct 2024</p>
+                  </div>
+                </div>
+                <a href="blog-post.html" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Article 2 -->
+          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="relative h-56">
+              <img 
+                src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" 
+                alt="Formation médicale"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">FORMATION</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
+                Formation continue : Techniques avancées de réanimation cardiaque
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
+                Notre équipe d'urgentistes suit une formation certifiante aux dernières techniques de réanimation internationale.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-purple-700 dark:text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Urgences</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">20 Oct 2024</p>
+                  </div>
+                </div>
+                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Article 3 -->
+          <article class="relative rounded-lg overflow-hidden h-80 bg-gradient-to-t from-black/70 to-transparent">
+            <img 
+              src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" 
+              alt="Nouveau scanner médical"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-0 p-6 text-white">
+              <p class="text-sm text-gray-300 mb-2">INNOVATION</p>
+              <h3 class="font-bold text-xl mb-2 leading-tight">
+                Arrivée d'un nouveau scanner haute résolution
+              </h3>
+              <p class="text-sm text-gray-300">
+                Par le Service Radiologie, Octobre 2024
+              </p>
+            </div>
+          </article>
+          
+          <!-- Article 4 -->
+          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="relative h-56">
+              <img 
+                src="https://images.unsplash.com/photo-1550831106-0994fe8abcfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+                alt="Maternité"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full">MATERNITÉ</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
+                Maternité : Ouverture d'une nouvelle salle de naissance haut de gamme
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
+                Une nouvelle salle de naissance entièrement équipée pour un accouchement plus confortable et sécurisé.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-pink-100 dark:bg-pink-900/30 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-pink-700 dark:text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Gynécologie</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">10 Oct 2024</p>
+                  </div>
+                </div>
+                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Article 5 -->
+          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="relative h-56">
+              <img 
+                src="https://images.unsplash.com/photo-1576671414121-aa0b80a5f2f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                alt="Nutrition"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">PRÉVENTION</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
+                Atelier nutrition : Prévention du diabète et des maladies cardiovasculaires
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
+                Rejoignez notre atelier gratuit sur l'alimentation équilibrée pour prévenir les maladies chroniques.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-green-700 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Nutrition</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">5 Oct 2024</p>
+                  </div>
+                </div>
+                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Article 6 -->
+          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="relative h-56">
+              <img 
+                src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" 
+                alt="Partenariat"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full">PARTENARIAT</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
+                Nouveau partenariat avec l'Université de Bukavu pour la recherche médicale
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
+                Collaboration stratégique pour la recherche médicale et la formation des futurs professionnels de santé.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-cyan-700 dark:text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Direction Générale</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">1 Oct 2024</p>
+                  </div>
+                </div>
+                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <!-- Pagination améliorée -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-20">
+          <p class="text-gray-600 dark:text-gray-400 text-sm">Page 1 sur 8 • 48 articles au total</p>
+          <nav class="flex items-center space-x-2">
+            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-900 to-blue-700 text-white font-semibold shadow-lg">
+              1
+            </a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+              2
+            </a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+              3
+            </a>
+            <span class="px-2 text-gray-600 dark:text-gray-400">...</span>
+            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+              8
+            </a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </section>
+      
+      <!-- Section Newsletter -->
+      <div class="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-8 md:p-12 mb-16 text-center text-white">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">Restez informé</h2>
+          <p class="text-white/90 mb-8">
+            Inscrivez-vous à notre newsletter pour recevoir nos actualités médicales, conseils santé et informations importantes directement dans votre boîte mail.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input 
+              type="email" 
+              placeholder="Votre adresse email" 
+              class="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/30"
+            >
+            <button class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg">
+              S'abonner
+            </button>
+          </div>
+          <p class="text-white/70 text-sm mt-4">Nous respectons votre vie privée. Désabonnez-vous à tout moment.</p>
+        </div>
+      </div>
     </main>
 
     <!-- Footer Élégant -->
-    <footer class="bg-primary-dark text-white pt-12 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <!-- Colonne 1 : Logo et description -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
-                            <span class="text-primary font-bold text-xl">HGR</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold">Nyamibungu</h2>
-                            <p class="text-sm text-white/80">Hôpital Général de Référence</p>
-                        </div>
-                    </div>
-                    <p class="text-white/80 text-sm mb-6">
-                        Depuis 1995, l'HGR Nyamibungu s'engage à fournir des soins de santé de qualité, accessibles à toute la communauté. La confiance sauve des vies.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Colonne 2 : Contact -->
-                <div>
-                    <h3 class="font-bold text-lg mb-6 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        Contact
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-3 mt-0.5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                           <span class="text-white/80"
-                  >Village de Nyamibungu<br />Kitutu, Sud-Kivu, RD
-                  Congo</span
-                >
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                            <span class="text-white/80">+243 973 444 444</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                            <span class="text-white/80">contact@hgnyamibungu.cd</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Colonne 3 : Liens rapides -->
-                <div>
-                    <h3 class="font-bold text-lg mb-6">Liens Rapides</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-white/80 hover:text-white transition">Prendre Rendez-vous</a></li>
-                        <li><a href="#" class="text-white/80 hover:text-white transition">Nos Services Médicaux</a></li>
-                        <li><a href="#" class="text-white/80 hover:text-white transition">Urgences 24h/24</a></li>
-                        <li><a href="#" class="text-white/80 hover:text-white transition">Notre Équipe Médicale</a></li>
-                        <li><a href="#" class="text-white/80 hover:text-white transition">Carrières & Recrutement</a></li>
-                        <li><a href="#" class="text-white/80 hover:text-white transition">Faire un Don</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Colonne 4 : Horaires -->
-                <div>
-                    <h3 class="font-bold text-lg mb-6">Horaires</h3>
-                    <ul class="space-y-3 text-white/80">
-                        <li class="flex justify-between">
-                            <span>Urgences :</span>
-                            <span class="font-semibold text-white">24h/24 - 7j/7</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>Consultations :</span>
-                            <span>8h - 17h</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>Pharmacie :</span>
-                            <span>24h/24</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>Laboratoire :</span>
-                            <span>7h - 19h</span>
-                        </li>
-                    </ul>
-                    <div class="mt-6 p-4 bg-white/10 rounded-lg">
-                        <p class="text-sm font-semibold mb-2">Numéro d'Urgence</p>
-                            <p class="text-xl font-bold text-white">+243 973 444 444</p>
-                    </div>
-                </div>
+    <footer class="bg-blue-900 text-white pt-12 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <!-- Colonne 1 : Logo et description -->
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
+                <span class="text-primary font-bold text-xl">HGR</span>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold">Nyamibungu</h2>
+                <p class="text-sm text-white/80">Hôpital Général de Référence</p>
+              </div>
             </div>
-            
-            <!-- Copyright -->
-            <div class="pt-8 border-t border-white/10 text-center text-white/60 text-sm">
-                <p>© 2024 HGR Nyamibungu - Hôpital Général de Référence. Tous droits réservés.</p>
-                <p class="mt-2">Develop by <a href="https://www.microgells.com" class="text-white underline">Microgels</p>
+            <p class="text-white/80 text-sm mb-6">
+              Depuis 1953, l'HGR Nyamibungu s'engage à fournir des soins de santé de qualité à plus de 230 000 habitants de la zone de santé rurale de Kitutu, dans le territoire de Mwenga, Sud-Kivu.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="mailto:famaisokelo@gmail.com" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              </a>
             </div>
+          </div>
+          
+          <!-- Colonne 2 : Contact -->
+          <div>
+            <h3 class="font-bold text-lg mb-6 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              Contact
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 mr-3 mt-0.5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span class="text-white/80">Village de Nyamibungu<br />Kitutu, Territoire de Mwenga<br />Sud-Kivu, RD Congo</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <span class="text-white/80">+243 992 011 705</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <span class="text-white/80">famaisokelo@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Colonne 3 : Liens rapides -->
+          <div>
+            <h3 class="font-bold text-lg mb-6">Liens Rapides</h3>
+            <ul class="space-y-3">
+              <li><a href="index.html#services" class="text-white/80 hover:text-white transition">Nos Services</a></li>
+              <li><a href="index.html#don" class="text-white/80 hover:text-white transition">Faire un Don</a></li>
+              <li><a href="blog.html" class="text-white/80 hover:text-white transition">Actualités & Rapports</a></li>
+              <li><a href="index.html#urgence" class="text-white/80 hover:text-white transition">Urgences 24h/24</a></li>
+              <li><a href="contact.html" class="text-white/80 hover:text-white transition">Nous Contacter</a></li>
+            </ul>
+          </div>
+          
+          <!-- Colonne 4 : Informations -->
+          <div>
+            <h3 class="font-bold text-lg mb-6">Informations</h3>
+            <div class="mt-6 p-4 bg-white/10 rounded-lg">
+              <p class="text-sm font-semibold mb-2">Numéro du Directeur</p>
+              <p class="text-xl font-bold text-white">+243 992 011 705</p>
+              <p class="text-sm mt-1">Dr ISOKELO Munyuku Fama</p>
+            </div>
+          </div>
         </div>
+        
+        <!-- Copyright -->
+        <div class="pt-8 border-t border-white/10 text-center text-white/60 text-sm">
+          <p>© 2025 HGR Nyamibungu - Hôpital Général de Référence de Kitutu-Nyamibungu. Division Provinciale de la Santé du Sud Kivu.</p>
+          <p class="mt-2">Développé par <a href="https://www.microgells.com" class="text-white underline">Microgels</a></p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Mobile sidebar functionality - CORRIGÉ
-        const sidebar = document.getElementById('mobileSidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        const openBtn = document.getElementById('openSidebar');
-        const closeBtn = document.getElementById('closeSidebar');
+      // Gestion de la sidebar mobile
+      const menuToggle = document.getElementById('menuToggle');
+      const menuIcon = document.getElementById('menuIcon');
+      const mobileSidebar = document.getElementById('mobileSidebar');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      const closeSidebarBtn = document.getElementById('closeSidebar');
+
+      function toggleSidebar() {
+        const isOpen = mobileSidebar.classList.contains('translate-x-0');
         
-        let scrollPosition = 0;
-
-        function openSidebar() {
-            // Sauvegarde la position du scroll
-            scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Active la sidebar et l'overlay
-            sidebar.classList.add('active');
-            overlay.classList.add('active');
-            
-            // Applique no-scroll au body
-            document.body.classList.add('no-scroll');
-            document.body.style.top = `-${scrollPosition}px`;
+        if (!isOpen) {
+          // Ouvrir la sidebar
+          mobileSidebar.classList.remove('-translate-x-full');
+          mobileSidebar.classList.add('translate-x-0');
+          sidebarOverlay.classList.remove('hidden');
+          menuIcon.textContent = 'close';
+          document.body.style.overflow = 'hidden';
+        } else {
+          // Fermer la sidebar
+          closeSidebar();
         }
+      }
 
-        function closeSidebar() {
-            // Désactive la sidebar et l'overlay
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            
-            // Retire no-scroll du body
-            document.body.classList.remove('no-scroll');
-            document.body.style.top = '';
-            
-            // Restaure la position du scroll
-            window.scrollTo(0, scrollPosition);
+      function closeSidebar() {
+        mobileSidebar.classList.remove('translate-x-0');
+        mobileSidebar.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('hidden');
+        menuIcon.textContent = 'menu';
+        document.body.style.overflow = '';
+      }
+
+      menuToggle.addEventListener('click', toggleSidebar);
+      closeSidebarBtn.addEventListener('click', closeSidebar);
+      sidebarOverlay.addEventListener('click', closeSidebar);
+
+      // Fermer la sidebar avec la touche Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileSidebar.classList.contains('-translate-x-full')) {
+          closeSidebar();
         }
-
-        openBtn.addEventListener('click', openSidebar);
-        closeBtn.addEventListener('click', closeSidebar);
-        overlay.addEventListener('click', closeSidebar);
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            if (window.innerWidth < 1024 && 
-                sidebar.classList.contains('active') && 
-                !sidebar.contains(event.target) && 
-                event.target !== openBtn && 
-                !openBtn.contains(event.target)) {
-                closeSidebar();
-            }
-        });
-
-        // Gestion améliorée du zoom mobile
-        document.addEventListener('touchmove', function(e) {
-            // Permet le scroll normal
-            if (e.touches.length > 1) {
-                e.preventDefault(); // Empêche seulement le zoom à deux doigts
-            }
-        }, { passive: false });
-
-        // Empêche le comportement par défaut du zoom
-        document.addEventListener('gesturestart', function(e) {
-            if (e.scale !== 1) {
-                e.preventDefault();
-            }
-        });
-
-        // Correction pour les mobiles - permet le scroll vertical
-        let lastTouchY = 0;
-        let isScrolling = false;
-
-        document.addEventListener('touchstart', function(e) {
-            lastTouchY = e.touches[0].clientY;
-        }, { passive: true });
-
-        // S'assure que le body a la bonne hauteur quand la sidebar est ouverte
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 1024 && sidebar.classList.contains('active')) {
-                closeSidebar();
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>

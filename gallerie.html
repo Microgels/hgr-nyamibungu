@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Galerie - HGR Nyamibungu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a",
+              "background-light": "#ffffff",
+              "background-dark": "#111827",
+            },
+            fontFamily: {
+              display: ["Poppins", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f2a66;
+            --primary-light: #2d5dc5;
+            --secondary: #00b4d8;
+            --accent: #ff6b6b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 80px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: #f8fafc;
+            padding-top: 80px;
+        }
+        
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+        
+        .wave-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave-top svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+        
+        .wave-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        
+        .wave-bottom svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Gallery Styles */
+        .gallery-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-card:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .gallery-description {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        
+        .gallery-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .gallery-category {
+            display: inline-block;
+            background: var(--primary-light);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+        
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+            padding: 10px 0;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--primary-light);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .lightbox-download {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-download:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Filter Buttons */
+        .filter-btn {
+            padding: 10px 24px;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Grid Layout */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .gallery-image-container {
+                height: 220px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-image-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navbar Fixe -->
+    <header
+      class="fixed w-full top-0 z-50 py-4 backdrop-blur-md border-b border-gray-200 bg-white/95 dark:bg-gray-900/95"
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">HGR</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-primary dark:text-white">
+                Nyamibungu
+              </h2>
+              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+            </div>
+          </div>
+
+          <!-- Navigation Desktop -->
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a class="hover:text-primary transition-colors" href="index.html"
+              >Accueil</a
+            >
+            <a class="hover:text-primary transition-colors" href="index.html#services"
+              >Nos Services</a
+            >
+            <a class="hover:text-primary transition-colors" href="history.html"
+              >Historique</a
+            >
+            <a class="hover:text-primary transition-colors" href="blog.html"
+              >Actualités</a
+            >
+            <a class="hover:text-primary transition-colors" href="contact.html"
+              >Contact</a
+            >
+            <a
+              class="text-primary font-semibold border-b-2 border-primary"
+              href="galerie.html"
+              >Galerie</a
+            >
+          </nav>
+
+          <!-- Bouton Don Desktop -->
+          <a
+            class="hidden lg:block bg-primary text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors"
+            href="index.html#don"
+            >Faire un don</a
+          >
+
+          <!-- Bouton Menu Mobile -->
+          <button class="lg:hidden p-2" id="menuToggle">
+            <span
+              class="material-icons text-gray-800 dark:text-gray-200 text-2xl"
+              id="menuIcon"
+              >menu</span
+            >
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Sidebar -->
+    <div
+      class="fixed top-0 left-0 w-full h-screen bg-black/50 z-50 hidden"
+      id="sidebarOverlay"
+    ></div>
+
+    <div
+      class="fixed top-0 left-0 w-4/5 max-w-sm h-screen bg-white dark:bg-gray-800 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300"
+      id="mobileSidebar"
+    >
+      <div class="p-6 h-full flex flex-col">
+        <!-- Header Sidebar avec bouton fermer -->
+        <div class="flex justify-between items-center mb-8">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">HGR</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-primary dark:text-white">
+                Nyamibungu
+              </h2>
+              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+            </div>
+          </div>
+          <button class="p-2" id="closeSidebar">
+            <span
+              class="material-icons text-gray-800 dark:text-gray-200 text-2xl"
+              >close</span
+            >
+          </button>
+        </div>
+
+        <!-- Navigation Mobile -->
+        <nav class="flex-1 space-y-4">
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="index.html"
+            >Accueil</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="index.html#services"
+            >Nos Services</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="history.html"
+            >Historique</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="blog.html"
+            >Actualités</a
+          >
+          <a
+            class="block hover:text-primary transition-colors pl-4 py-2"
+            href="contact.html"
+            >Contact</a
+          >
+          <a
+            class="block text-primary font-semibold border-l-4 border-primary pl-4 py-2"
+            href="galerie.html"
+            >Galerie</a
+          >
+        </nav>
+
+        <!-- Bouton Don Mobile -->
+        <a
+          class="block bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition-colors text-center mt-8"
+          href="index.html#don"
+          >Faire un don</a
+        >
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-16 md:pb-24 bg-gradient overflow-hidden">
+        <!-- Wave Top -->
+        <div class="wave-top">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Badge -->
+                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 md:mb-8">
+                    <i class="fas fa-images text-white"></i>
+                    <span class="text-white font-medium text-sm">Galerie Visuelle</span>
+                </div>
+                
+                <!-- Titre principal -->
+                <h1 class="text-4xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+                    Galerie <span class="text-white">Nyamibungu</span>
+                </h1>
+                
+                <!-- Sous-titre -->
+                <p class="text-lg md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto px-4 leading-relaxed">
+                    Découvrez notre hôpital en images : bâtiments, équipements, activités et réalisations qui témoignent de notre engagement quotidien.
+                </p>
+                
+                <!-- Stats de la galerie -->
+                <div class="flex flex-wrap justify-center gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">20+</div>
+                        <div class="text-white/80 text-sm">Photos</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">6</div>
+                        <div class="text-white/80 text-sm">Catégories</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-white">70+</div>
+                        <div class="text-white/80 text-sm">Années d'histoire</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wave Bottom -->
+        <div class="wave-bottom">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f8fafc"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16 scroll-reveal">
+                <div class="inline-flex items-center bg-blue-50 rounded-full px-4 py-2 mb-4">
+                    <i class="fas fa-filter mr-2 text-primary"></i>
+                    <span class="font-medium text-gray-700 text-sm md:text-base">Filtrer par catégorie</span>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-heading font-bold text-gray-900 mb-4">Notre Hôpital en Images</h2>
+                <p class="text-gray-600 md:text-lg max-w-2xl mx-auto">
+                    Explorez les différentes facettes de notre hôpital. Toutes les photos sont disponibles en téléchargement.
+                </p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 scroll-reveal">
+                <button class="filter-btn active" data-filter="all">Tout voir</button>
+                <button class="filter-btn" data-filter="batiments">Bâtiments</button>
+                <button class="filter-btn" data-filter="equipements">Équipements</button>
+                <button class="filter-btn" data-filter="activites">Activités</button>
+                <button class="filter-btn" data-filter="personnel">Personnel</button>
+                <button class="filter-btn" data-filter="realisations">Réalisations</button>
+                <button class="filter-btn" data-filter="communauté">Communauté</button>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid scroll-reveal">
+                <!-- Image 1 -->
+                <div class="gallery-card" data-category="batiments">
+                    <div class="gallery-image-container">
+                        <img src="./src/img/nyamibungu.jpg" alt="Bâtiment principal de l'hôpital" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Bâtiment principal de l'hôpital</h3>
+                        <p class="gallery-description">
+                            Vue extérieure de l'hôpital Général de Référence de Nyamibungu. 
+                            Ce bâtiment de 100 lits dessert plus de 230,000 habitants.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Bâtiments</span>
+                            <a href="./src/img/nyamibungu.jpg" class="download-btn" download="hgr-nyamibungu-batiment-principal.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 2 -->
+                <div class="gallery-card" data-category="activites">
+                    <div class="gallery-image-container">
+                        <img src="./src/img/WhatsApp Image 2025-12-11 at 18.50.06(1).jpeg" alt="Campagne chirurgicale pour pieds bots" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Campagne chirurgicale pour pieds bots</h3>
+                        <p class="gallery-description">
+                            Intervention chirurgicale réussie lors de notre campagne de 2022. 
+                            Plus de 18 patients traités grâce au soutien de donateurs internationaux.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Activités</span>
+                            <a href="./src/img/WhatsApp Image 2025-12-11 at 18.50.06(1).jpeg" class="download-btn" download="campagne-chirurgicale-pieds-bots-2022.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 3 -->
+                <div class="gallery-card" data-category="batiments">
+                    <div class="gallery-image-container">
+                        <img src="./src/img/debut.jpg" alt="État actuel de l'hôpital" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">État actuel de l'hôpital en 2025</h3>
+                        <p class="gallery-description">
+                            Vue récente montrant l'état du bâtiment principal. 
+                            Malgré les défis, nous continuons à fournir des soins de qualité.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Bâtiments</span>
+                            <a href="./src/img/debut.jpg" class="download-btn" download="hgr-nyamibungu-etat-actuel-2025.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 4 -->
+                <div class="gallery-card" data-category="equipements">
+                    <div class="gallery-image-container">
+                        <img src="https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Salle d'opération" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Salle d'opération moderne</h3>
+                        <p class="gallery-description">
+                            Notre salle d'opération équipée pour réaliser des interventions chirurgicales complexes. 
+                            Nous effectuons régulièrement des césariennes et autres urgences.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Équipements</span>
+                            <a href="https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="download-btn" download="salle-operation-hgr-nyamibungu.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 5 -->
+                <div class="gallery-card" data-category="personnel">
+                    <div class="gallery-image-container">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Équipe médicale" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Notre équipe médicale dévouée</h3>
+                        <p class="gallery-description">
+                            Les 62 professionnels de santé qui assurent les soins 24h/24. 
+                            Médecins, infirmiers, sages-femmes et personnel de soutien travaillent ensemble.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Personnel</span>
+                            <a href="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="download-btn" download="equipe-medicale-hgr-nyamibungu.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 6 -->
+                <div class="gallery-card" data-category="activites">
+                    <div class="gallery-image-container">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Consultation médicale" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Consultation médicale</h3>
+                        <p class="gallery-description">
+                            Un médecin en consultation avec un patient. 
+                            Nous traitons plus de 3,000 patients par an avec un taux de guérison de 90.6%.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Activités</span>
+                            <a href="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="download-btn" download="consultation-medicale-hgr-nyamibungu.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 7 -->
+                <div class="gallery-card" data-category="realisations">
+                    <div class="gallery-image-container">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Célébration de réussite" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Célébration du centenaire CELPA</h3>
+                        <p class="gallery-description">
+                            Événement spécial en 2022 pour les 100 ans de la mission CELPA. 
+                            Visite de la délégation norvégienne et renouvellement des partenariats.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Réalisations</span>
+                            <a href="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="download-btn" download="celebration-centenaire-celpa-2022.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 8 -->
+                <div class="gallery-card" data-category="equipements">
+                    <div class="gallery-image-container">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Laboratoire d'analyses" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Laboratoire d'analyses médicales</h3>
+                        <p class="gallery-description">
+                            Notre laboratoire effectue des analyses sanguines, urinaires et autres examens. 
+                            Essentiel pour le diagnostic et le suivi des patients.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Équipements</span>
+                            <a href="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="download-btn" download="laboratoire-analyses-hgr-nyamibungu.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 9 -->
+                <div class="gallery-card" data-category="communauté">
+                    <div class="gallery-image-container">
+                        <img src="https://images.unsplash.com/photo-1516549655669-df6654e44780?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Communauté locale" class="gallery-image">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-title">Notre communauté locale</h3>
+                        <p class="gallery-description">
+                            Les habitants de la zone de santé de Kitutu, qui comptent sur nos services. 
+                            Nous servons plus de 230,000 personnes dans une région rurale isolée.
+                        </p>
+                        <div class="gallery-actions">
+                            <span class="gallery-category">Communauté</span>
+                            <a href="https://images.unsplash.com/photo-1516549655669-df6654e44780?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="download-btn" download="communaute-kitutu-hgr-nyamibungu.jpg">
+                                <i class="fas fa-download"></i>
+                                Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="text-center mt-16 scroll-reveal">
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto">
+                    <i class="fas fa-share-alt text-primary text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">Partagez notre histoire</h3>
+                    <p class="text-gray-600 mb-6">
+                        Ces photos témoignent de notre travail quotidien. Partagez-les pour aider à faire connaître 
+                        notre mission et à mobiliser du soutien pour l'hôpital.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="contact.html" class="inline-flex items-center bg-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            <i class="fas fa-camera mr-3"></i>
+                            Nous envoyer des photos
+                        </a>
+                        <a href="index.html#don" class="inline-flex items-center bg-white text-primary border-2 border-primary px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+                            <i class="fas fa-heart mr-3"></i>
+                            Soutenir l'hôpital
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <a href="#" class="lightbox-download" id="lightboxDownload">
+                <i class="fas fa-download"></i>
+                Télécharger cette photo
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-8 md:pt-12 pb-6 md:pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 md:mb-12">
+                <!-- Logo et description -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-hospital text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-lg md:text-xl">HGR Nyamibungu</h3>
+                            <p class="text-xs md:text-sm text-gray-400">Hôpital Général de Référence</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Depuis 1953, nous fournissons des soins de santé de qualité à plus de 230 000 habitants 
+                        de la zone de santé rurale de Kitutu, Sud-Kivu.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="mailto:famaisokelo@gmail.com" class="w-8 h-8 md:w-10 md:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-4 md:mb-6 flex items-center">
+                        <i class="fas fa-phone-alt mr-3 text-secondary"></i>
+                        Contact
+                    </h4>
+                    <ul class="space-y-3 md:space-y-4 text-gray-400 text-sm md:text-base">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-500"></i>
+                            <span>HGR de Kitutu-Nyamibungu<br>Village de Nyamibungu<br>Sud-Kivu, RD Congo</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-gray-500"></i>
+                            <span>+243 992 011 705</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-gray-500"></i>
+                            <span>famaisokelo@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Liens rapides -->
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-4 md:mb-6">Navigation</h4>
+                    <ul class="space-y-2 md:space-y-3 text-gray-400 text-sm md:text-base">
+                        <li><a href="index.html" class="hover:text-white transition">Accueil</a></li>
+                        <li><a href="history.html" class="hover:text-white transition">Notre Histoire</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition">Services médicaux</a></li>
+                        <li><a href="galerie.html" class="hover:text-white transition">Galerie</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Actualités</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Chiffres clés -->
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-4 md:mb-6">Impact 2024</h4>
+                    <ul class="space-y-2 md:space-y-3 text-gray-400 text-sm md:text-base">
+                        <li class="flex justify-between">
+                            <span>Patients traités :</span>
+                            <span class="font-semibold text-white">3,161</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Taux guérison :</span>
+                            <span class="font-semibold text-white">90.6%</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Zone desservie :</span>
+                            <span class="font-semibold text-white">230k+</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Années de service :</span>
+                            <span class="font-semibold text-white">70+</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 md:mt-6 p-3 md:p-4 bg-gray-800 rounded-lg">
+                        <p class="text-sm font-semibold mb-1 md:mb-2">Votre soutien compte</p>
+                        <p class="text-xs md:text-sm text-gray-300">Aidez-nous à maintenir nos services essentiels</p>
+                        <a href="index.html#don" class="inline-block mt-1 md:mt-2 text-white font-semibold text-xs md:text-sm hover:underline">
+                            Soutenir notre mission →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="pt-6 md:pt-8 border-t border-gray-800 text-center text-gray-500 text-xs md:text-sm">
+                <p>© 2025 HGR Nyamibungu - Hôpital Général de Référence de Kitutu-Nyamibungu.</p>
+                <p class="mt-1 md:mt-2">Division Provinciale de la Santé du Sud Kivu | Développé avec ❤️ pour notre communauté</p>
+                <p class="mt-1 text-xs">Les photos de cette galerie sont disponibles en téléchargement pour diffusion non-commerciale.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion de la sidebar mobile
+        const menuToggle = document.getElementById("menuToggle");
+        const menuIcon = document.getElementById("menuIcon");
+        const mobileSidebar = document.getElementById("mobileSidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+        const closeSidebarBtn = document.getElementById("closeSidebar");
+
+        function toggleSidebar() {
+            const isOpen = mobileSidebar.classList.contains("translate-x-0");
+
+            if (!isOpen) {
+                // Ouvrir la sidebar
+                mobileSidebar.classList.remove("-translate-x-full");
+                mobileSidebar.classList.add("translate-x-0");
+                sidebarOverlay.classList.remove("hidden");
+                menuIcon.textContent = "close";
+                document.body.style.overflow = "hidden";
+            } else {
+                // Fermer la sidebar
+                closeSidebar();
+            }
+        }
+
+        function closeSidebar() {
+            mobileSidebar.classList.remove("translate-x-0");
+            mobileSidebar.classList.add("-translate-x-full");
+            sidebarOverlay.classList.add("hidden");
+            menuIcon.textContent = "menu";
+            document.body.style.overflow = "";
+        }
+
+        menuToggle.addEventListener("click", toggleSidebar);
+        closeSidebarBtn.addEventListener("click", closeSidebar);
+        sidebarOverlay.addEventListener("click", closeSidebar);
+
+        // Fermer la sidebar avec la touche Escape
+        document.addEventListener("keydown", (e) => {
+            if (
+                e.key === "Escape" &&
+                !mobileSidebar.classList.contains("-translate-x-full")
+            ) {
+                closeSidebar();
+            }
+        });
+
+        // Gallery Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryCards = document.querySelectorAll('.gallery-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Lightbox Functionality
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxDownload = document.getElementById('lightboxDownload');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        
+        let currentImageIndex = 0;
+        let images = [];
+        let captions = [];
+        let downloadLinks = [];
+        
+        // Initialize gallery images and captions
+        galleryCards.forEach((card, index) => {
+            const img = card.querySelector('img');
+            const title = card.querySelector('.gallery-title')?.textContent || '';
+            const description = card.querySelector('.gallery-description')?.textContent || '';
+            const downloadBtn = card.querySelector('.download-btn');
+            
+            images.push(img.src);
+            captions.push(`${title} - ${description}`);
+            downloadLinks.push(downloadBtn?.href || img.src);
+            
+            // Add click event to each gallery image
+            img.addEventListener('click', () => {
+                openLightbox(index);
+            });
+            
+            // Also allow clicking the card to open lightbox
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('download-btn')) {
+                    openLightbox(index);
+                }
+            });
+        });
+        
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImage.src = images[currentImageIndex];
+            lightboxCaption.textContent = captions[currentImageIndex];
+            lightboxDownload.href = downloadLinks[currentImageIndex];
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            lightboxImage.src = images[currentImageIndex];
+            lightboxCaption.textContent = captions[currentImageIndex];
+            lightboxDownload.href = downloadLinks[currentImageIndex];
+        }
+        
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            lightboxImage.src = images[currentImageIndex];
+            lightboxCaption.textContent = captions[currentImageIndex];
+            lightboxDownload.href = downloadLinks[currentImageIndex];
+        }
+        
+        // Event listeners for lightbox controls
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', showPrevImage);
+        lightboxNext.addEventListener('click', showNextImage);
+        
+        // Close lightbox when clicking outside the image
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+        
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxModal.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'ArrowRight') showNextImage();
+        });
+        
+        // Scroll animations
+        const scrollReveals = document.querySelectorAll('.scroll-reveal');
+        
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        scrollReveals.forEach(element => {
+            scrollObserver.observe(element);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Close mobile sidebar if open
+                    if (!mobileSidebar.classList.contains("-translate-x-full")) {
+                        closeSidebar();
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
