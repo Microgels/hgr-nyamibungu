@@ -60,7 +60,7 @@
         scroll-behavior: smooth;
         scroll-padding-top: 80px;
       }
-      
+
       body {
         font-family: "Inter", sans-serif;
         color: var(--dark);
@@ -369,16 +369,18 @@
         <div class="flex justify-between items-center">
           <!-- Logo -->
           <div class="flex items-center space-x-3">
-            <div
-              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
-            >
-              <span class="text-white font-bold text-xl">HGR</span>
-            </div>
+            <img
+              src="./src/img/logo.png"
+              alt="Logo HGR Nyamibungu"
+              class="h-16 w-16 border border-black rounded"
+            />
             <div>
-              <h2 class="text-xl font-bold text-primary dark:text-white">
-                Nyamibungu
-              </h2>
-              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+              <h5 class="font-semibold">R.D. Congo</h5>
+              <p class="text-light text-sm text-gray-600">DPS Sud Kivu</p>
+              <p class="text-light text-sm text-gray-600">ZSR de Kitutu</p>
+              <p class="text-light text-sm text-gray-600">
+                HGR Kitutu-Nyamibungu
+              </p>
             </div>
           </div>
 
@@ -387,7 +389,9 @@
             <a class="hover:text-primary transition-colors" href="index.html"
               >Accueil</a
             >
-            <a class="hover:text-primary transition-colors" href="index.html#services"
+            <a
+              class="hover:text-primary transition-colors"
+              href="index.html#services"
               >Nos Services</a
             >
             <a
@@ -439,16 +443,18 @@
         <!-- Header Sidebar avec bouton fermer -->
         <div class="flex justify-between items-center mb-8">
           <div class="flex items-center space-x-3">
-            <div
-              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
-            >
-              <span class="text-white font-bold text-xl">HGR</span>
-            </div>
+            <img
+              src="./src/img/logo.png"
+              alt="Logo HGR Nyamibungu"
+              class="h-16 w-16 border border-black rounded"
+            />
             <div>
-              <h2 class="text-xl font-bold text-primary dark:text-white">
-                Nyamibungu
-              </h2>
-              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+              <h5 class="font-semibold">R.D. Congo</h5>
+              <p class="text-light text-sm text-gray-600">DPS Sud Kivu</p>
+              <p class="text-light text-sm text-gray-600">ZSR de Kitutu</p>
+              <p class="text-light text-sm text-gray-600">
+                HGR Kitutu-Nyamibungu
+              </p>
             </div>
           </div>
           <button class="p-2" id="closeSidebar">
@@ -505,7 +511,7 @@
     <!-- Hero Section -->
     <section class="relative pt-24 pb-20 md:pb-32 bg-gradient overflow-hidden">
       <!-- Wave Top -->
-      <div class="wave-top">
+      <!-- <div class="wave-top">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -517,7 +523,7 @@
             fill="#ffffff"
           ></path>
         </svg>
-      </div>
+      </div> -->
 
       <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
@@ -545,8 +551,8 @@
             class="text-lg md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto px-4 leading-relaxed"
           >
             Découvrez le parcours remarquable d'un hôpital qui surmonte
-            l'isolement et les conflits pour offrir des soins de qualité en zone
-            rurale congolaise.
+            l'isolement et les conflits pour offrir des soins de qualité dans la
+            zone de santé rurale de Kitutu au Sud-Kivu en RD Congo.
           </p>
 
           <!-- Stats -->
@@ -646,7 +652,7 @@
             <div class="flex flex-col gap-4">
               <p class="text-gray-600">
                 Fondé en 1953 par la mission norvégienne CELPA sur la colline de
-                Nyamibungu dans le royaume de Wamuzimu, l'hôpital a été
+                Nyamibungu dans la chefferie de Wamuzimu, l'hôpital a été
                 officiellement établi comme Hôpital Général de Référence en
                 2004. Sa mission est d'apporter des soins de qualité aux
                 communautés rurales du territoire de Mwenga, une région éloignée
@@ -812,7 +818,7 @@
           <div class="scroll-reveal">
             <div class="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="./src/img/debut.jpg"
+                src="./src/img/route.jpg"
                 class="w-full h-64 md:h-80 object-cover hover-scale"
                 alt="État actuel de l'hôpital en 2025"
               />
@@ -868,7 +874,7 @@
               </div>
             </div>
 
-            <!-- 2004 -->
+            <!-- 1958 -->
             <div class="timeline-item-simple">
               <div class="timeline-dot-simple"></div>
               <div class="timeline-item-content">
@@ -881,10 +887,11 @@
                       #0096c7 100%
                     );
                   "
-                  >2004</span
+                  >1958</span
                 >
                 <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-                  Devenir Hôpital de Référence
+                  Construction de l'eglise de la CELPA Nyamibungu suivie de
+                  l'ecole primaire
                 </h3>
                 <p class="text-gray-600 mb-4">
                   Reconnaissance officielle comme Hôpital Général de Référence.
@@ -903,7 +910,7 @@
               </div>
             </div>
 
-            <!-- 2024 -->
+            <!-- 1980 -->
             <div class="timeline-item-simple">
               <div class="timeline-dot-simple"></div>
               <div class="timeline-item-content">
@@ -916,34 +923,115 @@
                       #e63946 100%
                     );
                   "
-                  >2024</span
+                  >1980</span
                 >
                 <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-                  Excellence en contexte difficile
+                  Arrivée de la jeune missionnaire GERD Mjelde envoyée par
+                  l'eglise Filadelfia Oslo Norvège
                 </h3>
                 <p class="text-gray-600 mb-4">
-                  Malgré les défis, nous atteignons des résultats remarquables
-                  avec un taux de guérison exceptionnel de 90,6% et zéro décès
-                  maternel.
+                  Venue comme accoucheseuse, elle a consacré sa vie à soigner
+                  les mères et les enfants dans des conditions difficiles a
+                  Kakwende, Kalambi et a Kitutu-Nyamibungu. <br /><br />
+                  Elle a appris le swahili aupres de madame Langseth et
+                  plusieurs sortie evangelique avec Marie Onsrud.
+                  <br /><br />Simultanement, elle conduisait aussi l'ambulance.
                 </p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div class="text-center bg-blue-50 rounded-lg p-3">
-                    <div class="text-xl font-bold text-primary">73.5%</div>
-                    <div class="text-xs text-gray-600 mt-1">Occupation</div>
-                  </div>
-                  <div class="text-center bg-blue-50 rounded-lg p-3">
-                    <div class="text-xl font-bold text-primary">27$</div>
-                    <div class="text-xs text-gray-600 mt-1">Coût/patient</div>
-                  </div>
-                  <div class="text-center bg-blue-50 rounded-lg p-3">
-                    <div class="text-xl font-bold text-primary">30min</div>
-                    <div class="text-xs text-gray-600 mt-1">Attente</div>
-                  </div>
-                  <div class="text-center bg-blue-50 rounded-lg p-3">
-                    <div class="text-xl font-bold text-primary">3.5%</div>
-                    <div class="text-xs text-gray-600 mt-1">Mortalité</div>
-                  </div>
-                </div>
+              </div>
+            </div>
+
+            <!-- 1985 -->
+            <div class="timeline-item-simple">
+              <div class="timeline-dot-simple"></div>
+              <div class="timeline-item-content">
+                <span
+                  class="timeline-year"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #00b4d8 0%,
+                      #0096c7 100%
+                    );
+                  "
+                  >1985</span
+                >
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                  Demenagement de GERD Mjelde a Kitutu-Nyamibungu
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Elle devient responsable de la mission CELPA a
+                  Kitutu-Nyamibungu et y passe le reste de sa vie missionnaire
+                  jusqu'en 2015 bien que entre-coupe par de periodes de geures
+                  mais elle tient bon suite a la confirmation de sa vocation par
+                  le Saint-Esprit. <br /><br />
+                  Elle fait connaissance de Reverand WENGA MWENGA connu aussi
+                  pour sa vison evangelique. Il lui servi de personne de paix
+                  pour l'evangelisation et l'education (Chapelle-ecole) de tout
+                  Urega sud ( Wamuzimu, Wakabango, Wakisi) et nord maniema
+                  (Kilembwe Misisi). <br /><br />
+                  Cet alors que le centre de sante de Nyamibungu rayonne et
+                  surchargee par les malades venant de toutes ces zones
+                  missionnaire inclus les sites minieux de lugushwa et kamituga
+                  (Unique site avec medecin), ceci motive la construction du
+                  nouveau batiment de centre de sante et l'aerodrome de
+                  Kitutu-Nyamibungu qui a recu un appuis significatif de la
+                  chefferie de wamuzimu et toute les eglise de la CELPA comme
+                  main d'oeuvre volontaire.
+                </p>
+              </div>
+            </div>
+
+            <!-- 1988-1989 -->
+            <div class="timeline-item-simple">
+              <div class="timeline-dot-simple"></div>
+              <div class="timeline-item-content">
+                <span class="timeline-year">1988-1989</span>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                  Reception du couple missionnaire Marie Angelsen et Antole a
+                  Kitutu-Nyamibungu
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Tous jeune, ils s'occupent de l'evangelisation et la
+                  construction. a leur actif nous gardons encore la memoire des
+                  maisons pour habitation du personnel medical de Nyamibungu
+                </p>
+              </div>
+            </div>
+
+            <!-- 2004 -->
+            <div class="timeline-item-simple">
+              <div class="timeline-dot-simple"></div>
+              <div class="timeline-item-content">
+                <span
+                  class="timeline-year"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #ff6b6b 0%,
+                      #e63946 100%
+                    );
+                  "
+                  >2004</span
+                >
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                  Conversion du CS Nyamibungu en Centre Hospitalier puis
+                  promotion en Hopital de Reference
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  L'aire de sante de Nyamibungu recoit son premier medecin en
+                  2004 pour un court duree puis ils recoivent Dr ISOKELO Munyuku
+                  Fama avec le projet de l'hopital materno-pediatrique obtenu
+                  sous le plaidoiyer du missionnaire GERD Mjelde et du reverand
+                  Josue BULAMBO LEMBELEMBE alors Represantant Legal de la CELPA
+                  <br /><br />
+                  Plus les medecins devenait permanents a Nyamibungu et
+                  l'equipement medical et paramedical accessible, il devaint
+                  difficile de garder la structure dans sa forme specialiser que
+                  tout les malades hommes, femmes enfants et adultes
+                  convergerent a l'hopital au point qu'en 2009 l'Assemblee
+                  Generale de la Zone de sante de Kitutu approuverent sa
+                  promotion en Hopital General de Reference.
+                </p>
               </div>
             </div>
           </div>
@@ -1064,16 +1152,18 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <!-- Colonne 1 : Logo et description -->
           <div>
-            <div class="flex items-center space-x-3 mb-6">
-              <div
-                class="w-12 h-12 bg-white rounded-xl flex items-center justify-center"
-              >
-                <span class="text-primary font-bold text-xl">HGR</span>
-              </div>
+            <div class="flex items-center space-x-3 pb-4">
+              <img
+                src="./src/img/logo.png"
+                alt="Logo HGR Nyamibungu"
+                class="h-16 w-16 border border-black rounded"
+              />
               <div>
-                <h2 class="text-xl font-bold">Nyamibungu</h2>
-                <p class="text-sm text-white/80">
-                  Hôpital Général de Référence
+                <h5 class="font-semibold">R.D. Congo</h5>
+                <p class="text-light text-sm text-gray-200">DPS Sud Kivu</p>
+                <p class="text-light text-sm text-gray-200">ZSR de Kitutu</p>
+                <p class="text-light text-sm text-gray-200">
+                  HGR Kitutu-Nyamibungu
                 </p>
               </div>
             </div>
@@ -1341,6 +1431,32 @@
               behavior: "smooth",
             });
           }
+        });
+      });
+
+      // Animation d'apparition au scroll
+      document.addEventListener("DOMContentLoaded", function () {
+        const timelineItems = document.querySelectorAll(
+          ".relative.mb-20, .relative.pl-20"
+        );
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          }
+        );
+
+        timelineItems.forEach((item) => {
+          item.classList.add("timeline-item");
+          observer.observe(item);
         });
       });
     </script>

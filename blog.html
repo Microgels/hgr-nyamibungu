@@ -2,11 +2,20 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
     <title>Actualités - HGR Nyamibungu</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -34,9 +43,10 @@
       }
     </style>
   </head>
-  <body class="font-display bg-background-light dark:bg-background-dark text-gray-700 dark:text-gray-300">
-    
-       <!-- Header/Navbar Fixe -->
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-gray-700 dark:text-gray-300"
+  >
+    <!-- Header/Navbar Fixe -->
     <header
       class="fixed w-full top-0 z-50 py-4 backdrop-blur-md border-b border-gray-200 bg-white/95 dark:bg-gray-900/95"
     >
@@ -44,16 +54,18 @@
         <div class="flex justify-between items-center">
           <!-- Logo -->
           <div class="flex items-center space-x-3">
-            <div
-              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
-            >
-              <span class="text-white font-bold text-xl">HGR</span>
-            </div>
+            <img
+              src="./src/img/logo.png"
+              alt="Logo HGR Nyamibungu"
+              class="h-16 w-16 border border-black rounded"
+            />
             <div>
-              <h2 class="text-xl font-bold text-primary dark:text-white">
-                Nyamibungu
-              </h2>
-              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+              <h5 class="font-semibold">R.D. Congo</h5>
+              <p class="text-light text-sm text-gray-600">DPS Sud Kivu</p>
+              <p class="text-light text-sm text-gray-600">ZSR de Kitutu</p>
+              <p class="text-light text-sm text-gray-600">
+                HGR Kitutu-Nyamibungu
+              </p>
             </div>
           </div>
 
@@ -75,14 +87,12 @@
             <a class="hover:text-primary transition-colors" href="/blog.html"
               >Actualités</a
             >
-            <a
-              class="hover:text-primary transition-colors"
-              href="/contact.html"
+            <a class="hover:text-primary transition-colors" href="/contact.html"
               >Contact</a
             >
             <a
               class="hover:text-primary transition-colors"
-              href="/galerie.html"
+              href="/gallerie.html"
               >Galerie</a
             >
           </nav>
@@ -120,16 +130,18 @@
         <!-- Header Sidebar avec bouton fermer -->
         <div class="flex justify-between items-center mb-8">
           <div class="flex items-center space-x-3">
-            <div
-              class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center"
-            >
-              <span class="text-white font-bold text-xl">HGR</span>
-            </div>
+            <img
+              src="./src/img/logo.png"
+              alt="Logo HGR Nyamibungu"
+              class="h-16 w-16 border border-black rounded"
+            />
             <div>
-              <h2 class="text-xl font-bold text-primary dark:text-white">
-                Nyamibungu
-              </h2>
-              <p class="text-sm text-gray-400">Hôpital Général de Référence</p>
+              <h5 class="font-semibold">R.D. Congo</h5>
+              <p class="text-light text-sm text-gray-600">DPS Sud Kivu</p>
+              <p class="text-light text-sm text-gray-600">ZSR de Kitutu</p>
+              <p class="text-light text-sm text-gray-600">
+                HGR Kitutu-Nyamibungu
+              </p>
             </div>
           </div>
           <button class="p-2" id="closeSidebar">
@@ -169,7 +181,7 @@
           >
           <a
             class="block hover:text-primary transition-colors pl-4 py-2"
-            href="/galerie.html"
+            href="/gallerie.html"
             >Galerie</a
           >
         </nav>
@@ -185,36 +197,57 @@
 
     <!-- Bannière Héro avec Statistiques -->
     <div class="relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 z-0"></div>
-      <img 
-        src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 z-0"
+      ></div>
+      <img
+        src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
         alt="HGR Nyamibungu"
         class="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
       />
       <div class="container mx-auto px-4 py-16 relative z-10">
         <div class="max-w-3xl mx-auto text-center">
-          <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+          <div
+            class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+          >
             <span class="w-2 h-2 bg-white rounded-full"></span>
-            <span class="text-white text-sm font-medium">Dernières actualités médicales</span>
+            <span class="text-white text-sm font-medium"
+              >Dernières actualités médicales</span
+            >
           </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"
+          >
             Actualités & Blog Santé
           </h1>
           <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Restez informé des dernières avancées médicales, campagnes de santé et innovations de votre hôpital de référence.
+            Restez informé des dernières avancées médicales, campagnes de santé
+            et innovations de votre hôpital de référence.
           </p>
-          
+
           <!-- Barre de recherche -->
           <div class="max-w-xl mx-auto">
             <div class="relative">
-              <input 
-                type="text" 
-                placeholder="Rechercher une actualité, un conseil santé..." 
+              <input
+                type="text"
+                placeholder="Rechercher une actualité, un conseil santé..."
                 class="w-full px-6 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
+              />
+              <button
+                class="absolute right-3 top-3 p-2 bg-white text-primary rounded-lg hover:bg-gray-50"
               >
-              <button class="absolute right-3 top-3 p-2 bg-white text-primary rounded-lg hover:bg-gray-50">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
                 </svg>
               </button>
             </div>
@@ -227,18 +260,29 @@
     <main class="container mx-auto px-4 py-12">
       <!-- Toutes les Actualités -->
       <section>
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10"
+        >
           <div>
-            <h2 class="text-3xl font-bold text-primary mb-3">Toutes les Actualités</h2>
-            <p class="text-gray-600 dark:text-gray-400">Consultez l'ensemble de nos publications médicales et conseils santé</p>
+            <h2 class="text-3xl font-bold text-primary mb-3">
+              Toutes les Actualités
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Consultez l'ensemble de nos publications médicales et conseils
+              santé
+            </p>
           </div>
           <div class="flex items-center space-x-4 mt-4 md:mt-0">
-            <select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <select
+              class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30"
+            >
               <option>Trier par : Plus récent</option>
               <option>Trier par : Plus ancien</option>
               <option>Trier par : Plus populaire</option>
             </select>
-            <select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <select
+              class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/30"
+            >
               <option>Toutes les catégories</option>
               <option>Nouveautés</option>
               <option>Urgences</option>
@@ -246,89 +290,163 @@
             </select>
           </div>
         </div>
-        
+
         <!-- Grille d'articles -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           <!-- Article 1 -->
-          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <article
+            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="relative h-56">
-              <img 
-                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" 
+              <img
+                src="./src/img/img6.jpg"
                 alt="Nouveau scanner"
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 left-4">
-                <span class="inline-block px-3 py-1 text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full">INNOVATION</span>
+                <span
+                  class="inline-block px-3 py-1 text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 rounded-full"
+                  >INNOVATION</span
+                >
               </div>
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
-                Arrivée d'un nouveau scanner haute résolution pour diagnostics avancés
+              <h3
+                class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2"
+              >
+                Arrivée d'un nouveau scanner haute résolution pour diagnostics
+                avancés
               </h3>
-              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
-                Notre service de radiologie s'équipe d'un scanner dernier cri permettant des diagnostics encore plus précis et moins invasifs.
+              <p
+                class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3"
+              >
+                Notre service de radiologie s'équipe d'un scanner dernier cri
+                permettant des diagnostics encore plus précis et moins invasifs.
               </p>
-              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div
+                class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+              >
                 <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-primary dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                  <div
+                    class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-primary dark:text-blue-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      ></path>
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Radiologie</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-500">25 Oct 2024</p>
+                    <p
+                      class="text-xs font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      Service Radiologie
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">
+                      25 Oct 2024
+                    </p>
                   </div>
                 </div>
-                <a href="blog-post.html" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+                <a
+                  href="blog-post.html"
+                  class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400"
+                  >Lire →</a
+                >
               </div>
             </div>
           </article>
-          
+
           <!-- Article 2 -->
-          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <article
+            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="relative h-56">
-              <img 
-                src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" 
+              <img
+                src="./src/img/img4.jpg"
                 alt="Formation médicale"
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 left-4">
-                <span class="inline-block px-3 py-1 text-xs font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">FORMATION</span>
+                <span
+                  class="inline-block px-3 py-1 text-xs font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full"
+                  >FORMATION</span
+                >
               </div>
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
-                Formation continue : Techniques avancées de réanimation cardiaque
+              <h3
+                class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2"
+              >
+                Formation continue : Techniques avancées de réanimation
+                cardiaque
               </h3>
-              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
-                Notre équipe d'urgentistes suit une formation certifiante aux dernières techniques de réanimation internationale.
+              <p
+                class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3"
+              >
+                Notre équipe d'urgentistes suit une formation certifiante aux
+                dernières techniques de réanimation internationale.
               </p>
-              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div
+                class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+              >
                 <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-purple-700 dark:text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                  <div
+                    class="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-purple-700 dark:text-purple-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      ></path>
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Urgences</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-500">20 Oct 2024</p>
+                    <p
+                      class="text-xs font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      Service Urgences
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">
+                      20 Oct 2024
+                    </p>
                   </div>
                 </div>
-                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+                <a
+                  href="#"
+                  class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400"
+                  >Lire →</a
+                >
               </div>
             </div>
           </article>
-          
+
           <!-- Article 3 -->
-          <article class="relative rounded-lg overflow-hidden h-80 bg-gradient-to-t from-black/70 to-transparent">
-            <img 
-              src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" 
+          <article
+            class="relative rounded-lg overflow-hidden h-80 bg-gradient-to-t from-black/70 to-transparent"
+          >
+            <img
+              src="./src/img/img5.jpg"
               alt="Nouveau scanner médical"
               class="w-full h-full object-cover"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+            ></div>
             <div class="absolute bottom-0 p-6 text-white">
               <p class="text-sm text-gray-300 mb-2">INNOVATION</p>
               <h3 class="font-bold text-xl mb-2 leading-tight">
@@ -339,165 +457,320 @@
               </p>
             </div>
           </article>
-          
+
           <!-- Article 4 -->
-          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <article
+            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="relative h-56">
-              <img 
-                src="https://images.unsplash.com/photo-1550831106-0994fe8abcfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+              <img
+                src="./src/img/img1.jpg"
                 alt="Maternité"
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 left-4">
-                <span class="inline-block px-3 py-1 text-xs font-semibold bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full">MATERNITÉ</span>
+                <span
+                  class="inline-block px-3 py-1 text-xs font-semibold bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full"
+                  >MATERNITÉ</span
+                >
               </div>
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
-                Maternité : Ouverture d'une nouvelle salle de naissance haut de gamme
+              <h3
+                class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2"
+              >
+                Maternité : Ouverture d'une nouvelle salle de naissance haut de
+                gamme
               </h3>
-              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
-                Une nouvelle salle de naissance entièrement équipée pour un accouchement plus confortable et sécurisé.
+              <p
+                class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3"
+              >
+                Une nouvelle salle de naissance entièrement équipée pour un
+                accouchement plus confortable et sécurisé.
               </p>
-              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div
+                class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+              >
                 <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-pink-100 dark:bg-pink-900/30 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-pink-700 dark:text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                  <div
+                    class="w-8 h-8 bg-pink-100 dark:bg-pink-900/30 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-pink-700 dark:text-pink-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      ></path>
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Gynécologie</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-500">10 Oct 2024</p>
+                    <p
+                      class="text-xs font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      Service Gynécologie
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">
+                      10 Oct 2024
+                    </p>
                   </div>
                 </div>
-                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+                <a
+                  href="#"
+                  class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400"
+                  >Lire →</a
+                >
               </div>
             </div>
           </article>
-          
+
           <!-- Article 5 -->
-          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <article
+            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="relative h-56">
-              <img 
-                src="https://images.unsplash.com/photo-1576671414121-aa0b80a5f2f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+              <img
+                src="./src/img/img2.jpg"
                 alt="Nutrition"
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 left-4">
-                <span class="inline-block px-3 py-1 text-xs font-semibold bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">PRÉVENTION</span>
+                <span
+                  class="inline-block px-3 py-1 text-xs font-semibold bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full"
+                  >PRÉVENTION</span
+                >
               </div>
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
-                Atelier nutrition : Prévention du diabète et des maladies cardiovasculaires
+              <h3
+                class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2"
+              >
+                Atelier nutrition : Prévention du diabète et des maladies
+                cardiovasculaires
               </h3>
-              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
-                Rejoignez notre atelier gratuit sur l'alimentation équilibrée pour prévenir les maladies chroniques.
+              <p
+                class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3"
+              >
+                Rejoignez notre atelier gratuit sur l'alimentation équilibrée
+                pour prévenir les maladies chroniques.
               </p>
-              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div
+                class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+              >
                 <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-green-700 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  <div
+                    class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-green-700 dark:text-green-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Service Nutrition</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-500">5 Oct 2024</p>
+                    <p
+                      class="text-xs font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      Service Nutrition
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">
+                      5 Oct 2024
+                    </p>
                   </div>
                 </div>
-                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+                <a
+                  href="#"
+                  class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400"
+                  >Lire →</a
+                >
               </div>
             </div>
           </article>
-          
+
           <!-- Article 6 -->
-          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <article
+            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="relative h-56">
-              <img 
-                src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" 
+              <img
+                src="./src/img/img3.JPG"
                 alt="Partenariat"
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 left-4">
-                <span class="inline-block px-3 py-1 text-xs font-semibold bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full">PARTENARIAT</span>
+                <span
+                  class="inline-block px-3 py-1 text-xs font-semibold bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full"
+                  >PARTENARIAT</span
+                >
               </div>
             </div>
             <div class="p-6">
-              <h3 class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2">
-                Nouveau partenariat avec l'Université de Bukavu pour la recherche médicale
+              <h3
+                class="font-bold text-xl mb-3 text-primary dark:text-white line-clamp-2"
+              >
+                Nouveau partenariat avec l'Université de Bukavu pour la
+                recherche médicale
               </h3>
-              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
-                Collaboration stratégique pour la recherche médicale et la formation des futurs professionnels de santé.
+              <p
+                class="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3"
+              >
+                Collaboration stratégique pour la recherche médicale et la
+                formation des futurs professionnels de santé.
               </p>
-              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div
+                class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+              >
                 <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-cyan-700 dark:text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  <div
+                    class="w-8 h-8 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-cyan-700 dark:text-cyan-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      ></path>
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-medium text-gray-600 dark:text-gray-400">Direction Générale</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-500">1 Oct 2024</p>
+                    <p
+                      class="text-xs font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      Direction Générale
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500">
+                      1 Oct 2024
+                    </p>
                   </div>
                 </div>
-                <a href="#" class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400">Lire →</a>
+                <a
+                  href="#"
+                  class="text-primary dark:text-blue-300 text-sm font-semibold hover:text-blue-700 dark:hover:text-blue-400"
+                  >Lire →</a
+                >
               </div>
             </div>
           </article>
         </div>
-        
+
         <!-- Pagination améliorée -->
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-20">
-          <p class="text-gray-600 dark:text-gray-400 text-sm">Page 1 sur 8 • 48 articles au total</p>
+        <div
+          class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-20"
+        >
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            Page 1 sur 8 • 48 articles au total
+          </p>
           <nav class="flex items-center space-x-2">
-            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
               </svg>
             </a>
-            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-900 to-blue-700 text-white font-semibold shadow-lg">
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-900 to-blue-700 text-white font-semibold shadow-lg"
+            >
               1
             </a>
-            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
               2
             </a>
-            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
               3
             </a>
             <span class="px-2 text-gray-600 dark:text-gray-400">...</span>
-            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
               8
             </a>
-            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
               </svg>
             </a>
           </nav>
         </div>
       </section>
-      
+
       <!-- Section Newsletter -->
-      <div class="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-8 md:p-12 mb-16 text-center text-white">
+      <div
+        class="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-8 md:p-12 mb-16 text-center text-white"
+      >
         <div class="max-w-2xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">Restez informé</h2>
           <p class="text-white/90 mb-8">
-            Inscrivez-vous à notre newsletter pour recevoir nos actualités médicales, conseils santé et informations importantes directement dans votre boîte mail.
+            Inscrivez-vous à notre newsletter pour recevoir nos actualités
+            médicales, conseils santé et informations importantes directement
+            dans votre boîte mail.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Votre adresse email" 
+            <input
+              type="email"
+              placeholder="Votre adresse email"
               class="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/30"
+            />
+            <button
+              class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg"
             >
-            <button class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg">
               S'abonner
             </button>
           </div>
-          <p class="text-white/70 text-sm mt-4">Nous respectons votre vie privée. Désabonnez-vous à tout moment.</p>
+          <p class="text-white/70 text-sm mt-4">
+            Nous respectons votre vie privée. Désabonnez-vous à tout moment.
+          </p>
         </div>
       </div>
     </main>
@@ -508,71 +781,171 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <!-- Colonne 1 : Logo et description -->
           <div>
-            <div class="flex items-center space-x-3 mb-6">
-              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
-                <span class="text-primary font-bold text-xl">HGR</span>
-              </div>
+            <div class="flex items-center space-x-3 pb-4">
+              <img
+                src="./src/img/logo.png"
+                alt="Logo HGR Nyamibungu"
+                class="h-16 w-16 border border-black rounded"
+              />
               <div>
-                <h2 class="text-xl font-bold">Nyamibungu</h2>
-                <p class="text-sm text-white/80">Hôpital Général de Référence</p>
+                <h5 class="font-semibold">R.D. Congo</h5>
+                <p class="text-light text-sm text-gray-200">DPS Sud Kivu</p>
+                <p class="text-light text-sm text-gray-200">ZSR de Kitutu</p>
+                <p class="text-light text-sm text-gray-200">
+                  HGR Kitutu-Nyamibungu
+                </p>
               </div>
             </div>
             <p class="text-white/80 text-sm mb-6">
-              Depuis 1953, l'HGR Nyamibungu s'engage à fournir des soins de santé de qualité à plus de 230 000 habitants de la zone de santé rurale de Kitutu, dans le territoire de Mwenga, Sud-Kivu.
+              Depuis 1953, l'HGR Nyamibungu s'engage à fournir des soins de
+              santé de qualité à plus de 230 000 habitants de la zone de santé
+              rurale de Kitutu, dans le territoire de Mwenga, Sud-Kivu.
             </p>
             <div class="flex space-x-4">
-              <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
               </a>
-              <a href="mailto:famaisokelo@gmail.com" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <a
+                href="mailto:famaisokelo@gmail.com"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
               </a>
             </div>
           </div>
-          
+
           <!-- Colonne 2 : Contact -->
           <div>
             <h3 class="font-bold text-lg mb-6 flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              <svg
+                class="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
               </svg>
               Contact
             </h3>
             <ul class="space-y-4">
               <li class="flex items-start">
-                <svg class="w-5 h-5 mr-3 mt-0.5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <svg
+                  class="w-5 h-5 mr-3 mt-0.5 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
                 </svg>
-                <span class="text-white/80">Village de Nyamibungu<br />Kitutu, Territoire de Mwenga<br />Sud-Kivu, RD Congo</span>
+                <span class="text-white/80"
+                  >Village de Nyamibungu<br />Kitutu, Territoire de Mwenga<br />Sud-Kivu,
+                  RD Congo</span
+                >
               </li>
               <li class="flex items-center">
-                <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                <svg
+                  class="w-5 h-5 mr-3 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
                 </svg>
                 <span class="text-white/80">+243 992 011 705</span>
               </li>
               <li class="flex items-center">
-                <svg class="w-5 h-5 mr-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                <svg
+                  class="w-5 h-5 mr-3 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89-5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
                 </svg>
                 <span class="text-white/80">famaisokelo@gmail.com</span>
               </li>
             </ul>
           </div>
-          
+
           <!-- Colonne 3 : Liens rapides -->
           <div>
             <h3 class="font-bold text-lg mb-6">Liens Rapides</h3>
             <ul class="space-y-3">
-              <li><a href="index.html#services" class="text-white/80 hover:text-white transition">Nos Services</a></li>
-              <li><a href="index.html#don" class="text-white/80 hover:text-white transition">Faire un Don</a></li>
-              <li><a href="blog.html" class="text-white/80 hover:text-white transition">Actualités & Rapports</a></li>
-              <li><a href="index.html#urgence" class="text-white/80 hover:text-white transition">Urgences 24h/24</a></li>
-              <li><a href="contact.html" class="text-white/80 hover:text-white transition">Nous Contacter</a></li>
+              <li>
+                <a
+                  href="index.html#services"
+                  class="text-white/80 hover:text-white transition"
+                  >Nos Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#don"
+                  class="text-white/80 hover:text-white transition"
+                  >Faire un Don</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="text-white/80 hover:text-white transition"
+                  >Actualités & Rapports</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#urgence"
+                  class="text-white/80 hover:text-white transition"
+                  >Urgences 24h/24</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="text-white/80 hover:text-white transition"
+                  >Nous Contacter</a
+                >
+              </li>
             </ul>
           </div>
-          
+
           <!-- Colonne 4 : Informations -->
           <div>
             <h3 class="font-bold text-lg mb-6">Informations</h3>
@@ -583,33 +956,43 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Copyright -->
-        <div class="pt-8 border-t border-white/10 text-center text-white/60 text-sm">
-          <p>© 2025 HGR Nyamibungu - Hôpital Général de Référence de Kitutu-Nyamibungu. Division Provinciale de la Santé du Sud Kivu.</p>
-          <p class="mt-2">Développé par <a href="https://www.microgells.com" class="text-white underline">Microgels</a></p>
+        <div
+          class="pt-8 border-t border-white/10 text-center text-white/60 text-sm"
+        >
+          <p>
+            © 2025 HGR Nyamibungu - Hôpital Général de Référence de
+            Kitutu-Nyamibungu. Division Provinciale de la Santé du Sud Kivu.
+          </p>
+          <p class="mt-2">
+            Développé par
+            <a href="https://www.microgells.com" class="text-white underline"
+              >Microgels</a
+            >
+          </p>
         </div>
       </div>
     </footer>
 
     <script>
       // Gestion de la sidebar mobile
-      const menuToggle = document.getElementById('menuToggle');
-      const menuIcon = document.getElementById('menuIcon');
-      const mobileSidebar = document.getElementById('mobileSidebar');
-      const sidebarOverlay = document.getElementById('sidebarOverlay');
-      const closeSidebarBtn = document.getElementById('closeSidebar');
+      const menuToggle = document.getElementById("menuToggle");
+      const menuIcon = document.getElementById("menuIcon");
+      const mobileSidebar = document.getElementById("mobileSidebar");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
+      const closeSidebarBtn = document.getElementById("closeSidebar");
 
       function toggleSidebar() {
-        const isOpen = mobileSidebar.classList.contains('translate-x-0');
-        
+        const isOpen = mobileSidebar.classList.contains("translate-x-0");
+
         if (!isOpen) {
           // Ouvrir la sidebar
-          mobileSidebar.classList.remove('-translate-x-full');
-          mobileSidebar.classList.add('translate-x-0');
-          sidebarOverlay.classList.remove('hidden');
-          menuIcon.textContent = 'close';
-          document.body.style.overflow = 'hidden';
+          mobileSidebar.classList.remove("-translate-x-full");
+          mobileSidebar.classList.add("translate-x-0");
+          sidebarOverlay.classList.remove("hidden");
+          menuIcon.textContent = "close";
+          document.body.style.overflow = "hidden";
         } else {
           // Fermer la sidebar
           closeSidebar();
@@ -617,20 +1000,23 @@
       }
 
       function closeSidebar() {
-        mobileSidebar.classList.remove('translate-x-0');
-        mobileSidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-        menuIcon.textContent = 'menu';
-        document.body.style.overflow = '';
+        mobileSidebar.classList.remove("translate-x-0");
+        mobileSidebar.classList.add("-translate-x-full");
+        sidebarOverlay.classList.add("hidden");
+        menuIcon.textContent = "menu";
+        document.body.style.overflow = "";
       }
 
-      menuToggle.addEventListener('click', toggleSidebar);
-      closeSidebarBtn.addEventListener('click', closeSidebar);
-      sidebarOverlay.addEventListener('click', closeSidebar);
+      menuToggle.addEventListener("click", toggleSidebar);
+      closeSidebarBtn.addEventListener("click", closeSidebar);
+      sidebarOverlay.addEventListener("click", closeSidebar);
 
       // Fermer la sidebar avec la touche Escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !mobileSidebar.classList.contains('-translate-x-full')) {
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          !mobileSidebar.classList.contains("-translate-x-full")
+        ) {
           closeSidebar();
         }
       });
