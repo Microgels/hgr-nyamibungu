@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soins d'Urgence - Hôpital Nyamibungu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Bouton retour -->
+    <a href="services.html" class="fixed top-5 left-5 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-x-1 z-50">
+        <i class="fas fa-arrow-left text-blue-600 text-lg"></i>
+    </a>
+
+    <!-- En-tête avec image de fond -->
+    <header class="relative pt-24 pb-40 bg-gradient-to-b from-blue-900/90 to-blue-600/90"
+            style="background-image: linear-gradient(rgba(30, 64, 175, 0.85), rgba(59, 130, 246, 0.9)), url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                
+                <!-- Icône du service -->
+                <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-white/30">
+                    <i class="fas fa-ambulance text-white text-3xl"></i>
+                </div>
+                
+                <!-- Titre principal -->
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                    Soins d'<span class="text-blue-200">Urgence</span>
+                </h1>
+                
+                <!-- Description courte -->
+                <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Service d'urgence médicale disponible 24h/24 avec prise en charge immédiate et équipements de pointe.
+                </p>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="relative -mt-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Carte principale avec 2 colonnes -->
+                <div class="bg-white rounded-2xl shadow-xl border border-blue-50 overflow-hidden p-6 md:p-8 mb-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        
+                        <!-- Colonne gauche : Description -->
+                        <div>
+                            <div class="mb-8">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-6 relative pl-5">
+                                    <span class="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full"></span>
+                                    Description du service
+                                </h2>
+                                
+                                <div class="space-y-4">
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Notre service d'urgence est équipé pour prendre en charge toutes les situations médicales critiques. Avec une équipe de médecins urgentistes et d'infirmiers spécialisés disponibles en permanence, nous garantissons une réponse rapide et efficace aux besoins de santé urgents.
+                                    </p>
+                                    
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Le département dispose de salles d'examen équipées, d'équipements de monitoring avancés et d'une pharmacie d'urgence complète. Notre approche priorise la stabilisation immédiate des patients suivie d'un diagnostic précis et d'un traitement adapté.
+                                    </p>
+                                    
+                                    <div class="mt-6 p-5 bg-blue-50 rounded-xl border-l-4 border-blue-500">
+                                        <h3 class="font-bold text-blue-900 mb-2 flex items-center">
+                                            <i class="fas fa-bullseye mr-3 text-blue-600"></i>
+                                            Notre engagement
+                                        </h3>
+                                        <p class="text-blue-800">
+                                            Accueillir tout patient en moins de 5 minutes et débuter les soins d'urgence dans les 15 premières minutes suivant son arrivée.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Colonne droite : Image -->
+                        <div class="space-y-6">
+                            <div class="h-80 md:h-full rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Service d'urgence médicale" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                          
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section équipements -->
+                <div class="bg-white rounded-2xl shadow-xl border border-blue-50 overflow-hidden p-6 md:p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-8 relative pl-5">
+                        <span class="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full"></span>
+                        Équipements disponibles
+                    </h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="text-center p-5 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300 group">
+                            <i class="fas fa-heartbeat text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                            <p class="font-medium text-gray-900">Moniteurs cardiaques</p>
+                        </div>
+                        
+                        <div class="text-center p-5 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300 group">
+                            <i class="fas fa-lungs text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                            <p class="font-medium text-gray-900">Respirateurs</p>
+                        </div>
+                        
+                        <div class="text-center p-5 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300 group">
+                            <i class="fas fa-x-ray text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                            <p class="font-medium text-gray-900">Radiographie mobile</p>
+                        </div>
+                        
+                        <div class="text-center p-5 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300 group">
+                            <i class="fas fa-bed text-blue-600 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                            <p class="font-medium text-gray-900">Lits de réanimation</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
